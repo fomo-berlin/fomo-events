@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FOMO Berlin — Event Calendar · Summer 2026</title>
+<meta name="description" content="Curated Berlin startup, tech & culture events from June to October 2026. Free, no ads. Curated by FOMO." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* FOMO brand palette (from media kit) */
+    --navy:#22194A;
+    --navy-deep:#0e0a26;
+    --blue:#2854EF;
+    --blue-soft:#4670f5;
+    --purple:#884CDA;
+    --purple-light:#a877f5;
+    --magenta:#c25cf0;
+    --white:#ffffff;
+    --ink:#0e0a26;
+
+    --text:#ffffff;
+    --text-soft:rgba(255,255,255,0.92);
+    --text-muted:rgba(255,255,255,0.65);
+    --text-dim:rgba(255,255,255,0.42);
+    --line:rgba(255,255,255,0.12);
+    --line-strong:rgba(255,255,255,0.22);
+    --surface:rgba(255,255,255,0.05);
+    --surface-hover:rgba(255,255,255,0.09);
+
+    --card-bg:#ffffff;
+    --card-text:#0e0a26;
+    --card-muted:#5a5670;
+    --card-dim:#9994a7;
+    --card-line:#ececef;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--navy-deep);color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:400;line-height:1.5;overflow-x:hidden;min-height:100vh;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(40,84,239,0.45), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 0% 100%, rgba(136,76,218,0.45), transparent 60%),
+      linear-gradient(135deg, #0e0a26 0%, #22194A 40%, #2a1a5e 75%, #6a2fb5 100%);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  .container{max-width:1280px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+
+  /* Top strip */
+  .topstrip{background:rgba(0,0,0,0.35);backdrop-filter:blur(10px);color:var(--text-soft);padding:9px 0;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;overflow:hidden;border-bottom:1px solid var(--line)}
+  .topstrip-inner{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;align-items:center}
+  .topstrip .accent{color:var(--purple-light)}
+
+  /* Header / Nav */
+  nav.topnav{position:sticky;top:0;z-index:100;backdrop-filter:blur(18px);background:rgba(14,10,38,0.78);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;justify-content:space-between;align-items:center;padding:18px 0;gap:20px}
+  .nav-logo{height:32px;width:auto;display:block}
+  .nav-logo svg{height:100%;width:auto;display:block}
+  .nav-logo svg path{fill:var(--white)}
+  .nav-meta{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--text-soft);display:flex;gap:18px;align-items:center}
+  .nav-meta a{color:inherit;text-decoration:none;transition:color 0.2s}
+  .nav-meta a:hover{color:var(--purple-light)}
+  .live::before{content:"";display:inline-block;width:8px;height:8px;background:var(--purple-light);border-radius:50%;margin-right:7px;vertical-align:middle;animation:pulse 1.6s ease-in-out infinite;box-shadow:0 0 8px var(--purple-light)}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+
+  /* Page intro (minimal) */
+  .page-intro{padding:56px 0 32px}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--purple-light);font-weight:700;margin-bottom:24px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--purple-light)}
+  h1.page-title{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(36px,6.5vw,72px);line-height:1.02;letter-spacing:-0.035em;margin-bottom:22px;color:var(--white)}
+  h1.page-title em{font-style:normal;background:linear-gradient(135deg, var(--blue) 0%, var(--purple-light) 60%, var(--magenta) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .page-lede{font-size:15px;line-height:1.65;color:var(--text-soft);max-width:680px;font-weight:400}
+  .page-lede strong{color:var(--white);font-weight:600}
+
+  /* 3 main conferences strip */
+  .conf-strip{margin-top:24px;padding:32px 0 40px}
+  .conf-title{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin-bottom:20px}
+  .conf-title::before{content:"☉  "}
+  .conf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .conf{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;transition:all 0.2s}
+  .conf:hover{background:var(--surface-hover);border-color:var(--blue-soft);transform:translateY(-2px)}
+  .conf-date{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--purple-light);margin-bottom:8px;font-weight:700}
+  .conf h3{font-family:'Inter',sans-serif;font-weight:800;font-size:21px;line-height:1.2;margin-bottom:10px;letter-spacing:-0.02em}
+  .conf-venue{color:var(--text-muted);font-size:12px;margin-bottom:14px;line-height:1.55}
+  .conf a{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text);text-decoration:none;font-weight:700;border-bottom:1px dotted var(--purple-light);padding-bottom:2px;transition:color 0.2s}
+  .conf a:hover{color:var(--purple-light)}
+
+  /* Events section header */
+  .events-section{padding-top:32px;border-top:1px solid var(--line)}
+  #eventsTop{scroll-margin-top:80px}
+  .events-section-header{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:0}
+  h2.section-title{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(34px,5vw,52px);line-height:1;letter-spacing:-0.035em;color:var(--white);margin:0}
+  h2.section-title em{font-style:normal;background:linear-gradient(135deg, var(--blue) 0%, var(--purple-light) 60%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .events-count{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);font-weight:700;white-space:nowrap}
+
+  /* Day tabs — rectangular outlined buttons */
+  .day-tabs-wrap{position:sticky;top:65px;z-index:50;backdrop-filter:blur(18px);background:rgba(14,10,38,0.85);margin:0 -28px;padding:16px 28px;border-bottom:1px solid var(--line)}
+  .day-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0;align-items:center;-webkit-overflow-scrolling:touch}
+  .day-tabs::-webkit-scrollbar{display:none}
+  .tab{
+    font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.18em;font-weight:700;
+    color:var(--text-soft);background:transparent;
+    border:1px solid var(--line-strong);border-radius:6px;cursor:pointer;
+    padding:11px 18px;transition:all 0.15s;white-space:nowrap;
+    text-transform:uppercase;min-height:40px;
+  }
+  .tab:hover{color:var(--white);border-color:var(--purple-light);background:rgba(168,119,245,0.08)}
+  .tab.active{color:var(--ink);background:var(--white);border-color:var(--white);box-shadow:0 4px 14px rgba(255,255,255,0.1)}
+
+  /* Vibe filters */
+  .vibe-row{padding:18px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .vibe-label{font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--text-muted);margin-right:4px}
+  .chip{font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:0.05em;padding:7px 14px;background:transparent;color:var(--text-soft);border:1px solid var(--line-strong);border-radius:100px;cursor:pointer;transition:all 0.15s;font-weight:500;white-space:nowrap}
+  .chip:hover{color:var(--white);border-color:var(--purple-light)}
+  .chip.active{background:linear-gradient(135deg, var(--blue), var(--purple));color:var(--white);border-color:transparent}
+  .results-count{margin-left:auto;font-size:11px;color:var(--text-muted);letter-spacing:0.12em;font-weight:600;text-transform:uppercase}
+
+  /* TABLE-STYLE EVENT LIST — flat, scannable, agenda-like */
+  .events-table{margin-top:8px}
+  .events-thead{padding:18px 12px;border-bottom:1px solid var(--line)}
+  .events-thead-row,
+  .event-row{
+    display:grid;
+    grid-template-columns:140px 90px 1fr 220px 36px;
+    gap:24px;align-items:center;
+  }
+  .th{
+    font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:0.22em;
+    text-transform:uppercase;font-weight:700;color:var(--text-dim);
+  }
+
+  .event-row{
+    padding:22px 12px;
+    border-bottom:1px solid var(--line);
+    transition:background 0.12s;
+    color:var(--text);
+    align-items:start;
+  }
+  .event-row:hover{background:rgba(255,255,255,0.025)}
+  .event-row:last-child{border-bottom:none}
+
+  /* FOMO-hosted row highlight */
+  .event-row.fomo-hosted{
+    background:linear-gradient(90deg, rgba(40,84,239,0.08), rgba(136,76,218,0.06) 60%, transparent);
+    border-left:3px solid transparent;
+    border-image:linear-gradient(180deg, var(--blue), var(--purple)) 1;
+    margin-left:-15px;padding-left:24px;
+  }
+  .event-row.fomo-hosted:hover{background:linear-gradient(90deg, rgba(40,84,239,0.13), rgba(136,76,218,0.1) 60%, rgba(255,255,255,0.02))}
+  .er-pill.fomo{
+    background:linear-gradient(135deg, var(--blue), var(--purple));
+    color:#fff;border-color:transparent;font-weight:800;letter-spacing:0.1em;
+  }
+  .er-pill.fomo::before{content:"★ "}
+
+  /* Cell: date */
+  .er-date{
+    font-size:14px;color:var(--text);font-weight:500;letter-spacing:-0.005em;
+    line-height:1.4;
+  }
+  /* Cell: time */
+  .er-time{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;
+    color:var(--text-soft);letter-spacing:-0.005em;line-height:1.4;
+    font-variant-numeric:tabular-nums;
+  }
+  /* Cell: event main */
+  .er-event{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .er-title{
+    font-family:'Inter',sans-serif;font-weight:700;font-size:16px;
+    line-height:1.35;color:var(--white);letter-spacing:-0.015em;margin:0;
+  }
+  .er-tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:2px}
+  .er-pill{
+    font-family:'Inter',sans-serif;font-size:10px;font-weight:600;
+    text-transform:uppercase;padding:4px 9px;border-radius:4px;
+    letter-spacing:0.06em;line-height:1.4;border:1px solid var(--line-strong);
+    color:var(--text-soft);background:transparent;
+  }
+  .er-pill.cat{background:transparent}
+  .er-pill.open{
+    color:var(--purple-light);border-color:rgba(168,119,245,0.4);
+    background:rgba(168,119,245,0.08);
+  }
+  .er-pill.invite{
+    color:#d8c66b;border-color:rgba(216,198,107,0.4);
+    background:rgba(216,198,107,0.06);
+  }
+  .er-pill.invite::before{content:"🔒 ";font-size:9px}
+  .er-pill.rsvp{
+    color:#f4b97c;border-color:rgba(244,185,124,0.4);
+    background:rgba(244,185,124,0.06);
+  }
+  .er-host{font-size:12.5px;color:var(--text-muted);line-height:1.5;margin:0;font-weight:500}
+  .er-host b{color:var(--text-soft);font-weight:600}
+  /* Cell: location — fixed-width column, always rendered (placeholder when unknown) */
+  .er-loc{
+    font-size:12.5px;color:var(--text-muted);line-height:1.5;
+    word-break:break-word;font-weight:500;min-width:0;
+  }
+  .er-loc.empty{
+    color:var(--text-muted);font-weight:500;font-style:italic;opacity:0.75;
+  }
+  /* Cell: action arrow / lock — small inline icon, aligned with the title's first line */
+  .er-action{
+    display:flex;justify-content:flex-end;align-items:flex-start;
+  }
+  .er-action a, .er-action .lock{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:50%;
+    transition:all 0.15s;flex-shrink:0;
+    /* Pull icon up slightly so its visual center aligns with the title's text baseline */
+    margin-top:-2px;
+  }
+  .er-action a{
+    color:var(--text);text-decoration:none;border:1px solid var(--line-strong);
+  }
+  .er-action a:hover{
+    color:var(--white);background:linear-gradient(135deg, var(--blue), var(--purple));
+    border-color:transparent;transform:translateX(2px);
+  }
+  .er-action .lock{
+    color:var(--text-dim);font-size:12px;border:1px solid transparent;
+  }
+
+  /* LP/GP access callout — placed BELOW events */
+  .lp-note{
+    margin:48px 0 0;padding:22px 28px;
+    background:rgba(255,255,255,0.04);border:1px solid var(--line);
+    border-radius:16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    font-size:14px;color:var(--text-soft);line-height:1.55;
+  }
+  .lp-note .lp-badge{
+    font-family:'Inter',sans-serif;font-size:10.5px;font-weight:800;text-transform:uppercase;
+    letter-spacing:0.16em;background:linear-gradient(135deg, var(--blue), var(--purple));
+    color:#fff;padding:6px 12px;border-radius:100px;white-space:nowrap;
+  }
+  .lp-note p{margin:0;flex:1;min-width:240px}
+  .lp-note p strong{color:var(--white);font-weight:600}
+  .lp-note a{color:var(--purple-light);text-decoration:none;font-weight:700;border-bottom:1px solid var(--purple-light)}
+  .lp-note a:hover{color:var(--white);border-bottom-color:var(--white)}
+
+  .empty{display:none;padding:80px 0;text-align:center}
+  .empty.show{display:block}
+  .empty-title{font-family:'Inter',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-bottom:12px;letter-spacing:-0.02em}
+  .empty p{font-size:13px;color:var(--text-muted)}
+
+  /* Never miss */
+  .never-miss{margin-top:80px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:40px 36px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;position:relative;overflow:hidden}
+  .never-miss::before{content:"";position:absolute;width:240px;height:240px;right:-60px;top:-60px;background:radial-gradient(circle, rgba(136,76,218,0.4), transparent 70%);pointer-events:none}
+  .never-miss-title{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(26px,4vw,38px);line-height:1.1;letter-spacing:-0.025em;color:var(--white);margin-bottom:12px;position:relative}
+  .never-miss-title em{font-style:normal;background:linear-gradient(135deg, var(--blue), var(--purple-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .never-miss-desc{color:var(--text-soft);font-size:13.5px;line-height:1.65;max-width:480px;position:relative}
+  .nm-buttons{display:flex;gap:10px;flex-wrap:wrap;position:relative}
+  .nm-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.02em;color:var(--white);background:linear-gradient(135deg, var(--blue), var(--purple));text-decoration:none;padding:14px 24px;border-radius:100px;transition:all 0.2s;box-shadow:0 4px 18px rgba(40,84,239,0.4);white-space:nowrap}
+  .nm-btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(136,76,218,0.55)}
+  .nm-btn.secondary{background:transparent;border:1.5px solid var(--line-strong);box-shadow:none;color:var(--text-soft)}
+  .nm-btn.secondary:hover{border-color:var(--purple-light);color:var(--white);background:rgba(136,76,218,0.12)}
+
+  /* How to */
+  .howto{padding:80px 0 0}
+  .howto-grid{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start}
+  .howto h2{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(28px,4.5vw,44px);line-height:1.05;letter-spacing:-0.025em;color:var(--white)}
+  .howto h2 em{font-style:normal;background:linear-gradient(135deg, var(--blue), var(--purple-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;color:var(--purple-light);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;padding:6px 14px;background:rgba(136,76,218,0.15);border:1px solid rgba(136,76,218,0.35);border-radius:100px;margin-bottom:16px}
+  .howto-items{display:grid;gap:16px}
+  .howto-item{display:grid;grid-template-columns:48px 1fr;gap:18px;align-items:start;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:18px;transition:all 0.2s}
+  .howto-item:hover{transform:translateX(4px);background:var(--surface-hover);border-color:var(--blue-soft)}
+  .howto-num{font-family:'Inter',sans-serif;font-weight:800;font-size:32px;line-height:0.9;background:linear-gradient(135deg, var(--blue), var(--purple-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em}
+  .howto-item h4{font-family:'Inter',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px;letter-spacing:-0.01em}
+  .howto-item p{color:var(--text-soft);font-size:13px;line-height:1.6}
+  .howto-item p a{color:var(--purple-light);text-decoration:none;border-bottom:1px solid rgba(168,119,245,0.4)}
+  .howto-item p a:hover{color:var(--white)}
+
+  /* About */
+  .about{padding:80px 0 0;border-top:1px solid var(--line);margin-top:80px}
+  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+  .about-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple-light);margin-bottom:16px;font-weight:700}
+  .about-eyebrow::before{content:"⊹ "}
+  .about h3{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(28px,4.5vw,42px);line-height:1.05;letter-spacing:-0.025em;margin-bottom:22px;color:var(--white)}
+  .about h3 em{font-style:normal;background:linear-gradient(135deg, var(--blue), var(--purple-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .about p{color:var(--text-soft);font-size:14px;line-height:1.7;margin-bottom:14px}
+  .about p strong{color:var(--purple-light);font-weight:700}
+  .about-socials{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .social-link{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.05em;color:var(--text);background:var(--surface);border:1px solid var(--line);text-decoration:none;padding:10px 18px;border-radius:100px;transition:all 0.2s}
+  .social-link:hover{border-color:var(--purple-light);background:rgba(136,76,218,0.15);color:var(--white)}
+  .about-stats{display:grid;grid-template-columns:repeat(2,1fr);background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .stat{padding:28px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-child(n+3){border-bottom:none}
+  .stat-num{font-family:'Inter',sans-serif;font-weight:800;font-size:44px;line-height:0.9;letter-spacing:-0.04em;margin-bottom:10px;background:linear-gradient(135deg, var(--blue), var(--purple-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .stat-label{font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);font-weight:600;line-height:1.4}
+
+  /* Footer */
+  footer{margin-top:80px;padding:60px 0 32px;background:rgba(0,0,0,0.3);backdrop-filter:blur(20px);border-top:1px solid var(--line)}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:48px}
+  .footer-logo{height:34px;width:auto;margin-bottom:20px}
+  .footer-logo svg{height:100%;width:auto;display:block}
+  .footer-logo svg path{fill:var(--white)}
+  .footer-title{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);line-height:1.1;letter-spacing:-0.025em;margin-bottom:18px}
+  .footer-title em{font-style:normal;background:linear-gradient(135deg, var(--blue), var(--purple-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .footer-desc{color:var(--text-muted);font-size:13px;max-width:360px;line-height:1.65;margin-bottom:22px}
+  .footer-col h4{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple-light);margin-bottom:16px;font-weight:700}
+  .footer-col a,.footer-col p{color:var(--text-muted);text-decoration:none;font-size:13px;display:block;margin-bottom:10px;transition:color 0.2s}
+  .footer-col a:hover{color:var(--white)}
+  .footer-bottom{padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--text-dim);letter-spacing:0.08em}
+  .disclaimer{margin-top:36px;padding:20px 24px;background:var(--surface);border-left:3px solid var(--purple-light);border-radius:6px;font-size:12.5px;color:var(--text-muted);line-height:1.7}
+  .disclaimer strong{color:var(--purple-light)}
+
+  /* Mobile */
+  @media (max-width:900px){
+    .never-miss{grid-template-columns:1fr;gap:22px;padding:32px 26px}
+    .about-grid{grid-template-columns:1fr;gap:36px}
+    .howto-grid{grid-template-columns:1fr;gap:28px}
+    .footer-grid{grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+    .day-tabs-wrap{top:62px}
+  }
+  @media (max-width:720px){
+    .container{padding:0 20px}
+    .topstrip{padding:8px 0;font-size:10px;letter-spacing:0.12em}
+    .topstrip-inner{gap:14px}
+    .nav-inner{padding:14px 0}
+    .nav-logo{height:26px}
+    .nav-meta{font-size:10px;gap:12px}
+    .nav-meta .hide-sm{display:none}
+    .page-intro{padding:32px 0 16px}
+    .eyebrow{font-size:10px;margin-bottom:18px;letter-spacing:0.18em}
+    h1.page-title{font-size:38px;line-height:1;margin-bottom:18px}
+    .page-lede{font-size:14.5px;line-height:1.6}
+    .conf-strip{padding:24px 0 28px}
+    .conf-title{font-size:10px;margin-bottom:14px;letter-spacing:0.18em}
+    .conf-grid{gap:12px}
+    .conf{padding:18px 20px;border-radius:14px}
+    .conf-date{font-size:10px;margin-bottom:6px}
+    .conf h3{font-size:18px;margin-bottom:8px}
+    .conf-venue{font-size:12px;margin-bottom:12px}
+    .events-section{padding-top:24px}
+    .events-section-header{flex-wrap:wrap;gap:8px;padding-bottom:12px}
+    h2.section-title{font-size:30px;line-height:1.05}
+    .events-count{font-size:10px}
+    .day-tabs-wrap{margin:0 -20px;padding:12px 20px;top:58px}
+    .day-tabs{scroll-snap-type:x mandatory;gap:6px}
+    .tab{padding:10px 14px;min-height:38px;scroll-snap-align:start;font-size:10.5px;letter-spacing:0.14em}
+    .vibe-row{gap:8px;padding:14px 0}
+    .chip{font-size:11px;padding:9px 14px;min-height:36px;display:inline-flex;align-items:center}
+    .vibe-label{width:100%;margin-bottom:6px;font-size:10px}
+    .results-count{margin-left:auto;width:auto;font-size:10.5px}
+    .day-section{padding:32px 0 4px}
+    .day-section:first-child{padding-top:24px}
+    .day-header{gap:12px;padding-bottom:16px;margin-bottom:22px}
+    .day-date{font-size:10.5px;padding:6px 12px}
+    .day-title{font-size:26px;line-height:1.02}
+    .day-count{font-size:10.5px}
+    /* Mobile: drop grid, use block flow with absolute-positioned arrow */
+    .events-thead{display:none}
+    .event-row{
+      display:block;position:relative;
+      padding:18px 44px 18px 4px;
+      gap:0;
+    }
+    .er-date{display:inline;font-size:12px;font-weight:600;letter-spacing:0.04em;color:var(--text-muted);margin-right:6px}
+    .er-date::after{content:" · ";color:var(--text-dim);margin:0 4px 0 6px}
+    .er-time{display:inline;font-size:12px;font-weight:500;color:var(--text-muted);letter-spacing:-0.005em}
+    .er-event{display:block;margin-top:8px;gap:6px}
+    .er-title{font-size:16.5px;line-height:1.3}
+    .er-host{font-size:12.5px}
+    .er-loc{display:block;margin-top:8px;font-size:12px;color:var(--text-muted);line-height:1.5}
+    .er-loc.empty{display:block;color:var(--text-muted);font-weight:500;font-style:italic;opacity:0.75}
+    .er-action{position:absolute;top:18px;right:0;justify-content:flex-end;padding-top:0;height:auto}
+    .er-action a, .er-action .lock{margin-top:0}
+    .lp-note{padding:18px 20px;gap:12px;font-size:13px;margin-top:32px;border-radius:14px}
+    .lp-note .lp-badge{font-size:9.5px;padding:5px 10px}
+    .lp-note p{min-width:0;line-height:1.55}
+    .never-miss{padding:30px 24px;border-radius:20px;margin-top:60px}
+    .never-miss-title{font-size:26px;line-height:1.15}
+    .never-miss-desc{font-size:13px}
+    .nm-btn{padding:14px 22px;min-height:44px}
+    .howto{padding:64px 0 0}
+    .howto-item{grid-template-columns:36px 1fr;gap:14px;padding:18px}
+    .howto-num{font-size:24px}
+    .howto-item h4{font-size:16px;margin-bottom:6px}
+    .howto-item p{font-size:13px;line-height:1.55}
+    .about{padding:64px 0 0;margin-top:64px}
+    .about-stats{grid-template-columns:1fr 1fr}
+    .stat{padding:22px 16px}
+    .stat-num{font-size:32px}
+    .stat-label{font-size:10px}
+    .about-socials{gap:8px}
+    .social-link{padding:10px 14px;font-size:11px;min-height:36px;display:inline-flex;align-items:center}
+    footer{padding:48px 0 28px;margin-top:60px}
+    .footer-grid{grid-template-columns:1fr;gap:28px;margin-bottom:36px}
+    .footer-logo{height:30px;margin-bottom:16px}
+    .footer-title{font-size:24px;margin-bottom:14px}
+    .footer-desc{font-size:12.5px;margin-bottom:18px}
+    .footer-col h4{margin-bottom:12px;font-size:10.5px}
+    .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;font-size:10.5px}
+    .disclaimer{font-size:11.5px;padding:16px 20px;margin-top:28px}
+  }
+  @media (max-width:420px){
+    .container{padding:0 16px}
+    .topstrip-inner{font-size:9.5px;gap:10px;letter-spacing:0.1em}
+    .nav-logo{height:24px}
+    .nav-meta{font-size:9.5px;gap:8px}
+    h1.page-title{font-size:32px;letter-spacing:-0.03em}
+    .page-lede{font-size:14px}
+    h2.section-title{font-size:26px}
+    .day-tabs-wrap{margin:0 -16px;padding:12px 16px}
+    .day-tabs{gap:6px}
+    .tab{padding:9px 12px;font-size:10px}
+    .er-title{font-size:15.5px}
+    .chip{font-size:10.5px;padding:7px 13px}
+    .conf{padding:16px 18px}
+    .conf h3{font-size:17px}
+    .never-miss{padding:26px 20px}
+    .never-miss-title{font-size:24px}
+    .nm-buttons{width:100%}
+    .nm-btn{flex:1;justify-content:center;min-width:0}
+  }
+  /* Smooth scrolling for tab swipes */
+  @media (pointer:coarse){
+    .day-tabs{overscroll-behavior-x:contain}
+    .tab{-webkit-tap-highlight-color:transparent}
+    .chip{-webkit-tap-highlight-color:transparent}
+  }
+
+  /* ── SEARCH BAR ── */
+  .search-wrap{width:100%;margin-bottom:10px}
+  .search-input{
+    width:100%;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:400;
+    color:var(--white);background:rgba(255,255,255,0.06);
+    border:1px solid var(--line-strong);border-radius:10px;
+    padding:11px 16px 11px 40px;outline:none;transition:all 0.2s;
+    -webkit-appearance:none;appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:14px center;
+  }
+  .search-input::placeholder{color:rgba(255,255,255,0.38)}
+  .search-input:focus{border-color:var(--purple-light);background:rgba(255,255,255,0.09);box-shadow:0 0 0 3px rgba(168,119,245,0.12)}
+  @media(max-width:720px){.search-input{font-size:16px}}
+
+  /* ── DAY SECTION HEADERS ── */
+  .day-section{padding:36px 0 4px}
+  .day-section:first-child{padding-top:20px}
+  .day-header{
+    display:flex;align-items:baseline;gap:16px;
+    padding-bottom:18px;margin-bottom:24px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .day-title{
+    font-family:'Inter',sans-serif;font-weight:800;
+    font-size:clamp(28px,3.5vw,36px);line-height:1;
+    letter-spacing:-0.025em;color:var(--white);
+  }
+  .day-date{
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--purple-light);font-weight:700;
+    background:rgba(168,119,245,0.12);border:1px solid rgba(168,119,245,0.3);
+    padding:5px 12px;border-radius:100px;
+  }
+  .day-count{
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--text-dim);font-weight:600;margin-left:auto;
+  }
+
+  /* ── STATUS PILL EXTRAS ── */
+  .er-pill.waitlist{
+    color:#f4b97c;border-color:rgba(244,185,124,0.4);
+    background:rgba(244,185,124,0.06);
+  }
+  .er-pill.waitlist::before{content:"⏳ ";font-size:9px}
+  .er-pill.soldout{
+    color:rgba(255,255,255,0.38);border-color:rgba(255,255,255,0.14);
+    background:transparent;text-decoration:line-through;
+  }
+  .er-pill.paid{
+    color:#7ec8b9;border-color:rgba(126,200,185,0.4);
+    background:rgba(126,200,185,0.06);
+  }
+  .er-pill.paid::before{content:"💳 ";font-size:9px}
+
+  /* Sold out row — visually muted */
+  .event-row.is-soldout{opacity:0.45;pointer-events:none}
+  .event-row.is-soldout .er-title{text-decoration:line-through}
+
+  /* ── BACK TO TOP ── */
+  .back-to-top{
+    position:fixed;bottom:28px;right:28px;z-index:200;
+    width:44px;height:44px;border-radius:50%;
+    background:linear-gradient(135deg, var(--blue), var(--purple));
+    border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 18px rgba(40,84,239,0.5);
+    opacity:0;transform:translateY(12px);
+    transition:opacity 0.25s, transform 0.25s;
+    pointer-events:none;
+  }
+  .back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(136,76,218,0.7)}
+  .back-to-top svg{display:block}
+
+  /* ── HIGHLIGHT SEARCH MATCH ── */
+  mark.hl{background:rgba(168,119,245,0.28);color:inherit;border-radius:2px;padding:0 1px}
+
+  .empty{display:none;text-align:center;padding:60px 0;color:var(--text-muted)}
+  .empty.show{display:block}
+</style>
+</head>
+<body>
+
+<div class="topstrip" aria-hidden="true">
+  <div class="topstrip-inner">
+    <span>Berlin · Jun — Oct 2026</span>
+    <span class="accent">◆</span>
+    <span>FOMO Event Calendar</span>
+    <span class="accent">◆</span>
+    <span><span id="topstripCount">0</span> curated events</span>
+  </div>
+</div>
+
+<nav class="topnav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="https://www.fomoberlin.com" class="nav-logo" aria-label="FOMO"><svg viewBox="0 0 415.08 136.6" xmlns="http://www.w3.org/2000/svg"><path d="M415.08,58.83c0-1.17-.96-2.13-2.13-2.13h-30.22c-1.17,0-2.13-.96-2.13-2.13v-9.65c0-1.17-.07-3.08-.16-4.25,0,0-1.1-14.5-3.61-20.84-2.41-6.45-6.4-11.37-11.97-14.76-5.47-3.39-13.01-5.08-22.63-5.08s-16.89,1.69-22.47,5.08-9.57,8.31-11.97,14.76c-1.21,3.2-2.12,6.73-2.72,10.59-.64,3.93-.89,10.72-.89,10.72-.04,1.17-.08,3.08-.08,4.25v9.17c0,1.17-.96,2.13-2.13,2.13h-12.32c-1.17,0-2.13-.96-2.13-2.13V3.6c0-1.17-.55-2.13-1.23-2.13h-24.38c-1.17,0-2.33.94-2.57,2.08l-10.92,51.07c-.24,1.14-1.4,2.08-2.57,2.08h-11.15c-1.17,0-2.32-.94-2.55-2.08l-10.47-51.07c-.23-1.15-1.38-2.08-2.55-2.08h-25.11c-.63,0-1.15.96-1.15,2.13v50.98c0,1.17-.96,2.13-2.13,2.13h-12.37c-1.17,0-2.13-.96-2.13-2.13v-11.54c0-.13-.07-1.19-.16-2.36,0,0-1.1-14.5-3.61-20.84-2.4-6.45-6.4-11.37-11.97-14.76-5.47-3.39-13.01-5.08-22.63-5.08s-16.89,1.69-22.47,5.08-9.57,8.31-11.97,14.76c-2.41,6.34-3.45,20.84-3.45,20.84-.08,1.17-.15,2.23-.15,2.36v11.54c0,1.17-.96,2.13-2.13,2.13h-37.25c-1.17,0-2.13-.96-2.13-2.13v-28.84c0-1.17.96-2.13,2.13-2.13h26.09c1.17,0,2.13-.68,2.13-1.52V3.6c0-1.17-.96-2.13-2.13-2.13h-50.36c-1.17,0-2.13.96-2.13,2.13v50.98c0,1.17-.96,2.13-2.13,2.13H2.13c-1.17,0-2.13.96-2.13,2.13v18.02c0,1.17.96,2.13,2.13,2.13h29.79c1.17,0,2.13.96,2.13,2.13v51.08c0,1.17.96,2.13,2.13,2.13h20.02c1.17,0,2.13-.96,2.13-2.13v-51.08c0-1.17.96-2.13,2.13-2.13h37.25c1.17,0,2.13.96,2.13,2.13v11.63c0,.13.07,1.19.15,2.36,0,0,1.05,14.61,3.46,21.17,2.41,6.56,6.4,11.59,11.97,15.09,5.58,3.5,13.07,5.25,22.47,5.25s17.17-1.75,22.63-5.25c5.58-3.61,9.57-8.64,11.97-15.09,2.52-6.56,3.61-21,3.61-21,.09-1.17.16-2.23.16-2.36v-11.79c0-1.17.96-2.13,2.13-2.13h12.37c1.17,0,2.13.96,2.13,2.13v51.08c0,1.17.96,2.13,2.13,2.13h18.54c.81,0,1.47-.96,1.47-2.13v-46.08c0-1.17.22-1.19.48-.06l10.72,46.19c.26,1.14,1.42,2.07,2.56,2.07h22.88c1.17,0,2.34-.93,2.61-2.07l10.66-45.94c.26-1.14.48-1.11.48.06v45.83c0,1.17.7,2.13,1.55,2.13h18.46c1.17,0,2.13-.96,2.13-2.13v-51.08c0-1.17.96-2.13,2.13-2.13h12.32c1.17,0,2.13.96,2.13,2.13v9.74c0,1.17.07,3.08.15,4.25,0,0,1.05,14.61,3.46,21.17,2.41,6.56,6.4,11.59,11.97,15.09,5.58,3.5,13.07,5.25,22.47,5.25s17.17-1.75,22.63-5.25c5.58-3.61,9.57-8.64,11.97-15.09,1.27-3.32,2.22-6.95,2.85-10.86.66-3.95.92-10.62.92-10.62.04-1.17.08-3.08.08-4.25v-9.43c0-1.17.96-2.13,2.13-2.13h30.22c1.17,0,2.13-.96,2.13-2.13v-18.02ZM124.26,48.31c0-1.17.03-3.08.06-4.25,0,0,.3-9.92.92-12.69.65-2.95,1.96-5.25,3.93-6.89,1.97-1.74,4.87-2.62,8.69-2.62,4.05,0,6.99,1.6,6.99,1.6,1.03.56,2.48,1.75,3.23,2.65,0,0,1.92,2.31,2.58,5.26.65,2.95.92,13.45.92,13.45.03,1.17.06,2.13.06,2.13s0,.96,0,2.13v5.51c0,1.17-.96,2.13-2.13,2.13h-23.14c-1.17,0-2.13-.96-2.13-2.13v-6.27ZM151.65,94.65c0,1.17-.06,3.08-.12,4.25,0,0-.31,5.28-.7,7.02-.65,2.95-1.96,5.25-3.93,6.89-1.97,1.74-4.87,2.62-8.69,2.62-4.05,0-6.99-1.6-6.99-1.6-1.03-.56-2.48-1.75-3.23-2.65,0,0-1.92-2.31-2.58-5.26-.65-2.95-.92-13.45-.92-13.45-.03-1.17-.09-2.13-.14-2.13s-.08-.96-.08-2.13v-7.1c0-1.17.96-2.13,2.13-2.13h23.14c1.17,0,2.13.96,2.13,2.13v13.54ZM241.1,78.98c1.17,0,1.93.94,1.68,2.08l-2.21,10.34c-.24,1.14-.64,1.14-.87,0l-2.12-10.34c-.23-1.15.53-2.08,1.7-2.08h1.82ZM355.1,105.92c-.65,2.95-1.96,5.25-3.93,6.89-1.97,1.74-4.87,2.62-8.69,2.62-4.05,0-6.99-1.6-6.99-1.6-1.03-.56-2.48-1.75-3.23-2.65,0,0-1.92-2.31-2.58-5.26-.65-2.95-.92-13.45-.92-13.45-.03-1.17-.07-2.13-.1-2.13s-.04-.96-.04-2.13v-7.1c0-1.17.96-2.13,2.13-2.13h23.05c1.17,0,2.13.96,2.13,2.13v13.54c0,1.17-.06,3.08-.12,4.25,0,0-.31,5.28-.7,7.02ZM330.75,56.71c-1.17,0-2.13-.96-2.13-2.13v-9.84c0-1.17.05-3.08.1-4.25,0,0,.34-7.04.8-9.12.65-2.95,1.96-5.25,3.93-6.89,1.97-1.74,4.87-2.62,8.69-2.62,4.05,0,6.99,1.6,6.99,1.6,1.03.56,2.48,1.75,3.23,2.65,0,0,1.92,2.31,2.58,5.26.65,2.95.92,13.45.92,13.45.03,1.17.06,2.13.06,2.13s0,.96,0,2.13v5.51c0,1.17-.96,2.13-2.13,2.13h-23.05Z"/></svg></a>
+      <div class="nav-meta">
+        <span class="live">Live</span>
+        <span class="hide-sm">Events · Summer 2026</span>
+        <a href="https://www.fomoberlin.com" target="_blank" rel="noopener">fomoberlin.com →</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="page-intro">
+    <div class="eyebrow">Berlin · Startup · Tech · Culture · 2026</div>
+    <h1 class="page-title">The <em>FOMO</em> event calendar.</h1>
+    <p class="page-lede"><span id="ledeCount">0</span>+ curated dinners, drinks, runs, hackathons, panels, parties &amp; festivals across Berlin from June to October. <strong>Free, no ads, no fluff</strong> — just the events worth your time.</p>
+  </section>
+
+  <section class="events-section" id="eventsTop">
+    <div class="events-section-header">
+      <h2 class="section-title">The <em>calendar</em></h2>
+      <span class="events-count" id="resultsCount">0 events</span>
+    </div>
+  </section>
+</div>
+
+<div class="day-tabs-wrap">
+  <div class="container">
+    <div class="day-tabs" id="dayTabs" role="tablist">
+      <button class="tab active" data-val="all" role="tab">All months</button>
+      <button class="tab" data-val="jun" role="tab">June</button>
+      <button class="tab" data-val="jul" role="tab">July</button>
+      <button class="tab" data-val="aug" role="tab">August</button>
+      <button class="tab" data-val="sep" role="tab">September</button>
+      <button class="tab" data-val="oct" role="tab">October</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="vibe-row" id="vibeFilters" role="region" aria-label="Vibe filter">
+    <div class="search-wrap">
+      <input type="search" id="searchInput" class="search-input" placeholder="Search events, locations, source…" autocomplete="off" spellcheck="false" aria-label="Search events">
+    </div>
+    <span class="vibe-label">Vibe</span>
+    <button class="chip active" data-val="all">All</button>
+    <button class="chip" data-val="networking">Networking</button>
+    <button class="chip" data-val="panel">Talk / Conf</button>
+    <button class="chip" data-val="drinks">Drinks</button>
+    <button class="chip" data-val="party">Party</button>
+    <button class="chip" data-val="dinner">Dinner</button>
+    <button class="chip" data-val="breakfast">Breakfast</button>
+    <button class="chip" data-val="activity">Activity</button>
+    <button class="chip" data-val="wellness">Wellness</button>
+  </div>
+
+  <div id="eventList" role="region" aria-label="Events"></div>
+  <div class="empty" id="empty"><p>No events match your filters.</p></div>
+</div>
+
+<footer id="submit">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo" aria-label="FOMO"><svg viewBox="0 0 415.08 136.6" xmlns="http://www.w3.org/2000/svg"><path d="M415.08,58.83c0-1.17-.96-2.13-2.13-2.13h-30.22c-1.17,0-2.13-.96-2.13-2.13v-9.65c0-1.17-.07-3.08-.16-4.25,0,0-1.1-14.5-3.61-20.84-2.41-6.45-6.4-11.37-11.97-14.76-5.47-3.39-13.01-5.08-22.63-5.08s-16.89,1.69-22.47,5.08-9.57,8.31-11.97,14.76c-1.21,3.2-2.12,6.73-2.72,10.59-.64,3.93-.89,10.72-.89,10.72-.04,1.17-.08,3.08-.08,4.25v9.17c0,1.17-.96,2.13-2.13,2.13h-12.32c-1.17,0-2.13-.96-2.13-2.13V3.6c0-1.17-.55-2.13-1.23-2.13h-24.38c-1.17,0-2.33.94-2.57,2.08l-10.92,51.07c-.24,1.14-1.4,2.08-2.57,2.08h-11.15c-1.17,0-2.32-.94-2.55-2.08l-10.47-51.07c-.23-1.15-1.38-2.08-2.55-2.08h-25.11c-.63,0-1.15.96-1.15,2.13v50.98c0,1.17-.96,2.13-2.13,2.13h-12.37c-1.17,0-2.13-.96-2.13-2.13v-11.54c0-.13-.07-1.19-.16-2.36,0,0-1.1-14.5-3.61-20.84-2.4-6.45-6.4-11.37-11.97-14.76-5.47-3.39-13.01-5.08-22.63-5.08s-16.89,1.69-22.47,5.08-9.57,8.31-11.97,14.76c-2.41,6.34-3.45,20.84-3.45,20.84-.08,1.17-.15,2.23-.15,2.36v11.54c0,1.17-.96,2.13-2.13,2.13h-37.25c-1.17,0-2.13-.96-2.13-2.13v-28.84c0-1.17.96-2.13,2.13-2.13h26.09c1.17,0,2.13-.68,2.13-1.52V3.6c0-1.17-.96-2.13-2.13-2.13h-50.36c-1.17,0-2.13.96-2.13,2.13v50.98c0,1.17-.96,2.13-2.13,2.13H2.13c-1.17,0-2.13.96-2.13,2.13v18.02c0,1.17.96,2.13,2.13,2.13h29.79c1.17,0,2.13.96,2.13,2.13v51.08c0,1.17.96,2.13,2.13,2.13h20.02c1.17,0,2.13-.96,2.13-2.13v-51.08c0-1.17.96-2.13,2.13-2.13h37.25c1.17,0,2.13.96,2.13,2.13v11.63c0,.13.07,1.19.15,2.36,0,0,1.05,14.61,3.46,21.17,2.41,6.56,6.4,11.59,11.97,15.09,5.58,3.5,13.07,5.25,22.47,5.25s17.17-1.75,22.63-5.25c5.58-3.61,9.57-8.64,11.97-15.09,2.52-6.56,3.61-21,3.61-21,.09-1.17.16-2.23.16-2.36v-11.79c0-1.17.96-2.13,2.13-2.13h12.37c1.17,0,2.13.96,2.13,2.13v51.08c0,1.17.96,2.13,2.13,2.13h18.54c.81,0,1.47-.96,1.47-2.13v-46.08c0-1.17.22-1.19.48-.06l10.72,46.19c.26,1.14,1.42,2.07,2.56,2.07h22.88c1.17,0,2.34-.93,2.61-2.07l10.66-45.94c.26-1.14.48-1.11.48.06v45.83c0,1.17.7,2.13,1.55,2.13h18.46c1.17,0,2.13-.96,2.13-2.13v-51.08c0-1.17.96-2.13,2.13-2.13h12.32c1.17,0,2.13.96,2.13,2.13v9.74c0,1.17.07,3.08.15,4.25,0,0,1.05,14.61,3.46,21.17,2.41,6.56,6.4,11.59,11.97,15.09,5.58,3.5,13.07,5.25,22.47,5.25s17.17-1.75,22.63-5.25c5.58-3.61,9.57-8.64,11.97-15.09,1.27-3.32,2.22-6.95,2.85-10.86.66-3.95.92-10.62.92-10.62.04-1.17.08-3.08.08-4.25v-9.43c0-1.17.96-2.13,2.13-2.13h30.22c1.17,0,2.13-.96,2.13-2.13v-18.02ZM124.26,48.31c0-1.17.03-3.08.06-4.25,0,0,.3-9.92.92-12.69.65-2.95,1.96-5.25,3.93-6.89,1.97-1.74,4.87-2.62,8.69-2.62,4.05,0,6.99,1.6,6.99,1.6,1.03.56,2.48,1.75,3.23,2.65,0,0,1.92,2.31,2.58,5.26.65,2.95.92,13.45.92,13.45.03,1.17.06,2.13.06,2.13s0,.96,0,2.13v5.51c0,1.17-.96,2.13-2.13,2.13h-23.14c-1.17,0-2.13-.96-2.13-2.13v-6.27ZM151.65,94.65c0,1.17-.06,3.08-.12,4.25,0,0-.31,5.28-.7,7.02-.65,2.95-1.96,5.25-3.93,6.89-1.97,1.74-4.87,2.62-8.69,2.62-4.05,0-6.99-1.6-6.99-1.6-1.03-.56-2.48-1.75-3.23-2.65,0,0-1.92-2.31-2.58-5.26-.65-2.95-.92-13.45-.92-13.45-.03-1.17-.09-2.13-.14-2.13s-.08-.96-.08-2.13v-7.1c0-1.17.96-2.13,2.13-2.13h23.14c1.17,0,2.13.96,2.13,2.13v13.54ZM241.1,78.98c1.17,0,1.93.94,1.68,2.08l-2.21,10.34c-.24,1.14-.64,1.14-.87,0l-2.12-10.34c-.23-1.15.53-2.08,1.7-2.08h1.82ZM355.1,105.92c-.65,2.95-1.96,5.25-3.93,6.89-1.97,1.74-4.87,2.62-8.69,2.62-4.05,0-6.99-1.6-6.99-1.6-1.03-.56-2.48-1.75-3.23-2.65,0,0-1.92-2.31-2.58-5.26-.65-2.95-.92-13.45-.92-13.45-.03-1.17-.07-2.13-.1-2.13s-.04-.96-.04-2.13v-7.1c0-1.17.96-2.13,2.13-2.13h23.05c1.17,0,2.13.96,2.13,2.13v13.54c0,1.17-.06,3.08-.12,4.25,0,0-.31,5.28-.7,7.02ZM330.75,56.71c-1.17,0-2.13-.96-2.13-2.13v-9.84c0-1.17.05-3.08.1-4.25,0,0,.34-7.04.8-9.12.65-2.95,1.96-5.25,3.93-6.89,1.97-1.74,4.87-2.62,8.69-2.62,4.05,0,6.99,1.6,6.99,1.6,1.03.56,2.48,1.75,3.23,2.65,0,0,1.92,2.31,2.58,5.26.65,2.95.92,13.45.92,13.45.03,1.17.06,2.13.06,2.13s0,.96,0,2.13v5.51c0,1.17-.96,2.13-2.13,2.13h-23.05Z"/></svg></div>
+        <h2 class="footer-title">Hosting an <em>event?</em></h2>
+        <p class="footer-desc">This calendar lives off the community. Founder dinner, office cocktail, sunrise run, hackathon, roundtable — send us the details. We curate, nobody pays for visibility.</p>
+        <a class="nm-btn" href="mailto:hi@fomoberlin.com?subject=Event%20Submission%20FOMO%202026">Submit event →</a>
+      </div>
+      <div class="footer-col">
+        <h4>FOMO</h4>
+        <a href="https://www.fomoberlin.com" target="_blank" rel="noopener">fomoberlin.com</a>
+        <a href="https://www.fomomunich.com" target="_blank" rel="noopener">fomomunich.com</a>
+        <a href="mailto:hi@fomoberlin.com">hi@fomoberlin.com</a>
+        <a href="https://instagram.com/fomoberlin247" target="_blank" rel="noopener">@fomoberlin247</a>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="https://www.fomoberlin.com" target="_blank" rel="noopener">What is FOMO?</a>
+        <a href="mailto:hi@fomoberlin.com?subject=Partnership">Partner with us</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> This calendar is curated through our network and desk research. FOMO can't guarantee the accuracy of all information — dates, times and locations may change. Many events are private and require prior registration; please confirm directly with the host before traveling.
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 · FOMO · Berlin Event Calendar</span>
+      <span>Made with ◆ in Berlin</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script>window.FOMO_EVENTS = /* FOMO_EVENTS_JSON */;</script>
+<script>
+
+/* ── helpers ── */
+function escapeHtml(s){ if(s==null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function highlightMatch(text, query){
+  if(!query) return escapeHtml(text);
+  const safe = escapeHtml(text);
+  const safeQ = query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return safe.replace(new RegExp(safeQ,'gi'), m => `<mark class="hl">${m}</mark>`);
+}
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function shortDate(iso){ if(!iso) return ''; const d=new Date(iso+'T00:00:00Z'); return `${WD[d.getUTCDay()]}, ${d.getUTCDate()} ${MON[d.getUTCMonth()]}`; }
+
+/* ── event row builder ── */
+function buildEventCard(e, q){
+  const dateShort = shortDate(e.date);
+  const timeStart = String(e.time||'').split('–')[0].trim();
+  const action = (e.status === 'invite' || !e.link)
+    ? `<span class="lock" title="Invite only / no public link">🔒</span>`
+    : `<a href="${escapeHtml(e.link)}" target="_blank" rel="noopener" title="Open"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>`;
+  const isHiddenLoc = !e.location || /^(disclosed after|visible after|hidden until|invite[- ]only|invitation only|—|berlin$|berlin,? germany$)/i.test((e.location||'').trim());
+  const locHtml = isHiddenLoc
+    ? `<div class="er-loc empty" role="cell">${escapeHtml(e.location||'Location TBA')}</div>`
+    : `<div class="er-loc" role="cell">${highlightMatch(e.location||'', q)}</div>`;
+  const statusMap={invite:'Invite only',open:'Open RSVP',waitlist:'Waitlist',soldout:'Sold out',paid:'Paid'};
+  const statusShort=statusMap[e.status]||e.statusLabel||'Open';
+  let rowClass='event-row';
+  if(e.fomoHosted) rowClass+=' fomo-hosted';
+  if(e.status==='soldout') rowClass+=' is-soldout';
+  const fomoBadge=e.fomoHosted?`<span class="er-pill fomo">FOMO Hosted</span>`:'';
+  const srcBadge=e.source?`<span class="er-pill cat">${escapeHtml(e.source)}</span>`:'';
+  return `
+    <div class="${rowClass}" role="row" data-day="${e.day}" data-cat="${e.cat}" data-status="${e.status}">
+      <div class="er-date" role="cell">${dateShort}</div>
+      <div class="er-time" role="cell">${escapeHtml(timeStart)}</div>
+      <div class="er-event" role="cell">
+        <h3 class="er-title">${highlightMatch(e.title||'', q)}</h3>
+        <div class="er-tags">
+          ${fomoBadge}
+          <span class="er-pill ${e.status}">${escapeHtml(statusShort)}</span>
+          <span class="er-pill cat">${escapeHtml(e.catLabel)}</span>
+          ${srcBadge}
+        </div>
+      </div>
+      ${locHtml}
+      <div class="er-action" role="cell">${action}</div>
+    </div>`;
+}
+
+/* ── config ── */
+const monthMeta={jun:'June',jul:'July',aug:'August',sep:'September',oct:'October'};
+const events = window.FOMO_EVENTS || [];
+const state = { month:'all', cat:'all', search:'' };
+function todayKey(){ const d=new Date(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0'); return `${d.getFullYear()}-${m}-${day}`; }
+const TODAY = todayKey();
+const upcoming = events.filter(e => e.date >= TODAY);
+
+function updateHeaderCounts(){
+  const n=upcoming.length;
+  ['topstripCount','ledeCount'].forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=n;});
+}
+function getFiltered(){
+  const q=state.search.trim().toLowerCase();
+  return upcoming.filter(e=>{
+    const mM = state.month==='all' || e.monthKey===state.month;
+    const mC = state.cat==='all' || e.cat===state.cat;
+    const mS = !q || [e.title,e.host,e.location,e.catLabel,e.desc,e.source].some(f=>(f||'').toLowerCase().includes(q));
+    return mM&&mC&&mS;
+  }).sort((a,b)=> a.date!==b.date ? a.date.localeCompare(b.date) : (a.time||'').localeCompare(b.time||''));
+}
+function dayHeaderHtml(iso, count){
+  const d=new Date(iso+'T00:00:00Z');
+  const label=`${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getUTCDay()]}`;
+  const dl=`${WD[d.getUTCDay()]} · ${MON[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+  return `<div class="day-header"><h3 class="day-title">${label}</h3><span class="day-date">${dl}</span><span class="day-count">${count} event${count===1?'':'s'}</span></div>`;
+}
+const THEAD=`<div class="events-thead" role="rowgroup"><div class="events-thead-row" role="row"><div class="th">Date</div><div class="th">Time</div><div class="th">Event</div><div class="th">Location</div><div class="th" aria-label="Action"></div></div></div>`;
+
+function render(){
+  const filtered=getFiltered();
+  const list=document.getElementById('eventList');
+  const empty=document.getElementById('empty');
+  const q=state.search.trim().toLowerCase();
+  if(filtered.length===0){ list.innerHTML=''; empty.classList.add('show'); document.getElementById('resultsCount').textContent='0 events'; return; }
+  empty.classList.remove('show');
+  let html='';
+  if(!q){
+    const byDate={};
+    for(const e of filtered){ (byDate[e.date]=byDate[e.date]||[]).push(e); }
+    for(const iso of Object.keys(byDate).sort()){
+      const evs=byDate[iso];
+      html+=`<section class="day-section">${dayHeaderHtml(iso,evs.length)}<div class="events-table" role="table">${THEAD}<div role="rowgroup">${evs.map(e=>buildEventCard(e,q)).join('')}</div></div></section>`;
+    }
+  } else {
+    html=`<div class="events-table" role="table">${THEAD}<div role="rowgroup">${filtered.map(e=>buildEventCard(e,q)).join('')}</div></div>`;
+  }
+  list.innerHTML=html;
+  document.getElementById('resultsCount').textContent=`${filtered.length} ${filtered.length===1?'event':'events'}`;
+}
+
+document.getElementById('dayTabs').addEventListener('click',e=>{
+  const tab=e.target.closest('.tab'); if(!tab) return;
+  state.month=tab.dataset.val;
+  document.querySelectorAll('#dayTabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.val===state.month));
+  render();
+  const top=document.getElementById('eventsTop'); if(top) top.scrollIntoView({behavior:'smooth',block:'start'});
+});
+document.getElementById('vibeFilters').addEventListener('click',e=>{
+  const chip=e.target.closest('.chip'); if(!chip) return;
+  state.cat=chip.dataset.val;
+  document.querySelectorAll('#vibeFilters .chip').forEach(c=>c.classList.toggle('active',c.dataset.val===state.cat));
+  render();
+});
+let sd;
+document.getElementById('searchInput').addEventListener('input',e=>{clearTimeout(sd); sd=setTimeout(()=>{state.search=e.target.value; render();},180);});
+document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Escape'){e.target.value=''; state.search=''; render();}});
+const btt=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>btt.classList.toggle('visible',window.scrollY>500),{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+updateHeaderCounts(); render();
+
+</script>
+</body>
+</html>

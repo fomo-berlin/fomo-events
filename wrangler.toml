@@ -1,0 +1,6 @@
+# Cloudflare Workers static-site config. Rename "name" to your project.
+name = "fomo-berlin-events"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./public"
