@@ -1,0 +1,40 @@
+════════════════════════════════════════════════════════════════════
+  FOMO BERLIN — START-PROMPT
+  So benutzt du ihn:
+    1. Terminal öffnen:  cd ~/Downloads/fomo-berlin-events && claude
+       (oder das ZIP in claude.ai hochladen)
+    2. Den Text UNTER der Linie komplett kopieren und als erste
+       Nachricht einfügen.
+════════════════════════════════════════════════════════════════════
+
+Ich arbeite an meiner Website „FOMO Berlin – Event Calendar", einem werbefreien
+Veranstaltungskalender für Berlin (Startup / Tech / Kultur). Das komplette Projekt
+liegt in diesem Ordner. Es ist eine FERTIGE, funktionierende statische Single-Page-
+Site: eine einzige `index.html` mit Inline-CSS/JS, gebaut über Node-Skripte und
+deployt zu Cloudflare Workers.
+
+Bereits gebaut und getestet (Git-Historie vorhanden):
+- „Add to Calendar" pro Event (Google / Apple / Outlook / .ics) + Abo-Feed /fomo-berlin.ics
+- Schnellfilter Heute / Diese Woche / Wochenende + Live-Countdown zum nächsten Event
+- Interaktive Karte (Leaflet, selbst-gehostet) mit Kiez-/Bezirk-Filter
+- Favoriten (localStorage), teilbare ?e=<id>-Links, Web-Share
+- PWA: installierbar + offline
+- Event-einreichen-Formular → Cloudflare Worker → Notion (data-sources-API, Version
+  2026-03-11), mit automatischem E-Mail-Fallback, wenn Notion nicht eingerichtet ist
+- Vergangene Events fallen automatisch weg (Filter date >= heute, läuft im Browser)
+
+Bitte mach Folgendes zum Einstieg:
+1. Lies `CLAUDE.md`, `HANDOFF.md` und `START-HERE.md` in diesem Ordner — dort steht
+   alles zu Architektur, Daten-Schema, Build, Notion und Deploy.
+2. Starte die Vorschau mit `npm run dev` (baut + serviert auf http://localhost:8765)
+   und bestätige mir, dass die Seite läuft.
+3. Danach warte auf meine nächste Aufgabe.
+
+Wichtige Regeln für dieses Projekt:
+- `index.html` bleibt EINE selbst-enthaltene Datei (Inline-CSS/JS, keine externen
+  Build-Tools/Frameworks).
+- Nach Änderungen an `data/fomo_events.json` oder am Template: passenden Build laufen
+  lassen (`npm run build`) und prüfen, dass in `public/index.html` kein Platzhalter
+  `/* FOMO_EVENTS_JSON */` mehr steht und die Event-Zahl stimmt.
+- Bei neuen Venues einmalig `npm run geo` (geocodiert sie für die Karte).
+- Kein `npm install` nötig (keine Laufzeit-Abhängigkeiten).
