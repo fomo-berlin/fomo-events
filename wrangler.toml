@@ -1,6 +1,35 @@
-# Cloudflare Workers static-site config. Rename "name" to your project.
+# Cloudflare Workers config: serves ./public static assets AND a small Worker
+# that handles POST /api/submit-event (writes a submitted event to Notion).
+#
+# The "submit an event" form degrades gracefully: if this Worker / its secrets
+# are not configured, the frontend falls back to a prefilled email — so the
+# static site keeps working even before you set any of this up.
+#
+# See SETUP-SUBMIT-FORM.md for the one-time secret/data-source setup.
 name = "fomo-berlin-events"
-compatibility_date = "2025-01-01"
+main = "./src/worker.js"
+compatibility_date = "2025-06-01"
 
 [assets]
 directory = "./public"
+binding = "ASSETS"
+# Only /api/* invokes the Worker; everything else is served straight from ./public.
+run_worker_first = ["/api/*"]
+
+# Lightweight per-IP rate limiting for the submit endpoint (GA binding; Wrangler >= 4.36).
+# period must be exactly 10 or 60.
+[[ratelimits]]
+name = "SUBMIT_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60
+
+# Non-secret config. NOTION_API_KEY is set separately as an encrypted secret:
+#   npx wrangler secret put NOTION_API_KEY
+[vars]
+# Resolve once and paste here (see SETUP-SUBMIT-FORM.md). NOT the database id.
+NOTION_DATA_SOURCE_ID = ""
+# Lock the submit endpoint to your own origin (set to your deployed URL).
+ALLOWED_ORIGIN = "https://www.fomoberlin.com"
