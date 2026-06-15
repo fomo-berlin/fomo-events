@@ -40,8 +40,10 @@ async function handleSubmit(request, env) {
   if (request.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405, { Allow: 'POST' });
 
   // Same-origin guard (the form posts from our own page; no CORS needed).
+  // When ALLOWED_ORIGIN is configured, require an exact match — a MISSING Origin
+  // header is rejected too (don't let a stripped header bypass the check).
   const origin = request.headers.get('Origin');
-  if (origin && env.ALLOWED_ORIGIN && origin !== env.ALLOWED_ORIGIN) {
+  if (env.ALLOWED_ORIGIN && origin !== env.ALLOWED_ORIGIN) {
     return json({ ok: false, error: 'Forbidden origin' }, 403);
   }
 

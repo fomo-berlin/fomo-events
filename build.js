@@ -103,8 +103,8 @@ function toEvent(page) {
     catLabel: kategorie || catLabelMap[cat],
     status: statusKey(status),
     statusLabel: status || 'Open RSVP',
-    link: getText(p['Link']) || '',
-    linkLabel: getText(p['Link']) ? 'Register ↗' : '',
+    link: /^https?:\/\//i.test(getText(p['Link'])) ? getText(p['Link']) : '',
+    linkLabel: /^https?:\/\//i.test(getText(p['Link'])) ? 'Register ↗' : '',
     fomoHosted: /fomo/i.test(`${title} ${getText(p['Veranstalter'])}`),
     source: '',
   };

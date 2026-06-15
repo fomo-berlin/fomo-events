@@ -3,9 +3,9 @@
  *   - HTML navigations: network-first (events stay fresh; cache fallback offline)
  *   - same-origin assets (icons, vendored Leaflet, .ics): stale-while-revalidate
  *   - CSS/fonts/tiles: stale-while-revalidate
- * e8d884f495f0 is replaced at build time (lib/emit.js) so each deploy busts caches.
+ * d69e5dbdc577 is replaced at build time (lib/emit.js) so each deploy busts caches.
  */
-const CACHE_VERSION = 'e8d884f495f0';
+const CACHE_VERSION = 'd69e5dbdc577';
 const SHELL_CACHE = 'fomo-shell-' + CACHE_VERSION;
 const RUNTIME_CACHE = 'fomo-runtime-' + CACHE_VERSION;
 

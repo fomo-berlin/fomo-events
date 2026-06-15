@@ -534,6 +534,8 @@
   /* ════════════ POWER FEATURES ════════════ */
   /* the [hidden] attribute must win over the display rules below */
   [hidden]{display:none!important}
+  /* visible keyboard focus on every interactive control (mouse users unaffected) */
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--purple-light);outline-offset:2px;border-radius:6px}
 
   /* ── Countdown + subscribe row (hero) ── */
   .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
@@ -542,7 +544,7 @@
   .cd-units{display:flex;gap:12px}
   .cd-unit{display:flex;flex-direction:column;align-items:center;min-width:34px}
   .cd-num{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;line-height:1;color:var(--white);font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
-  .cd-unit span:last-child{font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-top:4px}
+  .cd-unit span:last-child{font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin-top:4px}
   .cd-next{font-size:12px;color:var(--text-soft);max-width:240px;line-height:1.4}
   .cd-next b{color:var(--purple-light);font-weight:600}
   .btn-ghost{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:var(--text-soft);background:var(--surface);border:1px solid var(--line-strong);border-radius:100px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:all 0.18s}
@@ -632,7 +634,7 @@
   .btn-primary{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue),var(--purple));border:none;border-radius:100px;padding:13px 26px;cursor:pointer;box-shadow:0 4px 18px rgba(40,84,239,0.4);transition:all 0.2s}
   .btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(136,76,218,0.55)}
   .btn-primary:disabled{opacity:0.55;cursor:wait;transform:none}
-  .form-note{font-size:11.5px;color:var(--text-dim);line-height:1.5}
+  .form-note{font-size:11.5px;color:var(--text-muted);line-height:1.5}
   .form-msg{font-size:13px;font-weight:600;margin-top:14px;display:none}
   .form-msg.show{display:block}
   .form-msg.ok{color:#7dd0a0}
@@ -4710,7 +4712,7 @@ function highlightMatch(text, query){
 }
 function safeHref(u){ const s=String(u||'').trim(); return /^(https?:|mailto:)/i.test(s)?s:'#'; }
 function slugify(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60); }
-function eventId(e){ return (e.date + '-' + slugify(e.title)) || e.date; }
+function eventId(e){ return e.date + '-' + (slugify(e.title) || 'event'); }
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 function shortDate(iso){ if(!iso) return ''; const d=new Date(iso+'T00:00:00Z'); return `${WD[d.getUTCDay()]}, ${d.getUTCDate()} ${MON[d.getUTCMonth()]}`; }
@@ -4723,8 +4725,9 @@ const SVG_ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 
 /* ════════ config / state ════════ */
 const monthMeta={jun:'June',jul:'July',aug:'August',sep:'September',oct:'October'};
-const events = (window.FOMO_EVENTS || []).map(e => ({ ...e, _id: eventId(e) }));
-const byId = {}; events.forEach(e => { byId[e._id] = e; });
+const events = (window.FOMO_EVENTS || []).map(e => ({ ...e }));
+const byId = {};
+events.forEach((e, i) => { let id = eventId(e); if (byId[id]) id += '-' + i; e._id = id; byId[id] = e; });
 function todayKey(){ const d=new Date(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0'); return `${d.getFullYear()}-${m}-${day}`; }
 const TODAY = todayKey();
 const upcoming = events.filter(e => e.date >= TODAY);
@@ -4774,7 +4777,7 @@ function buildEventCard(e, q){
     : `<span class="er-icon go"><a href="${escapeHtml(safeHref(e.link))}" target="_blank" rel="noopener" aria-label="Open event page">${SVG_ARROW}</a></span>`;
   const favOn = favs.has(e._id);
   const favBtn = `<button class="er-icon fav${favOn?' on':''}" data-act="fav" data-id="${e._id}" aria-label="Save to favourites" aria-pressed="${favOn}">${favOn?SVG_HEART_FILL:SVG_HEART}</button>`;
-  const calBtn = `<button class="er-icon cal-btn" data-act="cal" data-id="${e._id}" aria-label="Add to calendar or share" aria-haspopup="true">${SVG_CAL}</button>`;
+  const calBtn = `<button class="er-icon cal-btn" data-act="cal" data-id="${e._id}" aria-label="Add to calendar or share" aria-haspopup="true" aria-expanded="false">${SVG_CAL}</button>`;
   const isHiddenLoc = !e.location || /^(disclosed after|visible after|hidden until|invite[- ]only|invitation only|—|berlin$|berlin,? germany$)/i.test((e.location||'').trim());
   const locHtml = isHiddenLoc
     ? `<div class="er-loc empty" role="cell">${escapeHtml(e.location||'Location TBA')}</div>`
@@ -4848,7 +4851,7 @@ function updateHeaderCounts(){
 function parseTimeStr(time){
   const t=String(time||'').trim(); if(!t) return null;
   const parts=t.split(/[–-]/).map(s=>s.trim());
-  const hms=s=>{ const m=s.match(/(\d{1,2}):(\d{2})/); return m?String(m[1]).padStart(2,'0')+m[2]+'00':null; };
+  const hms=s=>{ const m=s.match(/(\d{1,2}):(\d{2})/); if(!m) return null; let hr=+m[1]; if(/pm/i.test(s)&&hr<12)hr+=12; if(/am/i.test(s)&&hr===12)hr=0; return String(hr).padStart(2,'0')+m[2]+'00'; };
   const start=hms(parts[0]); if(!start) return null;
   return { start, end: parts[1]?hms(parts[1]):null };
 }
@@ -4869,6 +4872,7 @@ const p2=n=>String(n).padStart(2,'0');
 function utcStamp(d){ return d.getUTCFullYear()+p2(d.getUTCMonth()+1)+p2(d.getUTCDate())+'T'+p2(d.getUTCHours())+p2(d.getUTCMinutes())+p2(d.getUTCSeconds())+'Z'; }
 const dateBasic=ymd=>ymd.replace(/-/g,'');
 function nextDayBasic(ymd){ const [y,m,d]=ymd.split('-').map(Number); const dt=new Date(Date.UTC(y,m-1,d)); dt.setUTCDate(dt.getUTCDate()+1); return dt.getUTCFullYear()+p2(dt.getUTCMonth()+1)+p2(dt.getUTCDate()); }
+function nextDayIso(ymd){ const [y,m,d]=ymd.split('-').map(Number); const dt=new Date(Date.UTC(y,m-1,d)); dt.setUTCDate(dt.getUTCDate()+1); return dt.toISOString().slice(0,10); }
 function calDesc(e){ return [e.host&&('Host: '+e.host), e.desc, e.source&&('via '+e.source)].filter(Boolean).join(' — '); }
 function eventInstants(e){
   const tm=parseTimeStr(e.time); if(!tm) return null;
@@ -4911,17 +4915,17 @@ function outlookUrl(e){
   const desc=calDesc(e); if(desc) p.set('body',desc); if(e.location) p.set('location',e.location);
   const ins=eventInstants(e);
   if(ins){ p.set('startdt',ins.start.toISOString().replace(/\.\d{3}Z$/,'Z')); p.set('enddt',ins.end.toISOString().replace(/\.\d{3}Z$/,'Z')); }
-  else { p.set('allday','true'); p.set('startdt',e.date); p.set('enddt',e.date); }
+  else { p.set('allday','true'); p.set('startdt',e.date); p.set('enddt',nextDayIso(e.date)); }
   return 'https://outlook.live.com/calendar/0/deeplink/compose?'+p.toString();
 }
 function permalink(id){ return location.origin + location.pathname + '?e=' + encodeURIComponent(id); }
 
 /* shared floating calendar/share menu */
 const calMenu=document.createElement('div'); calMenu.className='cal-menu'; document.body.appendChild(calMenu);
-let calMenuId=null;
+let calMenuId=null, calMenuBtn=null;
 function openCalMenu(btn, id){
   const e=byId[id]; if(!e) return;
-  calMenuId=id;
+  calMenuId=id; calMenuBtn=btn;
   const shareItem = navigator.share ? `<button data-cm="share"><span class="ic">⤴</span> Share…</button>` : '';
   calMenu.innerHTML =
     `<a data-cm="google" href="${escapeHtml(googleUrl(e))}" target="_blank" rel="noopener"><span class="ic">📅</span> Google Calendar</a>`+
@@ -4931,12 +4935,14 @@ function openCalMenu(btn, id){
     `<button data-cm="copy"><span class="ic">🔗</span> Copy link</button>`+
     shareItem;
   calMenu.classList.add('open');
+  btn.setAttribute('aria-expanded','true');
   const r=btn.getBoundingClientRect();
   calMenu.style.top=(r.bottom+window.scrollY+6)+'px';
   const left=Math.min(r.right+window.scrollX-188, window.scrollX+window.innerWidth-200);
   calMenu.style.left=Math.max(window.scrollX+8,left)+'px';
+  const fi=calMenu.querySelector('a,button'); if(fi) fi.focus();
 }
-function closeCalMenu(){ calMenu.classList.remove('open'); calMenuId=null; }
+function closeCalMenu(){ calMenu.classList.remove('open'); calMenuId=null; if(calMenuBtn){ calMenuBtn.setAttribute('aria-expanded','false'); calMenuBtn=null; } }
 calMenu.addEventListener('click', async ev=>{
   const t=ev.target.closest('[data-cm]'); if(!t) return;
   const e=byId[calMenuId]; const act=t.dataset.cm;
@@ -4980,6 +4986,7 @@ function loadLeaflet(){
     const seq=['/vendor/leaflet/leaflet.js','/vendor/leaflet/leaflet.markercluster.js'];
     (async()=>{ try{ for(const src of seq){ await new Promise((r,e)=>{ const s=document.createElement('script'); s.src=src; s.async=false; s.onload=r; s.onerror=()=>e(new Error('load '+src)); document.head.appendChild(s); }); } resolve(window.L); }catch(err){ reject(err); } })();
   });
+  leafletP.catch(()=>{ leafletP=null; }); // allow retry after a transient load failure
   return leafletP;
 }
 async function ensureMap(){
@@ -5028,6 +5035,7 @@ function setView(v){
 /* ════════ deep-link / share focus ════════ */
 function focusEvent(id){
   const e=byId[id]; if(!e) return;
+  if(e.date < TODAY){ toast('Dieses Event ist bereits vorbei.'); return; }
   state.month='all'; state.cat='all'; state.when='all'; state.favOnly=false; state.search=''; state.view='list';
   const si=document.getElementById('searchInput'); if(si) si.value='';
   document.querySelectorAll('#dayTabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.val==='all'));
@@ -5039,8 +5047,11 @@ function focusEvent(id){
 
 /* ════════ submit-event modal ════════ */
 const modal=document.getElementById('submitModal'), form=document.getElementById('submitForm');
-function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; const f=document.getElementById('f-title'); if(f) setTimeout(()=>f.focus(),50); }
-function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+let lastFocus=null;
+function modalFocusables(){ return [...modal.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled])')].filter(el=>el.offsetParent!==null); }
+function openModal(){ lastFocus=document.activeElement; modal.classList.add('open'); document.body.style.overflow='hidden'; [...document.body.children].forEach(c=>{ if(c!==modal&&c.id!=='toast') c.inert=true; }); const f=document.getElementById('f-title'); if(f) setTimeout(()=>f.focus(),50); }
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; [...document.body.children].forEach(c=>{ c.inert=false; }); if(lastFocus&&lastFocus.focus) setTimeout(()=>lastFocus.focus(),0); }
+modal.addEventListener('keydown',e=>{ if(e.key!=='Tab') return; const f=modalFocusables(); if(!f.length) return; const first=f[0], last=f[f.length-1]; if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); } else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); } });
 function mailtoFallback(d){
   const body=['Event: '+d.title,'Date: '+d.date+(d.time?' '+d.time:''),'Location: '+(d.location||''),'Category: '+(d.category||''),'Access: '+(d.status||''),'Link: '+(d.link||''),'Host: '+(d.host||''),'Description: '+(d.description||''),'Contact: '+(d.email||'')].join('\n');
   return 'mailto:hi@fomoberlin.com?subject='+encodeURIComponent('Event submission: '+d.title)+'&body='+encodeURIComponent(body);
