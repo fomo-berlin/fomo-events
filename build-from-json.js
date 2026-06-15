@@ -1,15 +1,17 @@
 // Build the site from the local data file (no Notion needed).
-// Usage: node build-from-json.js   ->   writes public/index.html
+// Usage: node build-from-json.js   ->   writes a complete ./public
+//
+// Pipeline (see lib/emit.js): copy ./static -> ./public, enrich events with
+// geo + bezirk/kiez, inject events into index.html, emit the .ics feed, and
+// stamp the service-worker build id.
 const fs = require('fs');
 const path = require('path');
+const { emit } = require('./lib/emit.js');
 
-const dataPath = path.join(__dirname, 'data', 'fomo_events.json');
-const tmplPath = path.join(__dirname, 'index.html');
+const root = __dirname;
+const events = JSON.parse(fs.readFileSync(path.join(root, 'data', 'fomo_events.json'), 'utf8'));
 
-const events = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-const template = fs.readFileSync(tmplPath, 'utf8');
-const out = template.replace('/* FOMO_EVENTS_JSON */', JSON.stringify(events, null, 2));
+const { events: built, buildId, mapped } = emit(root, events);
 
-fs.mkdirSync(path.join(__dirname, 'public'), { recursive: true });
-fs.writeFileSync(path.join(__dirname, 'public', 'index.html'), out);
-console.log(`🎉 Built public/index.html from data/fomo_events.json (${events.length} events)`);
+console.log(`🎉 Built public/ from data/fomo_events.json`);
+console.log(`   events: ${built.length} · on map: ${mapped} · build: ${buildId}`);

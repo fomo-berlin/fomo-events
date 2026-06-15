@@ -8,6 +8,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- PWA / installable + offline -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0e0a26">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FOMO Berlin">
+
+<!-- SEO / social sharing -->
+<link rel="canonical" href="https://www.fomoberlin.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FOMO Berlin">
+<meta property="og:title" content="FOMO Berlin — Event Calendar · Summer 2026">
+<meta property="og:description" content="Curated Berlin startup, tech & culture events from June to October 2026. Free, no ads.">
+<meta property="og:image" content="/icon-512.png">
+<meta property="og:url" content="https://www.fomoberlin.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FOMO Berlin — Event Calendar">
+<meta name="twitter:description" content="Curated Berlin startup, tech & culture events. Free, no ads.">
+<meta name="twitter:image" content="/icon-512.png">
 <style>
   :root {
     /* FOMO brand palette (from media kit) */
@@ -127,8 +149,8 @@
   .events-thead-row,
   .event-row{
     display:grid;
-    grid-template-columns:140px 90px 1fr 220px 36px;
-    gap:24px;align-items:center;
+    grid-template-columns:132px 82px 1fr 184px 112px;
+    gap:20px;align-items:center;
   }
   .th{
     font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:0.22em;
@@ -508,6 +530,139 @@
 
   .empty{display:none;text-align:center;padding:60px 0;color:var(--text-muted)}
   .empty.show{display:block}
+
+  /* ════════════ POWER FEATURES ════════════ */
+  /* the [hidden] attribute must win over the display rules below */
+  [hidden]{display:none!important}
+
+  /* ── Countdown + subscribe row (hero) ── */
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
+  .countdown{display:inline-flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 18px}
+  .cd-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);font-weight:700}
+  .cd-units{display:flex;gap:12px}
+  .cd-unit{display:flex;flex-direction:column;align-items:center;min-width:34px}
+  .cd-num{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;line-height:1;color:var(--white);font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+  .cd-unit span:last-child{font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-top:4px}
+  .cd-next{font-size:12px;color:var(--text-soft);max-width:240px;line-height:1.4}
+  .cd-next b{color:var(--purple-light);font-weight:600}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:var(--text-soft);background:var(--surface);border:1px solid var(--line-strong);border-radius:100px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:all 0.18s}
+  .btn-ghost:hover{color:var(--white);border-color:var(--purple-light);background:rgba(136,76,218,0.12)}
+
+  /* ── Control bar: quick filters + view toggle + favorites ── */
+  .controlbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:18px 0 4px}
+  .quick{display:flex;gap:8px;flex-wrap:wrap}
+  .qbtn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.08em;font-weight:700;color:var(--text-soft);background:transparent;border:1px solid var(--line-strong);border-radius:8px;cursor:pointer;padding:9px 15px;transition:all 0.15s;text-transform:uppercase;white-space:nowrap}
+  .qbtn:hover{color:var(--white);border-color:var(--purple-light)}
+  .qbtn.active{color:var(--ink);background:var(--white);border-color:var(--white)}
+  .cb-right{display:flex;gap:10px;align-items:center}
+  .favbtn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.06em;font-weight:700;color:var(--text-soft);background:transparent;border:1px solid var(--line-strong);border-radius:100px;cursor:pointer;padding:9px 15px;transition:all 0.15s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  .favbtn:hover{color:var(--white);border-color:#ff5c8a}
+  .favbtn.active{color:#fff;background:linear-gradient(135deg,#ff4d6d,#c25cf0);border-color:transparent}
+  .favbtn .heart{font-size:13px}
+  .favbtn .cnt{font-variant-numeric:tabular-nums;opacity:0.85}
+  .viewtoggle{display:inline-flex;background:var(--surface);border:1px solid var(--line-strong);border-radius:100px;padding:3px}
+  .viewtoggle button{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.08em;font-weight:700;text-transform:uppercase;color:var(--text-muted);background:transparent;border:none;border-radius:100px;cursor:pointer;padding:7px 15px;transition:all 0.15s;display:inline-flex;align-items:center;gap:6px}
+  .viewtoggle button.active{color:var(--ink);background:var(--white)}
+
+  /* ── Kiez / Bezirk chips (map view) ── */
+  .kiez-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 0 4px}
+  .kiez-row .vibe-label{margin-right:2px}
+  .kchip{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.03em;padding:7px 13px;background:transparent;color:var(--text-soft);border:1px solid var(--line-strong);border-radius:100px;cursor:pointer;transition:all 0.15s;font-weight:500;white-space:nowrap}
+  .kchip:hover{color:var(--white);border-color:var(--purple-light)}
+  .kchip.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+
+  /* ── Per-row action buttons: favorite, calendar, share ── */
+  .er-actions{display:flex;align-items:flex-start;justify-content:flex-end;gap:6px;margin-top:-2px}
+  .er-icon{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line-strong);background:transparent;color:var(--text-soft);cursor:pointer;transition:all 0.15s;flex-shrink:0;padding:0;position:relative}
+  .er-icon:hover{color:var(--white);border-color:var(--purple-light);background:rgba(136,76,218,0.14)}
+  .er-icon.fav.on{color:#fff;background:linear-gradient(135deg,#ff4d6d,#c25cf0);border-color:transparent}
+  .er-icon svg{display:block;width:14px;height:14px}
+  .er-icon.go a{color:inherit;display:inline-flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none}
+  .er-icon.go:hover{color:#fff;background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent}
+  .lock-ic{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:13px}
+
+  /* ── Calendar dropdown menu ── */
+  .cal-wrap{position:relative}
+  .cal-menu{position:absolute;top:36px;right:0;z-index:120;min-width:188px;background:#1a1338;border:1px solid var(--line-strong);border-radius:12px;padding:6px;box-shadow:0 14px 40px rgba(0,0,0,0.55);display:none;flex-direction:column;gap:2px}
+  .cal-menu.open{display:flex}
+  .cal-menu button,.cal-menu a{display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;color:var(--text-soft);background:transparent;border:none;border-radius:8px;padding:9px 11px;cursor:pointer;text-align:left;text-decoration:none;transition:background 0.12s,color 0.12s;width:100%}
+  .cal-menu button:hover,.cal-menu a:hover{background:rgba(255,255,255,0.07);color:var(--white)}
+  .cal-menu .ic{width:15px;text-align:center;flex-shrink:0}
+
+  /* ── Map view ── */
+  #mapView{margin-top:14px}
+  #mapView[hidden]{display:none}
+  #map{width:100%;height:560px;border-radius:18px;overflow:hidden;border:1px solid var(--line-strong);background:#10112a;z-index:1}
+  .map-empty{padding:40px 0;text-align:center;color:var(--text-muted);font-size:13px}
+  .leaflet-container{background:#10112a;font-family:'Inter',sans-serif}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#1a1338;color:var(--text-soft);box-shadow:0 12px 36px rgba(0,0,0,0.5)}
+  .leaflet-popup-content-wrapper{border-radius:12px;border:1px solid var(--line-strong)}
+  .leaflet-popup-content{margin:14px 16px;font-size:12.5px;line-height:1.5}
+  .leaflet-popup-content b{color:var(--white);font-weight:700;font-size:13.5px}
+  .leaflet-popup-content .pop-meta{color:var(--text-dim);font-size:11px;margin-top:4px}
+  .leaflet-popup-content a.pop-link{color:var(--purple-light);font-weight:700;text-decoration:none;display:inline-block;margin-top:8px}
+  .leaflet-popup-content a.pop-link:hover{color:#fff}
+  .leaflet-popup-close-button{color:var(--text-muted)!important}
+  .leaflet-bar a{background:#1a1338;color:var(--text-soft);border-color:var(--line-strong)}
+  .leaflet-bar a:hover{background:#241a4a}
+  .leaflet-control-attribution{background:rgba(14,10,38,0.8)!important;color:var(--text-dim)!important}
+  .leaflet-control-attribution a{color:var(--purple-light)!important}
+  .marker-cluster{background:rgba(136,76,218,0.35)}
+  .marker-cluster div{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;font-family:'Inter',sans-serif;font-weight:800}
+
+  /* ── Modal: submit an event ── */
+  .modal{position:fixed;inset:0;z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;background:rgba(8,5,22,0.72);backdrop-filter:blur(8px)}
+  .modal.open{display:flex}
+  .modal-card{width:100%;max-width:560px;background:linear-gradient(180deg,#1a1338,#140e2c);border:1px solid var(--line-strong);border-radius:22px;padding:32px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+  .modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--text-soft);cursor:pointer;font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
+  .modal-close:hover{color:#fff;border-color:var(--purple-light);background:rgba(136,76,218,0.14)}
+  .modal-card h3{font-family:'Inter',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.025em;color:var(--white);margin-bottom:6px}
+  .modal-card h3 em{font-style:normal;background:linear-gradient(135deg,var(--blue),var(--purple-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .modal-sub{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:22px}
+  .field{margin-bottom:14px}
+  .field.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0}
+  .field label{display:block;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin-bottom:7px}
+  .field label .req{color:var(--magenta)}
+  .field input,.field select,.field textarea{width:100%;font-family:'Inter',sans-serif;font-size:14px;color:var(--white);background:rgba(255,255,255,0.05);border:1px solid var(--line-strong);border-radius:10px;padding:11px 14px;outline:none;transition:all 0.18s;-webkit-appearance:none;appearance:none}
+  .field textarea{resize:vertical;min-height:80px}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--purple-light);background:rgba(255,255,255,0.08);box-shadow:0 0 0 3px rgba(168,119,245,0.12)}
+  .field select option{background:#1a1338}
+  .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+  .modal-actions{display:flex;gap:12px;align-items:center;margin-top:22px}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue),var(--purple));border:none;border-radius:100px;padding:13px 26px;cursor:pointer;box-shadow:0 4px 18px rgba(40,84,239,0.4);transition:all 0.2s}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(136,76,218,0.55)}
+  .btn-primary:disabled{opacity:0.55;cursor:wait;transform:none}
+  .form-note{font-size:11.5px;color:var(--text-dim);line-height:1.5}
+  .form-msg{font-size:13px;font-weight:600;margin-top:14px;display:none}
+  .form-msg.show{display:block}
+  .form-msg.ok{color:#7dd0a0}
+  .form-msg.err{color:#f4a08a}
+
+  /* ── Toast ── */
+  .toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(20px);z-index:600;background:#1a1338;border:1px solid var(--line-strong);color:var(--white);font-size:13px;font-weight:600;padding:13px 22px;border-radius:100px;box-shadow:0 14px 40px rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.25s,transform 0.25s}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ── highlighted shared event ── */
+  .event-row.flash{animation:flashRow 2.2s ease-out}
+  @keyframes flashRow{0%,30%{background:rgba(168,119,245,0.22)}100%{background:transparent}}
+
+  @media (max-width:720px){
+    .hero-actions{gap:10px;margin-top:20px}
+    .countdown{padding:10px 14px;gap:10px}
+    .cd-num{font-size:18px}
+    .cd-next{display:none}
+    .controlbar{gap:10px;padding:14px 0 2px}
+    .cb-right{width:100%;justify-content:space-between}
+    .qbtn{padding:8px 12px;font-size:10.5px}
+    #map{height:62vh;min-height:420px}
+    .modal{padding:0}
+    .modal-card{max-width:100%;min-height:100%;border-radius:0;padding:26px 20px}
+    .field.row2{grid-template-columns:1fr;gap:0}
+    /* stacked rows: action icons sit on their own line, not absolute */
+    .event-row{padding:16px 4px}
+    .er-action{position:static;justify-content:flex-start;margin-top:12px;height:auto}
+    .er-actions{margin-top:0}
+  }
 </style>
 </head>
 <body>
@@ -540,6 +695,18 @@
     <div class="eyebrow">Berlin · Startup · Tech · Culture · 2026</div>
     <h1 class="page-title">The <em>FOMO</em> event calendar.</h1>
     <p class="page-lede"><span id="ledeCount">0</span>+ curated dinners, drinks, runs, hackathons, panels, parties &amp; festivals across Berlin from June to October. <strong>Free, no ads, no fluff</strong> — just the events worth your time.</p>
+    <div class="hero-actions">
+      <div class="countdown" id="countdown" hidden>
+        <span class="cd-label">Next<br>event</span>
+        <div class="cd-units">
+          <div class="cd-unit"><span class="cd-num" id="cdD">0</span><span>days</span></div>
+          <div class="cd-unit"><span class="cd-num" id="cdH">0</span><span>hrs</span></div>
+          <div class="cd-unit"><span class="cd-num" id="cdM">0</span><span>min</span></div>
+        </div>
+        <div class="cd-next" id="cdNext"></div>
+      </div>
+      <a class="btn-ghost" href="/fomo-berlin.ics" title="Subscribe to all events (.ics)">⤓ Subscribe (.ics)</a>
+    </div>
   </section>
 
   <section class="events-section" id="eventsTop">
@@ -564,6 +731,26 @@
 </div>
 
 <div class="container">
+  <div class="controlbar">
+    <div class="quick" id="quickFilters" role="group" aria-label="Quick date filter">
+      <button class="qbtn active" data-when="all">All upcoming</button>
+      <button class="qbtn" data-when="today">Today</button>
+      <button class="qbtn" data-when="week">This week</button>
+      <button class="qbtn" data-when="weekend">Weekend</button>
+    </div>
+    <div class="cb-right">
+      <button class="favbtn" id="favToggle" aria-pressed="false"><span class="heart">♡</span> Favorites <span class="cnt" id="favCount">0</span></button>
+      <div class="viewtoggle" id="viewToggle" role="group" aria-label="View">
+        <button data-view="list" class="active" aria-pressed="true">List</button>
+        <button data-view="map" aria-pressed="false">Map</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="kiez-row" id="kiezRow" role="region" aria-label="Neighbourhood filter" hidden>
+    <span class="vibe-label">Kiez</span>
+  </div>
+
   <div class="vibe-row" id="vibeFilters" role="region" aria-label="Vibe filter">
     <div class="search-wrap">
       <input type="search" id="searchInput" class="search-input" placeholder="Search events, locations, source…" autocomplete="off" spellcheck="false" aria-label="Search events">
@@ -581,6 +768,7 @@
   </div>
 
   <div id="eventList" role="region" aria-label="Events"></div>
+  <div id="mapView" hidden><div id="map"></div></div>
   <div class="empty" id="empty"><p>No events match your filters.</p></div>
 </div>
 
@@ -591,7 +779,7 @@
         <div class="footer-logo" aria-label="FOMO"><svg viewBox="0 0 415.08 136.6" xmlns="http://www.w3.org/2000/svg"><path d="M415.08,58.83c0-1.17-.96-2.13-2.13-2.13h-30.22c-1.17,0-2.13-.96-2.13-2.13v-9.65c0-1.17-.07-3.08-.16-4.25,0,0-1.1-14.5-3.61-20.84-2.41-6.45-6.4-11.37-11.97-14.76-5.47-3.39-13.01-5.08-22.63-5.08s-16.89,1.69-22.47,5.08-9.57,8.31-11.97,14.76c-1.21,3.2-2.12,6.73-2.72,10.59-.64,3.93-.89,10.72-.89,10.72-.04,1.17-.08,3.08-.08,4.25v9.17c0,1.17-.96,2.13-2.13,2.13h-12.32c-1.17,0-2.13-.96-2.13-2.13V3.6c0-1.17-.55-2.13-1.23-2.13h-24.38c-1.17,0-2.33.94-2.57,2.08l-10.92,51.07c-.24,1.14-1.4,2.08-2.57,2.08h-11.15c-1.17,0-2.32-.94-2.55-2.08l-10.47-51.07c-.23-1.15-1.38-2.08-2.55-2.08h-25.11c-.63,0-1.15.96-1.15,2.13v50.98c0,1.17-.96,2.13-2.13,2.13h-12.37c-1.17,0-2.13-.96-2.13-2.13v-11.54c0-.13-.07-1.19-.16-2.36,0,0-1.1-14.5-3.61-20.84-2.4-6.45-6.4-11.37-11.97-14.76-5.47-3.39-13.01-5.08-22.63-5.08s-16.89,1.69-22.47,5.08-9.57,8.31-11.97,14.76c-2.41,6.34-3.45,20.84-3.45,20.84-.08,1.17-.15,2.23-.15,2.36v11.54c0,1.17-.96,2.13-2.13,2.13h-37.25c-1.17,0-2.13-.96-2.13-2.13v-28.84c0-1.17.96-2.13,2.13-2.13h26.09c1.17,0,2.13-.68,2.13-1.52V3.6c0-1.17-.96-2.13-2.13-2.13h-50.36c-1.17,0-2.13.96-2.13,2.13v50.98c0,1.17-.96,2.13-2.13,2.13H2.13c-1.17,0-2.13.96-2.13,2.13v18.02c0,1.17.96,2.13,2.13,2.13h29.79c1.17,0,2.13.96,2.13,2.13v51.08c0,1.17.96,2.13,2.13,2.13h20.02c1.17,0,2.13-.96,2.13-2.13v-51.08c0-1.17.96-2.13,2.13-2.13h37.25c1.17,0,2.13.96,2.13,2.13v11.63c0,.13.07,1.19.15,2.36,0,0,1.05,14.61,3.46,21.17,2.41,6.56,6.4,11.59,11.97,15.09,5.58,3.5,13.07,5.25,22.47,5.25s17.17-1.75,22.63-5.25c5.58-3.61,9.57-8.64,11.97-15.09,2.52-6.56,3.61-21,3.61-21,.09-1.17.16-2.23.16-2.36v-11.79c0-1.17.96-2.13,2.13-2.13h12.37c1.17,0,2.13.96,2.13,2.13v51.08c0,1.17.96,2.13,2.13,2.13h18.54c.81,0,1.47-.96,1.47-2.13v-46.08c0-1.17.22-1.19.48-.06l10.72,46.19c.26,1.14,1.42,2.07,2.56,2.07h22.88c1.17,0,2.34-.93,2.61-2.07l10.66-45.94c.26-1.14.48-1.11.48.06v45.83c0,1.17.7,2.13,1.55,2.13h18.46c1.17,0,2.13-.96,2.13-2.13v-51.08c0-1.17.96-2.13,2.13-2.13h12.32c1.17,0,2.13.96,2.13,2.13v9.74c0,1.17.07,3.08.15,4.25,0,0,1.05,14.61,3.46,21.17,2.41,6.56,6.4,11.59,11.97,15.09,5.58,3.5,13.07,5.25,22.47,5.25s17.17-1.75,22.63-5.25c5.58-3.61,9.57-8.64,11.97-15.09,1.27-3.32,2.22-6.95,2.85-10.86.66-3.95.92-10.62.92-10.62.04-1.17.08-3.08.08-4.25v-9.43c0-1.17.96-2.13,2.13-2.13h30.22c1.17,0,2.13-.96,2.13-2.13v-18.02ZM124.26,48.31c0-1.17.03-3.08.06-4.25,0,0,.3-9.92.92-12.69.65-2.95,1.96-5.25,3.93-6.89,1.97-1.74,4.87-2.62,8.69-2.62,4.05,0,6.99,1.6,6.99,1.6,1.03.56,2.48,1.75,3.23,2.65,0,0,1.92,2.31,2.58,5.26.65,2.95.92,13.45.92,13.45.03,1.17.06,2.13.06,2.13s0,.96,0,2.13v5.51c0,1.17-.96,2.13-2.13,2.13h-23.14c-1.17,0-2.13-.96-2.13-2.13v-6.27ZM151.65,94.65c0,1.17-.06,3.08-.12,4.25,0,0-.31,5.28-.7,7.02-.65,2.95-1.96,5.25-3.93,6.89-1.97,1.74-4.87,2.62-8.69,2.62-4.05,0-6.99-1.6-6.99-1.6-1.03-.56-2.48-1.75-3.23-2.65,0,0-1.92-2.31-2.58-5.26-.65-2.95-.92-13.45-.92-13.45-.03-1.17-.09-2.13-.14-2.13s-.08-.96-.08-2.13v-7.1c0-1.17.96-2.13,2.13-2.13h23.14c1.17,0,2.13.96,2.13,2.13v13.54ZM241.1,78.98c1.17,0,1.93.94,1.68,2.08l-2.21,10.34c-.24,1.14-.64,1.14-.87,0l-2.12-10.34c-.23-1.15.53-2.08,1.7-2.08h1.82ZM355.1,105.92c-.65,2.95-1.96,5.25-3.93,6.89-1.97,1.74-4.87,2.62-8.69,2.62-4.05,0-6.99-1.6-6.99-1.6-1.03-.56-2.48-1.75-3.23-2.65,0,0-1.92-2.31-2.58-5.26-.65-2.95-.92-13.45-.92-13.45-.03-1.17-.07-2.13-.1-2.13s-.04-.96-.04-2.13v-7.1c0-1.17.96-2.13,2.13-2.13h23.05c1.17,0,2.13.96,2.13,2.13v13.54c0,1.17-.06,3.08-.12,4.25,0,0-.31,5.28-.7,7.02ZM330.75,56.71c-1.17,0-2.13-.96-2.13-2.13v-9.84c0-1.17.05-3.08.1-4.25,0,0,.34-7.04.8-9.12.65-2.95,1.96-5.25,3.93-6.89,1.97-1.74,4.87-2.62,8.69-2.62,4.05,0,6.99,1.6,6.99,1.6,1.03.56,2.48,1.75,3.23,2.65,0,0,1.92,2.31,2.58,5.26.65,2.95.92,13.45.92,13.45.03,1.17.06,2.13.06,2.13s0,.96,0,2.13v5.51c0,1.17-.96,2.13-2.13,2.13h-23.05Z"/></svg></div>
         <h2 class="footer-title">Hosting an <em>event?</em></h2>
         <p class="footer-desc">This calendar lives off the community. Founder dinner, office cocktail, sunrise run, hackathon, roundtable — send us the details. We curate, nobody pays for visibility.</p>
-        <a class="nm-btn" href="mailto:hi@fomoberlin.com?subject=Event%20Submission%20FOMO%202026">Submit event →</a>
+        <button class="nm-btn" id="openSubmit" type="button">Submit event →</button>
       </div>
       <div class="footer-col">
         <h4>FOMO</h4>
@@ -616,6 +804,78 @@
   </div>
 </footer>
 
+<div class="modal" id="submitModal" role="dialog" aria-modal="true" aria-labelledby="submitTitle">
+  <div class="modal-card">
+    <button class="modal-close" id="closeSubmit" type="button" aria-label="Close">×</button>
+    <h3 id="submitTitle">Submit an <em>event</em></h3>
+    <p class="modal-sub">Founder dinner, office cocktail, sunrise run, hackathon, panel — send us the details. We curate; nobody pays for visibility.</p>
+    <form id="submitForm" novalidate>
+      <div class="field">
+        <label for="f-title">Event name <span class="req">*</span></label>
+        <input id="f-title" name="title" type="text" required maxlength="160" autocomplete="off">
+      </div>
+      <div class="field row2">
+        <div class="field">
+          <label for="f-date">Date <span class="req">*</span></label>
+          <input id="f-date" name="date" type="date" required>
+        </div>
+        <div class="field">
+          <label for="f-time">Time</label>
+          <input id="f-time" name="time" type="text" placeholder="e.g. 18:30" maxlength="20" autocomplete="off">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-location">Location / venue</label>
+        <input id="f-location" name="location" type="text" maxlength="200" placeholder="Venue, street, PLZ Berlin" autocomplete="off">
+      </div>
+      <div class="field row2">
+        <div class="field">
+          <label for="f-category">Category</label>
+          <select id="f-category" name="category">
+            <option value="">Choose…</option>
+            <option>Networking</option><option>Talk / Conf</option><option>Drinks</option>
+            <option>Party</option><option>Dinner</option><option>Breakfast</option>
+            <option>Activity</option><option>Wellness</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-status">Access</label>
+          <select id="f-status" name="status">
+            <option value="">Choose…</option>
+            <option>Open RSVP</option><option>Invite only</option>
+            <option>Waitlist</option><option>Paid</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-link">Registration link</label>
+        <input id="f-link" name="link" type="url" maxlength="500" placeholder="https://…" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="f-host">Host / organiser</label>
+        <input id="f-host" name="host" type="text" maxlength="160" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="f-desc">Short description</label>
+        <textarea id="f-desc" name="description" maxlength="600"></textarea>
+      </div>
+      <div class="field">
+        <label for="f-email">Your email <span class="req">*</span></label>
+        <input id="f-email" name="email" type="email" required maxlength="160" placeholder="so we can confirm" autocomplete="off">
+      </div>
+      <!-- honeypot: bots fill this, humans never see it -->
+      <input class="hp" type="text" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="modal-actions">
+        <button class="btn-primary" id="submitBtn" type="submit">Send event</button>
+        <span class="form-note">Free &amp; curated. We confirm before publishing.</span>
+      </div>
+      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <button class="back-to-top" id="backToTop" aria-label="Back to top">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
 </button>
@@ -638,7 +898,12 @@
     "link": "https://luma.com/agentic-commerce-hack",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "12059",
+    "bezirk": "Neukölln",
+    "kiez": "Neukölln",
+    "lat": 52.4809088,
+    "lon": 13.4512643
   },
   {
     "date": "2026-06-09",
@@ -657,7 +922,12 @@
     "link": "https://luma.com/s6ace0xk",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -676,7 +946,12 @@
     "link": "https://luma.com/ztls1sjs",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "13355",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5418314,
+    "lon": 13.3905625
   },
   {
     "date": "2026-06-09",
@@ -695,7 +970,12 @@
     "link": "https://luma.com/864v5rn0",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -714,7 +994,12 @@
     "link": "https://www.meetup.com/berlin-startup-founder-101/events/314737240/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -733,7 +1018,12 @@
     "link": "https://www.meetup.com/business-netzwerken-berlin/events/314690230/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10551",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5307826,
+    "lon": 13.3370456
   },
   {
     "date": "2026-06-09",
@@ -752,7 +1042,12 @@
     "link": "https://www.meetup.com/berlin-coworking-club/events/312626669/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "13357",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5497878,
+    "lon": 13.3846363
   },
   {
     "date": "2026-06-09",
@@ -771,7 +1066,12 @@
     "link": "https://luma.com/6jnesz4p",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -790,7 +1090,12 @@
     "link": "https://luma.com/xrf6httx",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10115",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5321914,
+    "lon": 13.3845571
   },
   {
     "date": "2026-06-09",
@@ -809,7 +1114,12 @@
     "link": "https://www.instagram.com/p/DYrvI-ioO8j/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -828,7 +1138,12 @@
     "link": "https://www.eventbrite.de/e/female-health-founder-after-work-tickets-1990229554172",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Eventbrite"
+    "source": "Eventbrite",
+    "plz": "10719",
+    "bezirk": "Charlottenburg-Wilmersdorf",
+    "kiez": "Charlottenburg-Wilmersdorf",
+    "lat": 52.5004908,
+    "lon": 13.3247679
   },
   {
     "date": "2026-06-09",
@@ -847,7 +1162,12 @@
     "link": "https://luma.com/erce5ujj",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10179",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5121017,
+    "lon": 13.4164365
   },
   {
     "date": "2026-06-09",
@@ -866,7 +1186,12 @@
     "link": "https://luma.com/talent-d2tr",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10117",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5169123,
+    "lon": 13.3873555
   },
   {
     "date": "2026-06-09",
@@ -885,7 +1210,12 @@
     "link": "https://luma.com/superdinner",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -904,7 +1234,12 @@
     "link": "https://luma.com/fomosupernight",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -923,7 +1258,12 @@
     "link": "https://luma.com/b80iofv7",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -942,7 +1282,12 @@
     "link": "https://luma.com/id8wx5z8",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-09",
@@ -961,7 +1306,12 @@
     "link": "https://luma.com/SC_Berlin",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -980,7 +1330,12 @@
     "link": "https://luma.com/luarqn63",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -999,7 +1354,12 @@
     "link": "https://luma.com/event/evt-yogeuTXvrj73NHv",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10117",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5085056,
+    "lon": 13.3983111
   },
   {
     "date": "2026-06-10",
@@ -1018,7 +1378,12 @@
     "link": "https://www.meetup.com/flight-levels-flight-club-berlin/events/314888162/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10557",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.52324,
+    "lon": 13.359503
   },
   {
     "date": "2026-06-10",
@@ -1037,7 +1402,12 @@
     "link": "https://www.meetup.com/aktienfueralle/events/313187937/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10787",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5078608,
+    "lon": 13.3438747
   },
   {
     "date": "2026-06-10",
@@ -1056,7 +1426,12 @@
     "link": "https://www.meetup.com/magento-stammtisch-berlin/events/314176381/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10249",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Friedrichshain",
+    "lat": 52.5238116,
+    "lon": 13.4429595
   },
   {
     "date": "2026-06-10",
@@ -1075,7 +1450,12 @@
     "link": "https://www.instagram.com/p/DY4F2HWi8PX/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -1094,7 +1474,12 @@
     "link": "https://www.instagram.com/p/DY2RPUcseFT/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -1113,7 +1498,12 @@
     "link": "https://luma.com/p9awy8ny",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -1132,7 +1522,12 @@
     "link": "https://luma.com/cerebrasberlin",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -1151,7 +1546,12 @@
     "link": "https://luma.com/superaperitivo2",
     "linkLabel": "Register ↗",
     "fomoHosted": true,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -1170,7 +1570,12 @@
     "link": "https://gtlawinfo.com/rv/ff010392ab905899c7660f00754d9f148f0360e5",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Greenberg Traurig"
+    "source": "Greenberg Traurig",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-10",
@@ -1189,7 +1594,12 @@
     "link": "https://luma.com/0bsn1r16",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "14059",
+    "bezirk": "Charlottenburg-Wilmersdorf",
+    "kiez": "Charlottenburg-Wilmersdorf",
+    "lat": 52.5205365,
+    "lon": 13.2879135
   },
   {
     "date": "2026-06-10",
@@ -1208,7 +1618,12 @@
     "link": "https://gatsby.events/planet-a/rsvp/register?e=techbio-aperitivo-i-planet-a-verve-ventures-redalpine",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Gatsby"
+    "source": "Gatsby",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1227,7 +1642,12 @@
     "link": "https://revenue-royale.de/en",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1246,7 +1666,12 @@
     "link": "https://luma.com/39935e65",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1265,7 +1690,12 @@
     "link": "https://www.meetup.com/grafana-and-friends-berlin/events/313665964/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10243",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Friedrichshain",
+    "lat": 52.5122697,
+    "lon": 13.4394216
   },
   {
     "date": "2026-06-11",
@@ -1284,7 +1714,12 @@
     "link": "https://www.meetup.com/berlin-digital-business-network-sibb/events/314748927/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1303,7 +1738,12 @@
     "link": "https://www.eventbrite.de/e/be-unique-dialog-mindful-unternehmertum-echte-vereinbarkeit-tickets-1983948997859",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Eventbrite"
+    "source": "Eventbrite",
+    "plz": "10553",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5305273,
+    "lon": 13.3214751
   },
   {
     "date": "2026-06-11",
@@ -1322,7 +1762,12 @@
     "link": "https://www.instagram.com/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1341,7 +1786,12 @@
     "link": "https://luma.com/px67mtws",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1360,7 +1810,12 @@
     "link": "https://luma.com/xvrsamdk",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1379,7 +1834,12 @@
     "link": "https://www.instagram.com/p/DYg7rlqs6zw/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1398,7 +1858,12 @@
     "link": "https://www.instagram.com/p/DZKtB6SDM99/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1417,7 +1882,12 @@
     "link": "https://www.eventcreate.com/e/sleek-exhibition-opening-fussball",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "EventCreate"
+    "source": "EventCreate",
+    "plz": "10178",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5212845,
+    "lon": 13.4097989
   },
   {
     "date": "2026-06-11",
@@ -1436,7 +1906,12 @@
     "link": "https://luma.com/3s865hx7",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1455,7 +1930,12 @@
     "link": "https://2es6sk.share-eu1.hsforms.com/2362I40EJTtqlZVdMA75GIA",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1474,7 +1954,12 @@
     "link": "https://events.hl.com/superreturn-2026/registration",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Houlihan Lokey"
+    "source": "Houlihan Lokey",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-11",
@@ -1493,7 +1978,12 @@
     "link": "https://luma.com/cduys7by",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-12",
@@ -1512,7 +2002,12 @@
     "link": "https://www.meetup.com/berlin-lean-coffee/events/314815012/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-12",
@@ -1531,7 +2026,12 @@
     "link": "https://www.meetup.com/berlin-coworking-club/events/312626681/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-12",
@@ -1550,7 +2050,12 @@
     "link": "https://www.elevateretreats.de/work-out-tune-in",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-12",
@@ -1569,7 +2074,12 @@
     "link": "https://tally.so/r/0Qa06A",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Tally"
+    "source": "Tally",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-12",
@@ -1588,7 +2098,12 @@
     "link": "https://www.instagram.com/p/DZSsCY4tgWk/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-12",
@@ -1607,7 +2122,12 @@
     "link": "https://luma.com/vnofh2w8",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10405",
+    "bezirk": "Pankow",
+    "kiez": "Prenzlauer Berg",
+    "lat": 52.5351707,
+    "lon": 13.4255542
   },
   {
     "date": "2026-06-12",
@@ -1626,7 +2146,12 @@
     "link": "https://luma.com/bad1afterparty",
     "linkLabel": "Register ↗",
     "fomoHosted": true,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-12",
@@ -1645,7 +2170,12 @@
     "link": "https://bad1.events/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-13",
@@ -1664,7 +2194,12 @@
     "link": "https://blockchainweek.berlin/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-13",
@@ -1683,7 +2218,12 @@
     "link": "https://docs.google.com/forms/d/e/1FAIpQLScVwsEv6KPXMbikO21AHLAsvqyTJGj1Eb9mC9HKA1AREhSrhQ/viewform",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Google Forms"
+    "source": "Google Forms",
+    "plz": "14195",
+    "bezirk": "Charlottenburg-Wilmersdorf",
+    "kiez": "Charlottenburg-Wilmersdorf",
+    "lat": 52.4511835,
+    "lon": 13.2963624
   },
   {
     "date": "2026-06-13",
@@ -1702,7 +2242,12 @@
     "link": "https://luma.com/solanasummitgermany",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10245",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Friedrichshain",
+    "lat": 52.5006167,
+    "lon": 13.4648062
   },
   {
     "date": "2026-06-13",
@@ -1721,7 +2266,12 @@
     "link": "https://luma.com/858phbrs",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10317",
+    "bezirk": "Lichtenberg",
+    "kiez": "Lichtenberg",
+    "lat": 52.497936,
+    "lon": 13.4907298
   },
   {
     "date": "2026-06-13",
@@ -1740,7 +2290,12 @@
     "link": "https://luma.com/olj9am5u",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10623",
+    "bezirk": "Charlottenburg-Wilmersdorf",
+    "kiez": "Charlottenburg",
+    "lat": 52.5061306,
+    "lon": 13.3193872
   },
   {
     "date": "2026-06-13",
@@ -1759,7 +2314,12 @@
     "link": "https://www.instagram.com/p/DZFOQFuCJSs/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-13",
@@ -1778,7 +2338,12 @@
     "link": "https://www.instagram.com/p/DZH3sAzkvQw/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-13",
@@ -1797,7 +2362,12 @@
     "link": "https://www.instagram.com/p/DZHukLPANhK/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-13",
@@ -1816,7 +2386,12 @@
     "link": "https://www.instagram.com/p/DZFwCsTjk4M/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-13",
@@ -1835,7 +2410,12 @@
     "link": "https://www.instagram.com/p/DZNeIpAgAML/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-13",
@@ -1854,7 +2434,12 @@
     "link": "https://luma.com/ootr6ns8",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10999",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.498094,
+    "lon": 13.418481
   },
   {
     "date": "2026-06-14",
@@ -1873,7 +2458,12 @@
     "link": "https://luma.com/fcvmrgam",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -1892,7 +2482,12 @@
     "link": "https://www.instagram.com/p/DYsIQvVIVGr/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -1911,7 +2506,12 @@
     "link": "https://www.instagram.com/p/DY5L7bjx3K0/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -1930,7 +2530,12 @@
     "link": "https://www.berlinweinfest.de/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -1949,7 +2554,12 @@
     "link": "https://www.instagram.com/p/DZKLTclCICh/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -1968,7 +2578,12 @@
     "link": "https://www.instagram.com/p/DZIL0F8iLu6/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -1987,7 +2602,12 @@
     "link": "https://www.instagram.com/p/DZKxaOaCCT0/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -2006,7 +2626,12 @@
     "link": "https://www.instagram.com/p/DZKVJw8FaCU/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -2025,7 +2650,12 @@
     "link": "https://flussbad.com/event/socratic-dialogue/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-14",
@@ -2044,7 +2674,12 @@
     "link": "https://luma.com/qep7sot3",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10243",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Friedrichshain",
+    "lat": 52.5122697,
+    "lon": 13.4394216
   },
   {
     "date": "2026-06-14",
@@ -2063,7 +2698,12 @@
     "link": "https://luma.com/14whxg3s",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10555",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5213708,
+    "lon": 13.3381763
   },
   {
     "date": "2026-06-15",
@@ -2082,7 +2722,12 @@
     "link": "https://www.meetup.com/projector-global-community/events/314859637/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10557",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.52324,
+    "lon": 13.359503
   },
   {
     "date": "2026-06-15",
@@ -2101,7 +2746,12 @@
     "link": "https://luma.com/4uk00n6o",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10997",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.4984692,
+    "lon": 13.4463975
   },
   {
     "date": "2026-06-16",
@@ -2120,7 +2770,12 @@
     "link": "https://www.eventbrite.de/e/arrtist-on-tour-berlin-2026-tickets-1985497324947",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Eventbrite"
+    "source": "Eventbrite",
+    "plz": "10243",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Friedrichshain",
+    "lat": 52.5122697,
+    "lon": 13.4394216
   },
   {
     "date": "2026-06-16",
@@ -2139,7 +2794,12 @@
     "link": "https://t.rausgegangen.de/tickets/ffc-berlin",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Rausgegangen"
+    "source": "Rausgegangen",
+    "plz": "10719",
+    "bezirk": "Charlottenburg-Wilmersdorf",
+    "kiez": "Charlottenburg-Wilmersdorf",
+    "lat": 52.4959722,
+    "lon": 13.3315287
   },
   {
     "date": "2026-06-16",
@@ -2158,7 +2818,12 @@
     "link": "https://www.meetup.com/bliss-speaker-series/events/314165746/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10623",
+    "bezirk": "Charlottenburg-Wilmersdorf",
+    "kiez": "Charlottenburg",
+    "lat": 52.5088608,
+    "lon": 13.3273465
   },
   {
     "date": "2026-06-16",
@@ -2177,7 +2842,12 @@
     "link": "https://www.meetup.com/berlin-power-bi-user-group/events/313692296/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10997",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.5009559,
+    "lon": 13.4354965
   },
   {
     "date": "2026-06-16",
@@ -2196,7 +2866,12 @@
     "link": "https://www.meetup.com/ibm-developers/events/314655561/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-16",
@@ -2215,7 +2890,12 @@
     "link": "https://www.meetup.com/ai-for-non-techies/events/314802310/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10179",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5121017,
+    "lon": 13.4164365
   },
   {
     "date": "2026-06-16",
@@ -2234,7 +2914,12 @@
     "link": "https://www.meetup.com/elab-makerspace/events/314829849/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-16",
@@ -2253,7 +2938,12 @@
     "link": "https://www.meetup.com/become-a-better-speaker-at-center-berlin-toastmasters/events/313924342/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "10963",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.5001884,
+    "lon": 13.381143
   },
   {
     "date": "2026-06-16",
@@ -2272,7 +2962,12 @@
     "link": "https://www.meetup.com/berlin-coworking-club/events/312626696/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-16",
@@ -2291,7 +2986,12 @@
     "link": "https://luma.com/wtqnycgr",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-16",
@@ -2310,7 +3010,12 @@
     "link": "https://luma.com/a8uk0ms6",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10117",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5169123,
+    "lon": 13.3873555
   },
   {
     "date": "2026-06-17",
@@ -2329,7 +3034,12 @@
     "link": "https://www.meetup.com/english-communication-and-leadership-and-feedback-training/events/312877455/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-17",
@@ -2348,7 +3058,12 @@
     "link": "https://www.meetup.com/berlinstartups/events/314178212/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-17",
@@ -2367,7 +3082,12 @@
     "link": "https://luma.com/internetmoneyhack",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10999",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.4969288,
+    "lon": 13.4265584
   },
   {
     "date": "2026-06-17",
@@ -2386,7 +3106,12 @@
     "link": "https://www.instagram.com/p/DZHd6m4A8Uq/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-17",
@@ -2405,7 +3130,12 @@
     "link": "https://berlin.aitinkerers.org/p/ai-tinkerers-berlin-june-17-2026",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-18",
@@ -2424,7 +3154,12 @@
     "link": "https://luma.com/in7bk2zv",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10557",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5237902,
+    "lon": 13.3654632
   },
   {
     "date": "2026-06-18",
@@ -2443,7 +3178,12 @@
     "link": "https://luma.com/desciberlin2026",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10969",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.5024857,
+    "lon": 13.401114
   },
   {
     "date": "2026-06-18",
@@ -2462,7 +3202,12 @@
     "link": "https://web3summit.com/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-18",
@@ -2481,7 +3226,12 @@
     "link": "https://luma.com/1lk36q2z",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "13189",
+    "bezirk": "Pankow",
+    "kiez": "Pankow",
+    "lat": 52.5641454,
+    "lon": 13.4218376
   },
   {
     "date": "2026-06-18",
@@ -2500,7 +3250,12 @@
     "link": "https://luma.com/loveblock",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-19",
@@ -2519,7 +3274,12 @@
     "link": "https://luma.com/b279nbn6",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-19",
@@ -2538,7 +3298,12 @@
     "link": "https://www.meetup.com/fuckup-days-coworking/events/314178618/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Meetup"
+    "source": "Meetup",
+    "plz": "12053",
+    "bezirk": "Neukölln",
+    "kiez": "Neukölln",
+    "lat": 52.4770984,
+    "lon": 13.4324541
   },
   {
     "date": "2026-06-19",
@@ -2557,7 +3322,12 @@
     "link": "https://luma.com/0yhx23d8",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "12435",
+    "bezirk": "Treptow-Köpenick",
+    "kiez": "Treptow-Köpenick",
+    "lat": 52.4869643,
+    "lon": 13.4662697
   },
   {
     "date": "2026-06-19",
@@ -2576,7 +3346,12 @@
     "link": "https://tickets-berlin.fotografiska.com/productDetail/139465",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-19",
@@ -2595,7 +3370,12 @@
     "link": "https://luma.com/ake00qa8",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10969",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.5037969,
+    "lon": 13.4114492
   },
   {
     "date": "2026-06-19",
@@ -2614,7 +3394,12 @@
     "link": "https://luma.com/blockberlaunch",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10999",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.4969288,
+    "lon": 13.4265584
   },
   {
     "date": "2026-06-20",
@@ -2633,7 +3418,12 @@
     "link": "https://www.instagram.com/p/DZKrQ39DUfi/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-20",
@@ -2652,7 +3442,12 @@
     "link": "https://luma.com/19ipblom",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "12053",
+    "bezirk": "Neukölln",
+    "kiez": "Neukölln",
+    "lat": 52.4770984,
+    "lon": 13.4324541
   },
   {
     "date": "2026-06-20",
@@ -2671,7 +3466,12 @@
     "link": "https://luma.com/AIxENERGY-HACK",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-20",
@@ -2690,7 +3490,12 @@
     "link": "https://luma.com/1857f2wa",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-21",
@@ -2709,7 +3514,12 @@
     "link": "https://www.berlin.de/fr/evenements/2102143-3000868-fete-de-la-musique.fr.html",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-21",
@@ -2728,7 +3538,12 @@
     "link": "https://luma.com/9screuy1",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10317",
+    "bezirk": "Lichtenberg",
+    "kiez": "Lichtenberg",
+    "lat": 52.497936,
+    "lon": 13.4907298
   },
   {
     "date": "2026-06-21",
@@ -2747,7 +3562,12 @@
     "link": "https://luma.com/i4pjs0w8",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-21",
@@ -2766,7 +3586,12 @@
     "link": "https://www.juedische-kulturtage.org/street-food",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": "10117",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5169123,
+    "lon": 13.3873555
   },
   {
     "date": "2026-06-21",
@@ -2785,7 +3610,12 @@
     "link": "https://www.instagram.com/p/DY4K-iSAPZ8/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-21",
@@ -2804,7 +3634,12 @@
     "link": "https://rausgegangen.de/en/events/drag-brunch-20/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Rausgegangen"
+    "source": "Rausgegangen",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-21",
@@ -2823,7 +3658,12 @@
     "link": "https://sabinehueck.de/event/dia-del-ceviche-open-house-2/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-21",
@@ -2842,7 +3682,12 @@
     "link": "https://www.instagram.com/p/DZJ6EBDFYEg/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-22",
@@ -2861,7 +3706,12 @@
     "link": "https://luma.com/4s8o24qq",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-23",
@@ -2880,7 +3730,12 @@
     "link": "https://www.thesmartere.de/home",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-23",
@@ -2899,7 +3754,12 @@
     "link": "https://luma.com/ala06e9e",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10785",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.50735,
+    "lon": 13.3642193
   },
   {
     "date": "2026-06-24",
@@ -2918,7 +3778,12 @@
     "link": "https://kiramariecremer.de/mental-matters",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-24",
@@ -2937,7 +3802,12 @@
     "link": "https://luma.com/jcru7jsl",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-24",
@@ -2956,7 +3826,12 @@
     "link": "https://www.instagram.com/p/DZKIsNCIh9D/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-24",
@@ -2975,7 +3850,12 @@
     "link": "https://luma.com/age-f2wp",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10963",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.5001884,
+    "lon": 13.381143
   },
   {
     "date": "2026-06-24",
@@ -2994,7 +3874,12 @@
     "link": "https://luma.com/892812u8",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "12439",
+    "bezirk": "Treptow-Köpenick",
+    "kiez": "Treptow-Köpenick",
+    "lat": 52.4532578,
+    "lon": 13.5262682
   },
   {
     "date": "2026-06-24",
@@ -3013,7 +3898,12 @@
     "link": "https://www.instagram.com/p/DZMsrxtCGmm/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-25",
@@ -3032,7 +3922,12 @@
     "link": "https://luma.com/knwtu12s",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10557",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.52324,
+    "lon": 13.359503
   },
   {
     "date": "2026-06-26",
@@ -3051,7 +3946,12 @@
     "link": "https://www.instagram.com/p/DWy453lCN7J/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-26",
@@ -3070,7 +3970,12 @@
     "link": "https://luma.com/n8n-vvb3",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "12053",
+    "bezirk": "Neukölln",
+    "kiez": "Neukölln",
+    "lat": 52.4770984,
+    "lon": 13.4324541
   },
   {
     "date": "2026-06-26",
@@ -3089,7 +3994,12 @@
     "link": "https://www.berlin.de/en/events/1934675-2842498-bergmannstrassenfest.en.html",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": "10961",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.4896236,
+    "lon": 13.3902923
   },
   {
     "date": "2026-06-28",
@@ -3108,7 +4018,12 @@
     "link": "https://www.instagram.com/reel/DYo_L3diaQz/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-28",
@@ -3127,7 +4042,12 @@
     "link": "https://luma.com/the-3vx2",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10119",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5304785,
+    "lon": 13.4053272
   },
   {
     "date": "2026-06-28",
@@ -3146,7 +4066,12 @@
     "link": "https://www.instagram.com/p/DZDBXFDIN01/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-30",
@@ -3165,7 +4090,12 @@
     "link": "https://stripetour.com/berlin",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": "12057",
+    "bezirk": "Neukölln",
+    "kiez": "Neukölln",
+    "lat": 52.4736275,
+    "lon": 13.4588496
   },
   {
     "date": "2026-06-30",
@@ -3184,7 +4114,12 @@
     "link": "https://luma.com/ufxubu91",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-30",
@@ -3203,7 +4138,12 @@
     "link": "https://www.business-creator-summit.com/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-06-30",
@@ -3222,7 +4162,12 @@
     "link": "https://luma.com/djv96z6b",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10119",
+    "bezirk": "Mitte",
+    "kiez": "Mitte",
+    "lat": 52.5304785,
+    "lon": 13.4053272
   },
   {
     "date": "2026-06-30",
@@ -3241,7 +4186,12 @@
     "link": "https://luma.com/98r3k410",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-01",
@@ -3260,7 +4210,12 @@
     "link": "https://luma.com/stpl5828",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "10969",
+    "bezirk": "Friedrichshain-Kreuzberg",
+    "kiez": "Kreuzberg",
+    "lat": 52.5024857,
+    "lon": 13.401114
   },
   {
     "date": "2026-07-01",
@@ -3279,7 +4234,12 @@
     "link": "https://luma.com/aumzljqi",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": "14059",
+    "bezirk": "Charlottenburg-Wilmersdorf",
+    "kiez": "Charlottenburg-Wilmersdorf",
+    "lat": 52.5205365,
+    "lon": 13.2879135
   },
   {
     "date": "2026-07-03",
@@ -3298,7 +4258,12 @@
     "link": "https://www.nooksociety.com/Wellbeing-Festival",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-03",
@@ -3317,7 +4282,12 @@
     "link": "https://www.elevateretreats.de/the-slow-weekend",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-03",
@@ -3336,7 +4306,12 @@
     "link": "https://luma.com/q5o4xu1t",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-04",
@@ -3355,7 +4330,12 @@
     "link": "https://www.instagram.com/p/DY4BNXpsrRZ/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-08",
@@ -3374,7 +4354,12 @@
     "link": "https://www.wearedevelopers.com/world-congress",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-09",
@@ -3393,7 +4378,12 @@
     "link": "https://www.berlin.de/en/events/2096841-2842498-classic-open-air-at-gendarmenmarkt.en.html",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-11",
@@ -3412,7 +4402,12 @@
     "link": "https://www.instagram.com/p/DZFiyA4taJZ/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Instagram"
+    "source": "Instagram",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-14",
@@ -3431,7 +4426,12 @@
     "link": "https://luma.com/23l7b7aw",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-17",
@@ -3450,7 +4450,12 @@
     "link": "https://www.udk-berlin.de/en/event/rundgang-2025/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-18",
@@ -3469,7 +4474,12 @@
     "link": "https://www.stadtfest.berlin/en/index.html",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-18",
@@ -3488,7 +4498,12 @@
     "link": "https://www.lollapaloozade.com/en",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-07-25",
@@ -3507,7 +4522,12 @@
     "link": "https://csd-berlin.de/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-08-08",
@@ -3526,7 +4546,12 @@
     "link": "https://www.botanische-nacht.de/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-08-13",
@@ -3545,7 +4570,12 @@
     "link": "https://www.tanzimaugust.de/ueber-uns",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-08-29",
@@ -3564,7 +4594,12 @@
     "link": "https://true-italian.com/pistachio-street-food-festival/",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-09-15",
@@ -3583,7 +4618,12 @@
     "link": "https://productlab.app/#tickets",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Website"
+    "source": "Website",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-09-15",
@@ -3602,7 +4642,12 @@
     "link": "https://luma.com/kco33yis",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-10-05",
@@ -3621,7 +4666,12 @@
     "link": "https://luma.com/agetechx-berlin",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   },
   {
     "date": "2026-10-09",
@@ -3640,12 +4690,17 @@
     "link": "https://luma.com/zmyccy0w",
     "linkLabel": "Register ↗",
     "fomoHosted": false,
-    "source": "Luma"
+    "source": "Luma",
+    "plz": null,
+    "bezirk": null,
+    "kiez": null,
+    "lat": null,
+    "lon": null
   }
 ];</script>
 <script>
 
-/* ── helpers ── */
+/* ════════ helpers ════════ */
 function escapeHtml(s){ if(s==null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function highlightMatch(text, query){
   if(!query) return escapeHtml(text);
@@ -3653,17 +4708,72 @@ function highlightMatch(text, query){
   const safeQ = query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
   return safe.replace(new RegExp(safeQ,'gi'), m => `<mark class="hl">${m}</mark>`);
 }
+function slugify(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60); }
+function eventId(e){ return (e.date + '-' + slugify(e.title)) || e.date; }
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 function shortDate(iso){ if(!iso) return ''; const d=new Date(iso+'T00:00:00Z'); return `${WD[d.getUTCDay()]}, ${d.getUTCDate()} ${MON[d.getUTCMonth()]}`; }
 
-/* ── event row builder ── */
+/* ════════ icons ════════ */
+const SVG_HEART='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
+const SVG_HEART_FILL='<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
+const SVG_CAL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+const SVG_ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+
+/* ════════ config / state ════════ */
+const monthMeta={jun:'June',jul:'July',aug:'August',sep:'September',oct:'October'};
+const events = (window.FOMO_EVENTS || []).map(e => ({ ...e, _id: eventId(e) }));
+const byId = {}; events.forEach(e => { byId[e._id] = e; });
+function todayKey(){ const d=new Date(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0'); return `${d.getFullYear()}-${m}-${day}`; }
+const TODAY = todayKey();
+const upcoming = events.filter(e => e.date >= TODAY);
+const state = { month:'all', cat:'all', search:'', when:'all', favOnly:false, bezirk:'all', view:'list' };
+
+/* ════════ favorites (localStorage) ════════ */
+const FAV_KEY='fomo:favs';
+function loadFavs(){ try{ return new Set(JSON.parse(localStorage.getItem(FAV_KEY)||'[]')); }catch{ return new Set(); } }
+let favs = loadFavs();
+function saveFavs(){ try{ localStorage.setItem(FAV_KEY, JSON.stringify([...favs])); }catch{} }
+function toggleFav(id){ if(favs.has(id)) favs.delete(id); else favs.add(id); saveFavs(); updateFavCount(); }
+function updateFavCount(){
+  const c=document.getElementById('favCount'); if(c) c.textContent=favs.size;
+  const t=document.getElementById('favToggle'); if(t){ t.classList.toggle('active',state.favOnly); t.setAttribute('aria-pressed',String(state.favOnly)); t.querySelector('.heart').textContent=state.favOnly?'♥':'♡'; }
+}
+
+/* ════════ filtering ════════ */
+function inWhen(e){
+  if(state.when==='all') return true;
+  const d=new Date(e.date+'T00:00:00');
+  const now=new Date(TODAY+'T00:00:00');
+  const diff=Math.round((d-now)/86400000);
+  if(state.when==='today') return e.date===TODAY;
+  if(state.when==='week') return diff>=0 && diff<=7;
+  if(state.when==='weekend'){ const wd=d.getDay(); return diff>=0 && diff<=8 && (wd===6||wd===0); }
+  return true;
+}
+function getFiltered(){
+  const q=state.search.trim().toLowerCase();
+  return upcoming.filter(e=>{
+    const mM = state.month==='all' || e.monthKey===state.month;
+    const mC = state.cat==='all' || e.cat===state.cat;
+    const mW = inWhen(e);
+    const mF = !state.favOnly || favs.has(e._id);
+    const mB = state.bezirk==='all' || e.bezirk===state.bezirk;
+    const mS = !q || [e.title,e.host,e.location,e.catLabel,e.desc,e.source].some(f=>(f||'').toLowerCase().includes(q));
+    return mM&&mC&&mW&&mF&&mB&&mS;
+  }).sort((a,b)=> a.date!==b.date ? a.date.localeCompare(b.date) : (a.time||'').localeCompare(b.time||''));
+}
+
+/* ════════ list rendering ════════ */
 function buildEventCard(e, q){
   const dateShort = shortDate(e.date);
   const timeStart = String(e.time||'').split('–')[0].trim();
-  const action = (e.status === 'invite' || !e.link)
-    ? `<span class="lock" title="Invite only / no public link">🔒</span>`
-    : `<a href="${escapeHtml(e.link)}" target="_blank" rel="noopener" title="Open"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>`;
+  const goAction = (e.status === 'invite' || !e.link)
+    ? `<span class="lock-ic" title="Invite only / no public link">🔒</span>`
+    : `<span class="er-icon go"><a href="${escapeHtml(e.link)}" target="_blank" rel="noopener" aria-label="Open event page">${SVG_ARROW}</a></span>`;
+  const favOn = favs.has(e._id);
+  const favBtn = `<button class="er-icon fav${favOn?' on':''}" data-act="fav" data-id="${e._id}" aria-label="Save to favourites" aria-pressed="${favOn}">${favOn?SVG_HEART_FILL:SVG_HEART}</button>`;
+  const calBtn = `<button class="er-icon cal-btn" data-act="cal" data-id="${e._id}" aria-label="Add to calendar or share" aria-haspopup="true">${SVG_CAL}</button>`;
   const isHiddenLoc = !e.location || /^(disclosed after|visible after|hidden until|invite[- ]only|invitation only|—|berlin$|berlin,? germany$)/i.test((e.location||'').trim());
   const locHtml = isHiddenLoc
     ? `<div class="er-loc empty" role="cell">${escapeHtml(e.location||'Location TBA')}</div>`
@@ -3674,9 +4784,10 @@ function buildEventCard(e, q){
   if(e.fomoHosted) rowClass+=' fomo-hosted';
   if(e.status==='soldout') rowClass+=' is-soldout';
   const fomoBadge=e.fomoHosted?`<span class="er-pill fomo">FOMO Hosted</span>`:'';
+  const kiezBadge=e.kiez?`<span class="er-pill cat">${escapeHtml(e.kiez)}</span>`:'';
   const srcBadge=e.source?`<span class="er-pill cat">${escapeHtml(e.source)}</span>`:'';
   return `
-    <div class="${rowClass}" role="row" data-day="${e.day}" data-cat="${e.cat}" data-status="${e.status}">
+    <div class="${rowClass}" role="row" data-id="${e._id}" data-day="${e.day}" data-cat="${e.cat}" data-status="${e.status}">
       <div class="er-date" role="cell">${dateShort}</div>
       <div class="er-time" role="cell">${escapeHtml(timeStart)}</div>
       <div class="er-event" role="cell">
@@ -3685,34 +4796,12 @@ function buildEventCard(e, q){
           ${fomoBadge}
           <span class="er-pill ${e.status}">${escapeHtml(statusShort)}</span>
           <span class="er-pill cat">${escapeHtml(e.catLabel)}</span>
-          ${srcBadge}
+          ${kiezBadge}${srcBadge}
         </div>
       </div>
       ${locHtml}
-      <div class="er-action" role="cell">${action}</div>
+      <div class="er-action" role="cell"><div class="er-actions">${favBtn}${calBtn}${goAction}</div></div>
     </div>`;
-}
-
-/* ── config ── */
-const monthMeta={jun:'June',jul:'July',aug:'August',sep:'September',oct:'October'};
-const events = window.FOMO_EVENTS || [];
-const state = { month:'all', cat:'all', search:'' };
-function todayKey(){ const d=new Date(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0'); return `${d.getFullYear()}-${m}-${day}`; }
-const TODAY = todayKey();
-const upcoming = events.filter(e => e.date >= TODAY);
-
-function updateHeaderCounts(){
-  const n=upcoming.length;
-  ['topstripCount','ledeCount'].forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=n;});
-}
-function getFiltered(){
-  const q=state.search.trim().toLowerCase();
-  return upcoming.filter(e=>{
-    const mM = state.month==='all' || e.monthKey===state.month;
-    const mC = state.cat==='all' || e.cat===state.cat;
-    const mS = !q || [e.title,e.host,e.location,e.catLabel,e.desc,e.source].some(f=>(f||'').toLowerCase().includes(q));
-    return mM&&mC&&mS;
-  }).sort((a,b)=> a.date!==b.date ? a.date.localeCompare(b.date) : (a.time||'').localeCompare(b.time||''));
 }
 function dayHeaderHtml(iso, count){
   const d=new Date(iso+'T00:00:00Z');
@@ -3722,7 +4811,7 @@ function dayHeaderHtml(iso, count){
 }
 const THEAD=`<div class="events-thead" role="rowgroup"><div class="events-thead-row" role="row"><div class="th">Date</div><div class="th">Time</div><div class="th">Event</div><div class="th">Location</div><div class="th" aria-label="Action"></div></div></div>`;
 
-function render(){
+function renderList(){
   const filtered=getFiltered();
   const list=document.getElementById('eventList');
   const empty=document.getElementById('empty');
@@ -3744,26 +4833,304 @@ function render(){
   document.getElementById('resultsCount').textContent=`${filtered.length} ${filtered.length===1?'event':'events'}`;
 }
 
+/* ════════ top-level update (list or map) ════════ */
+function update(){
+  if(state.view==='map'){ document.getElementById('empty').classList.remove('show'); renderMap(); }
+  else { renderList(); }
+}
+function updateHeaderCounts(){
+  const n=upcoming.length;
+  ['topstripCount','ledeCount'].forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=n;});
+}
+
+/* ════════ calendar (.ics + deep links) ════════ */
+function parseTimeStr(time){
+  const t=String(time||'').trim(); if(!t) return null;
+  const parts=t.split(/[–-]/).map(s=>s.trim());
+  const hms=s=>{ const m=s.match(/(\d{1,2}):(\d{2})/); return m?String(m[1]).padStart(2,'0')+m[2]+'00':null; };
+  const start=hms(parts[0]); if(!start) return null;
+  return { start, end: parts[1]?hms(parts[1]):null };
+}
+function berlinOffsetMin(date){
+  const s=new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Berlin',timeZoneName:'shortOffset',hour:'2-digit'}).formatToParts(date).find(p=>p.type==='timeZoneName');
+  const m=(s&&s.value||'GMT+1').match(/GMT([+-]\d{1,2})(?::?(\d{2}))?/); if(!m) return 60;
+  const h=parseInt(m[1],10); const mm=m[2]?parseInt(m[2],10):0; return h*60 + (h<0?-mm:mm);
+}
+function berlinInstant(ymd, hms){
+  const [y,m,d]=ymd.split('-').map(Number);
+  const hh=+hms.slice(0,2), mn=+hms.slice(2,4);
+  const off=berlinOffsetMin(new Date(Date.UTC(y,m-1,d,12,0,0)));
+  return new Date(Date.UTC(y,m-1,d,hh,mn,0)-off*60000);
+}
+const icsEscape=v=>v==null?'':String(v).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r\n|\r|\n/g,'\\n');
+function icsFold(line){ const enc=new TextEncoder(); let out='',b=0,first=true; for(const ch of line){ const cb=enc.encode(ch).length; const lim=first?75:74; if(b+cb>lim){ out+='\r\n '; b=1; first=false; } out+=ch; b+=cb; } return out; }
+const p2=n=>String(n).padStart(2,'0');
+function utcStamp(d){ return d.getUTCFullYear()+p2(d.getUTCMonth()+1)+p2(d.getUTCDate())+'T'+p2(d.getUTCHours())+p2(d.getUTCMinutes())+p2(d.getUTCSeconds())+'Z'; }
+const dateBasic=ymd=>ymd.replace(/-/g,'');
+function nextDayBasic(ymd){ const [y,m,d]=ymd.split('-').map(Number); const dt=new Date(Date.UTC(y,m-1,d)); dt.setUTCDate(dt.getUTCDate()+1); return dt.getUTCFullYear()+p2(dt.getUTCMonth()+1)+p2(dt.getUTCDate()); }
+function calDesc(e){ return [e.host&&('Host: '+e.host), e.desc, e.source&&('via '+e.source)].filter(Boolean).join(' — '); }
+function eventInstants(e){
+  const tm=parseTimeStr(e.time); if(!tm) return null;
+  const start=berlinInstant(e.date, tm.start);
+  const end=tm.end?berlinInstant(e.date, tm.end):new Date(start.getTime()+2*3600*1000);
+  return { start, end };
+}
+const BERLIN_VTZ=['BEGIN:VTIMEZONE','TZID:Europe/Berlin','BEGIN:DAYLIGHT','TZOFFSETFROM:+0100','TZOFFSETTO:+0200','TZNAME:CEST','DTSTART:19700329T020000','RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU','END:DAYLIGHT','BEGIN:STANDARD','TZOFFSETFROM:+0200','TZOFFSETTO:+0100','TZNAME:CET','DTSTART:19701025T030000','RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU','END:STANDARD','END:VTIMEZONE'];
+function buildIcs(e){
+  const tm=parseTimeStr(e.time);
+  let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FOMO Berlin//Event Calendar//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+  if(tm) lines=lines.concat(BERLIN_VTZ);
+  lines.push('BEGIN:VEVENT','UID:'+e._id+'@fomoberlin.com','DTSTAMP:'+utcStamp(new Date()));
+  if(tm){ const dt=dateBasic(e.date); lines.push('DTSTART;TZID=Europe/Berlin:'+dt+'T'+tm.start); lines.push('DTEND;TZID=Europe/Berlin:'+dt+'T'+(tm.end||tm.start)); }
+  else { lines.push('DTSTART;VALUE=DATE:'+dateBasic(e.date)); lines.push('DTEND;VALUE=DATE:'+nextDayBasic(e.date)); }
+  lines.push('SUMMARY:'+icsEscape(e.title));
+  const desc=calDesc(e); if(desc) lines.push('DESCRIPTION:'+icsEscape(desc));
+  if(e.location) lines.push('LOCATION:'+icsEscape(e.location));
+  if(e.link) lines.push('URL:'+icsEscape(e.link));
+  lines.push('END:VEVENT','END:VCALENDAR');
+  return lines.map(icsFold).join('\r\n')+'\r\n';
+}
+const isAppleMobile=()=>/iP(hone|ad|od)/.test(navigator.platform)||(/Mac/.test(navigator.platform)&&navigator.maxTouchPoints>1)||/iPhone|iPad|iPod/.test(navigator.userAgent);
+function downloadIcs(e){
+  const ics=buildIcs(e); const a=document.createElement('a'); a.download=(slugify(e.title)||'event')+'.ics';
+  if(isAppleMobile()){ a.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics); a.target='_self'; document.body.appendChild(a); a.click(); a.remove(); return; }
+  const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'}); const url=URL.createObjectURL(blob);
+  a.href=url; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000);
+}
+function googleUrl(e){
+  const p=new URLSearchParams(); p.set('action','TEMPLATE'); p.set('text',e.title||'');
+  const desc=calDesc(e); if(desc) p.set('details',desc); if(e.location) p.set('location',e.location);
+  const ins=eventInstants(e);
+  if(ins) p.set('dates', utcStamp(ins.start)+'/'+utcStamp(ins.end));
+  else p.set('dates', dateBasic(e.date)+'/'+nextDayBasic(e.date));
+  return 'https://calendar.google.com/calendar/render?'+p.toString();
+}
+function outlookUrl(e){
+  const p=new URLSearchParams(); p.set('path','/calendar/action/compose'); p.set('rru','addevent'); p.set('subject',e.title||'');
+  const desc=calDesc(e); if(desc) p.set('body',desc); if(e.location) p.set('location',e.location);
+  const ins=eventInstants(e);
+  if(ins){ p.set('startdt',ins.start.toISOString().replace(/\.\d{3}Z$/,'Z')); p.set('enddt',ins.end.toISOString().replace(/\.\d{3}Z$/,'Z')); }
+  else { p.set('allday','true'); p.set('startdt',e.date); p.set('enddt',e.date); }
+  return 'https://outlook.live.com/calendar/0/deeplink/compose?'+p.toString();
+}
+function permalink(id){ return location.origin + location.pathname + '?e=' + encodeURIComponent(id); }
+
+/* shared floating calendar/share menu */
+const calMenu=document.createElement('div'); calMenu.className='cal-menu'; document.body.appendChild(calMenu);
+let calMenuId=null;
+function openCalMenu(btn, id){
+  const e=byId[id]; if(!e) return;
+  calMenuId=id;
+  const shareItem = navigator.share ? `<button data-cm="share"><span class="ic">⤴</span> Share…</button>` : '';
+  calMenu.innerHTML =
+    `<a data-cm="google" href="${escapeHtml(googleUrl(e))}" target="_blank" rel="noopener"><span class="ic">📅</span> Google Calendar</a>`+
+    `<button data-cm="ics"><span class="ic">🍎</span> Apple Calendar (.ics)</button>`+
+    `<a data-cm="outlook" href="${escapeHtml(outlookUrl(e))}" target="_blank" rel="noopener"><span class="ic">▦</span> Outlook</a>`+
+    `<button data-cm="ics2"><span class="ic">⤓</span> Download .ics</button>`+
+    `<button data-cm="copy"><span class="ic">🔗</span> Copy link</button>`+
+    shareItem;
+  calMenu.classList.add('open');
+  const r=btn.getBoundingClientRect();
+  calMenu.style.top=(r.bottom+window.scrollY+6)+'px';
+  const left=Math.min(r.right+window.scrollX-188, window.scrollX+window.innerWidth-200);
+  calMenu.style.left=Math.max(window.scrollX+8,left)+'px';
+}
+function closeCalMenu(){ calMenu.classList.remove('open'); calMenuId=null; }
+calMenu.addEventListener('click', async ev=>{
+  const t=ev.target.closest('[data-cm]'); if(!t) return;
+  const e=byId[calMenuId]; const act=t.dataset.cm;
+  if(act==='ics'||act==='ics2'){ ev.preventDefault(); if(e) downloadIcs(e); closeCalMenu(); }
+  else if(act==='copy'){ ev.preventDefault(); if(e){ try{ await navigator.clipboard.writeText(permalink(e._id)); toast('Link copied'); }catch{ toast('Copy failed'); } } closeCalMenu(); }
+  else if(act==='share'){ ev.preventDefault(); if(e&&navigator.share){ try{ await navigator.share({title:e.title, text:'FOMO Berlin · '+e.title, url:permalink(e._id)}); }catch{} } closeCalMenu(); }
+  else { closeCalMenu(); } /* google/outlook anchors open normally */
+});
+
+/* ════════ toast ════════ */
+let toastT;
+function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2400); }
+
+/* ════════ countdown ════════ */
+function nextEventInstant(){
+  const future=upcoming.map(e=>{ const ins=eventInstants(e); return { e, when: ins?ins.start:new Date(e.date+'T09:00:00') }; })
+    .filter(x=>x.when.getTime()>Date.now()).sort((a,b)=>a.when-b.when);
+  return future[0]||null;
+}
+function tickCountdown(){
+  const box=document.getElementById('countdown'); if(!box) return;
+  const nx=nextEventInstant();
+  if(!nx){ box.hidden=true; return; }
+  box.hidden=false;
+  let diff=Math.max(0,nx.when.getTime()-Date.now());
+  const d=Math.floor(diff/86400000); diff-=d*86400000;
+  const h=Math.floor(diff/3600000); diff-=h*3600000;
+  const m=Math.floor(diff/60000);
+  document.getElementById('cdD').textContent=d;
+  document.getElementById('cdH').textContent=p2(h);
+  document.getElementById('cdM').textContent=p2(m);
+  document.getElementById('cdNext').innerHTML='<b>'+escapeHtml(nx.e.title)+'</b><br>'+shortDate(nx.e.date)+(nx.e.time?' · '+escapeHtml(String(nx.e.time).split('–')[0].trim()):'');
+}
+
+/* ════════ map (lazy Leaflet) ════════ */
+let leafletP=null, mapObj=null, clusterObj=null, mapBuilt=false;
+function loadLeaflet(){
+  if(leafletP) return leafletP;
+  leafletP=new Promise((resolve,reject)=>{
+    ['/vendor/leaflet/leaflet.css','/vendor/leaflet/MarkerCluster.css','/vendor/leaflet/MarkerCluster.Default.css'].forEach(href=>{ const l=document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l); });
+    const seq=['/vendor/leaflet/leaflet.js','/vendor/leaflet/leaflet.markercluster.js'];
+    (async()=>{ try{ for(const src of seq){ await new Promise((r,e)=>{ const s=document.createElement('script'); s.src=src; s.async=false; s.onload=r; s.onerror=()=>e(new Error('load '+src)); document.head.appendChild(s); }); } resolve(window.L); }catch(err){ reject(err); } })();
+  });
+  return leafletP;
+}
+async function ensureMap(){
+  const L=await loadLeaflet();
+  if(!mapBuilt){
+    mapObj=L.map('map',{scrollWheelZoom:false}).setView([52.52,13.405],11);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(mapObj);
+    clusterObj=L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:48,chunkedLoading:true});
+    mapObj.addLayer(clusterObj); mapBuilt=true;
+  }
+  return L;
+}
+function popupHtml(e){
+  const meta=[shortDate(e.date), e.time&&String(e.time).split('–')[0].trim(), e.bezirk].filter(Boolean).join(' · ');
+  const link=(e.link&&e.status!=='invite')?`<a class="pop-link" href="${escapeHtml(e.link)}" target="_blank" rel="noopener">Register ↗</a>`:'';
+  return `<b>${escapeHtml(e.title)}</b><div class="pop-meta">${escapeHtml(e.location||'')}</div><div class="pop-meta">${escapeHtml(meta)}</div>${link}`;
+}
+async function renderMap(){
+  let L; try{ L=await ensureMap(); }catch{ document.getElementById('map').innerHTML='<div class="map-empty">Map could not load.</div>'; return; }
+  clusterObj.clearLayers();
+  const pts=getFiltered().filter(e=>e.lat!=null&&e.lon!=null);
+  const markers=pts.map(e=>{ const m=L.marker([e.lat,e.lon]); m.bindPopup(popupHtml(e)); return m; });
+  clusterObj.addLayers(markers);
+  setTimeout(()=>{ mapObj.invalidateSize(); if(markers.length){ try{ mapObj.fitBounds(clusterObj.getBounds().pad(0.2),{maxZoom:14}); }catch{} } },0);
+  document.getElementById('resultsCount').textContent=`${pts.length} on map`;
+}
+function buildKiezChips(){
+  const counts={};
+  upcoming.filter(e=>e.lat!=null&&e.bezirk).forEach(e=>{ counts[e.bezirk]=(counts[e.bezirk]||0)+1; });
+  const names=Object.keys(counts).sort();
+  const row=document.getElementById('kiezRow');
+  row.innerHTML='<span class="vibe-label">Kiez</span>'+
+    `<button class="kchip${state.bezirk==='all'?' active':''}" data-bezirk="all">All Berlin</button>`+
+    names.map(n=>`<button class="kchip${state.bezirk===n?' active':''}" data-bezirk="${escapeHtml(n)}">${escapeHtml(n)} <span style="opacity:.6">${counts[n]}</span></button>`).join('');
+}
+
+/* ════════ view toggle ════════ */
+function setView(v){
+  state.view=v;
+  const list=document.getElementById('eventList'), map=document.getElementById('mapView'), kiez=document.getElementById('kiezRow'), empty=document.getElementById('empty');
+  document.querySelectorAll('#viewToggle button').forEach(b=>{ const on=b.dataset.view===v; b.classList.toggle('active',on); b.setAttribute('aria-pressed',String(on)); });
+  if(v==='map'){ list.style.display='none'; empty.classList.remove('show'); map.hidden=false; kiez.hidden=false; buildKiezChips(); update(); }
+  else { state.bezirk='all'; map.hidden=true; kiez.hidden=true; list.style.display=''; update(); }
+}
+
+/* ════════ deep-link / share focus ════════ */
+function focusEvent(id){
+  const e=byId[id]; if(!e) return;
+  state.month='all'; state.cat='all'; state.when='all'; state.favOnly=false; state.search=''; state.view='list';
+  const si=document.getElementById('searchInput'); if(si) si.value='';
+  document.querySelectorAll('#dayTabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.val==='all'));
+  document.querySelectorAll('#vibeFilters .chip').forEach(c=>c.classList.toggle('active',c.dataset.val==='all'));
+  document.querySelectorAll('#quickFilters .qbtn').forEach(b=>b.classList.toggle('active',b.dataset.when==='all'));
+  updateFavCount(); setView('list');
+  setTimeout(()=>{ const row=document.querySelector(`.event-row[data-id="${CSS.escape(id)}"]`); if(row){ row.scrollIntoView({behavior:'smooth',block:'center'}); row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash'); } }, 60);
+}
+
+/* ════════ submit-event modal ════════ */
+const modal=document.getElementById('submitModal'), form=document.getElementById('submitForm');
+function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; const f=document.getElementById('f-title'); if(f) setTimeout(()=>f.focus(),50); }
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+function mailtoFallback(d){
+  const body=['Event: '+d.title,'Date: '+d.date+(d.time?' '+d.time:''),'Location: '+(d.location||''),'Category: '+(d.category||''),'Access: '+(d.status||''),'Link: '+(d.link||''),'Host: '+(d.host||''),'Description: '+(d.description||''),'Contact: '+(d.email||'')].join('\n');
+  return 'mailto:hi@fomoberlin.com?subject='+encodeURIComponent('Event submission: '+d.title)+'&body='+encodeURIComponent(body);
+}
+form.addEventListener('submit', async ev=>{
+  ev.preventDefault();
+  const msg=document.getElementById('formMsg'); const btn=document.getElementById('submitBtn');
+  const d=Object.fromEntries(new FormData(form).entries());
+  if(d.website_url){ closeModal(); toast('Thanks — we got it!'); form.reset(); return; } /* honeypot */
+  if(!d.title||!d.date||!d.email){ msg.textContent='Please fill in event name, date and your email.'; msg.className='form-msg err show'; return; }
+  btn.disabled=true; msg.className='form-msg'; msg.textContent='';
+  try{
+    const res=await fetch('/api/submit-event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+    if(!res.ok) throw new Error('http '+res.status);
+    msg.textContent='Thanks! Your event was submitted for review.'; msg.className='form-msg ok show';
+    form.reset(); toast('Event submitted ✦'); setTimeout(closeModal,1600);
+  }catch(err){
+    /* API not configured / offline → fall back to email so nothing is lost */
+    msg.innerHTML='Opening your email app to send the details…'; msg.className='form-msg ok show';
+    window.location.href=mailtoFallback(d);
+  }finally{ btn.disabled=false; }
+});
+
+/* ════════ event wiring ════════ */
 document.getElementById('dayTabs').addEventListener('click',e=>{
   const tab=e.target.closest('.tab'); if(!tab) return;
   state.month=tab.dataset.val;
   document.querySelectorAll('#dayTabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.val===state.month));
-  render();
-  const top=document.getElementById('eventsTop'); if(top) top.scrollIntoView({behavior:'smooth',block:'start'});
+  update();
+  const top=document.getElementById('eventsTop'); if(top&&state.view==='list') top.scrollIntoView({behavior:'smooth',block:'start'});
 });
 document.getElementById('vibeFilters').addEventListener('click',e=>{
   const chip=e.target.closest('.chip'); if(!chip) return;
   state.cat=chip.dataset.val;
   document.querySelectorAll('#vibeFilters .chip').forEach(c=>c.classList.toggle('active',c.dataset.val===state.cat));
-  render();
+  update();
 });
+document.getElementById('quickFilters').addEventListener('click',e=>{
+  const b=e.target.closest('.qbtn'); if(!b) return;
+  state.when=b.dataset.when;
+  document.querySelectorAll('#quickFilters .qbtn').forEach(x=>x.classList.toggle('active',x.dataset.when===state.when));
+  update();
+});
+document.getElementById('favToggle').addEventListener('click',()=>{ state.favOnly=!state.favOnly; updateFavCount(); update(); });
+document.getElementById('viewToggle').addEventListener('click',e=>{ const b=e.target.closest('button'); if(b) setView(b.dataset.view); });
+document.getElementById('kiezRow').addEventListener('click',e=>{
+  const c=e.target.closest('.kchip'); if(!c) return;
+  state.bezirk=c.dataset.bezirk;
+  document.querySelectorAll('#kiezRow .kchip').forEach(x=>x.classList.toggle('active',x.dataset.bezirk===state.bezirk));
+  update();
+});
+/* row action delegation (fav + calendar) */
+document.getElementById('eventList').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]'); if(!b) return;
+  const id=b.dataset.id;
+  if(b.dataset.act==='fav'){
+    toggleFav(id);
+    const on=favs.has(id);
+    b.classList.toggle('on',on); b.setAttribute('aria-pressed',String(on)); b.innerHTML=on?SVG_HEART_FILL:SVG_HEART;
+    if(state.favOnly) update();
+  } else if(b.dataset.act==='cal'){
+    if(calMenuId===id){ closeCalMenu(); } else { openCalMenu(b,id); }
+  }
+});
+document.addEventListener('click',e=>{ if(!e.target.closest('.cal-menu')&&!e.target.closest('.cal-btn')) closeCalMenu(); },true);
+window.addEventListener('resize',closeCalMenu);
+document.getElementById('openSubmit').addEventListener('click',openModal);
+document.getElementById('closeSubmit').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(modal.classList.contains('open')) closeModal(); closeCalMenu(); } });
 let sd;
-document.getElementById('searchInput').addEventListener('input',e=>{clearTimeout(sd); sd=setTimeout(()=>{state.search=e.target.value; render();},180);});
-document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Escape'){e.target.value=''; state.search=''; render();}});
+document.getElementById('searchInput').addEventListener('input',e=>{clearTimeout(sd); sd=setTimeout(()=>{state.search=e.target.value; update();},180);});
+document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Escape'){e.target.value=''; state.search=''; update();}});
 const btt=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>btt.classList.toggle('visible',window.scrollY>500),{passive:true});
 btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-updateHeaderCounts(); render();
+
+/* ════════ init ════════ */
+updateHeaderCounts(); updateFavCount(); update(); tickCountdown(); setInterval(tickCountdown,30000);
+(function(){ const m=location.search.match(/[?&]e=([^&]+)/)||location.hash.match(/[#&]e=([^&]+)/); if(m){ try{ focusEvent(decodeURIComponent(m[1])); }catch{} } })();
+
+/* ════════ service worker (PWA) ════════ */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js',{scope:'/',updateViaCache:'none'}).then(reg=>{
+      let refreshing=false;
+      navigator.serviceWorker.addEventListener('controllerchange',()=>{ if(refreshing) return; refreshing=true; window.location.reload(); });
+      document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') reg.update(); });
+    }).catch(()=>{});
+  });
+}
 
 </script>
 </body>

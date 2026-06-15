@@ -1,0 +1,1633 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FOMO Berlin//Event Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:FOMO Berlin — Events
+X-WR-TIMEZONE:Europe/Berlin
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-06-06-algorand-builders-berlin-agentic-commerce-x402-ha@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260606
+DTEND;VALUE=DATE:20260607
+SUMMARY:Algorand Builders Berlin: Agentic Commerce x402 Hackathon
+DESCRIPTION:$20\,000 prizepool\; 6-7 June — via Luma
+LOCATION:42 Berlin\, Harzer Str. 42\, 12059 Berlin
+URL:https://luma.com/agentic-commerce-hack
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-diversity-drinks@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Diversity Drinks🍸🍹🍷🍾
+DESCRIPTION:approval required\; SuperVenture/SuperReturn — via Luma
+LOCATION:Berlin
+URL:https://luma.com/s6ace0xk
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-ai-bbq-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:AI & BBQ 2026
+DESCRIPTION:invite-only — via Luma
+LOCATION:Merantix AI Campus\, Max-Urich-Straße 3\, 13355 Berlin
+URL:https://luma.com/ztls1sjs
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-superreturn-berlin-women-in-finance-group-side-ev@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:SuperReturn Berlin Women in Finance Group Side event
+DESCRIPTION:approval required — via Luma
+LOCATION:Berlin
+URL:https://luma.com/864v5rn0
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-what-it-takes-to-get-funded-live-investor-q-a-w-m@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:What It Takes to Get Funded: Live Investor Q&A w/ Maayan Teper
+DESCRIPTION:online webinar — via Meetup
+LOCATION:Online (Berlin Startup Founder 101)
+URL:https://www.meetup.com/berlin-startup-founder-101/events/314737240/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-business-netzwerken-berlin-in-moabit@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Business Netzwerken Berlin in Moabit
+DESCRIPTION:German-only — via Meetup
+LOCATION:CI Space\, Bugenhagenstraße 9\, 10551 Berlin
+URL:https://www.meetup.com/business-netzwerken-berlin/events/314690230/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-coworking-at-gesundbrunnen@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Coworking at Gesundbrunnen
+DESCRIPTION:recurring biweekly — via Meetup
+LOCATION:Moxy Berlin Humboldthain Park\, Hochstraße 2\, 13357 Berlin
+URL:https://www.meetup.com/berlin-coworking-club/events/312626669/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-the-breakfast-club-interface-capital-x-multiple-c@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:The Breakfast Club — Interface Capital x Multiple Capital
+DESCRIPTION:approval required\; during SuperVenture — via Luma
+LOCATION:Berlin
+URL:https://luma.com/6jnesz4p
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-retrieve-remember-reason-with-women-of-search@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Retrieve. Remember. Reason - with Women of Search
+DESCRIPTION:approval required — via Luma
+LOCATION:deepset GmbH\, Zinnowitzer Str. 1\, 10115 Berlin
+URL:https://luma.com/xrf6httx
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-https-www-instagram-com-p-dyrvi-ioo8j@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:https://www.instagram.com/p/DYrvI-ioO8j/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DYrvI-ioO8j/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-female-health-founder-after-work@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Female Health Founder After Work
+DESCRIPTION:via Eventbrite
+LOCATION:Mindspace Kurfürstendamm\, Uhlandstraße 32\, 10719 Berlin
+URL:https://www.eventbrite.de/e/female-health-founder-after-work-tickets-19
+ 90229554172
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-tech-truth-transparency-who-controls-berlin-s-tec@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Tech\, Truth & Transparency: Who Controls Berlin's Tech Culture?
+DESCRIPTION:via Luma
+LOCATION:The Social Hub Berlin\, Alexanderstraße 40\, 10179 Berlin
+URL:https://luma.com/erce5ujj
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-the-real-cost-of-hiring-decisions-globally-with-a@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:The Real Cost of Hiring Decisions Globally - With AI or Without
+DESCRIPTION:registration closed — via Luma
+LOCATION:MOIA GmbH\, Alexanderufer 5\, 10117 Berlin
+URL:https://luma.com/talent-d2tr
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-the-supersalon-dinner@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:The SuperSalon Dinner
+DESCRIPTION:approval required — via Luma
+LOCATION:Moritzplatz\, Berlin
+URL:https://luma.com/superdinner
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-the-edge@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:The Edge
+DESCRIPTION:approval required — via Luma
+LOCATION:Berlin
+URL:https://luma.com/fomosupernight
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-responsible-and-impactful-ai-breakfast-super-vent@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Responsible and Impactful AI Breakfast @ Super Venture
+DESCRIPTION:private\; approval required — via Luma
+LOCATION:Berlin Mitte
+URL:https://luma.com/b80iofv7
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-super-sundowner-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Super Sundowner Berlin
+DESCRIPTION:waitlist — via Luma
+LOCATION:Berlin
+URL:https://luma.com/id8wx5z8
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-09-super-climate-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:Super Climate Berlin
+DESCRIPTION:private\; approval required\; early June — via Luma
+LOCATION:Berlin
+URL:https://luma.com/SC_Berlin
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-superrun-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:SuperRun Berlin
+DESCRIPTION:approval required — via Luma
+LOCATION:Berlin (Zoologischer Garten area)
+URL:https://luma.com/luarqn63
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-berlin-seo-content-club-12-x-idealo@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:Berlin SEO & Content Club #12 x idealo
+DESCRIPTION:past event — via Luma
+LOCATION:idealo internet GmbH\, Zimmerstraße 50\, 10117 Berlin
+URL:https://luma.com/event/evt-yogeuTXvrj73NHv
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-flight-levels-flight-club-12@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:Flight Levels Flight Club #12
+DESCRIPTION:via Meetup
+LOCATION:ImmoScout24\, Invalidenstraße 65\, 10557 Berlin
+URL:https://www.meetup.com/flight-levels-flight-club-berlin/events/31488816
+ 2/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-walk-and-talk-finanzielle-freiheit-und-anlagestra@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:Walk and Talk: Finanzielle Freiheit und Anlagestrategien
+DESCRIPTION:recurring — via Meetup
+LOCATION:Botschaft der Republik Korea\, Stülerstraße 8-10\, 10787 Berlin
+URL:https://www.meetup.com/aktienfueralle/events/313187937/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-55-magento-stammtisch-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:55. Magento Stammtisch Berlin
+DESCRIPTION:via Meetup
+LOCATION:PHOENIX MEDIA Berlin GmbH\, Landsberger Allee 53\, 10249 Berlin
+URL:https://www.meetup.com/magento-stammtisch-berlin/events/314176381/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-https-www-instagram-com-p-dy4f2hwi8px@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:https://www.instagram.com/p/DY4F2HWi8PX/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DY4F2HWi8PX/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-https-www-instagram-com-p-dy2rpucseft@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:https://www.instagram.com/p/DY2RPUcseFT/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DY2RPUcseFT/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-constant-pressure-thriving-in-the-start-up-bubble@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:Constant Pressure - Thriving in the Start-Up Bubble
+DESCRIPTION:via Luma
+LOCATION:Factory Berlin Mitte\, Rheinsberger Str. 76/77\, Berlin
+URL:https://luma.com/p9awy8ny
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-cafe-compute-meetup-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:Cafe Compute Meetup: Berlin
+DESCRIPTION:approval required — via Luma
+LOCATION:Merantix AI Campus\, Berlin
+URL:https://luma.com/cerebrasberlin
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-super-aperitivo-ii-by-pt1-carbon-equity-heliad-no@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:Super Aperitivo II by PT1\, Carbon Equity\, HELIAD\, Norrsken and F
+ OMO
+DESCRIPTION:private\; approval required — via Luma
+LOCATION:West Berlin
+URL:https://luma.com/superaperitivo2
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-https-gtlawinfo-com-rv-ff010392ab905899c7660f0075@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:https://gtlawinfo.com/rv/ff010392ab905899c7660f00754d9f148f0360e5
+DESCRIPTION:blocked (Greenberg Traurig redirect) — via Greenberg Traurig
+URL:https://gtlawinfo.com/rv/ff010392ab905899c7660f00754d9f148f0360e5
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-escp-juni-investor-bbq-a-superreturn-week-garden-@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:ESCP × JUNI Investor BBQ - A SuperReturn week garden gathering
+DESCRIPTION:waitlist — via Luma
+LOCATION:ESCP Business School Berlin\, Heubnerweg 8-10\, 14059 Berlin
+URL:https://luma.com/0bsn1r16
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-techbio-aperitivo-planet-a-verve-redalpine@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:TECHBIO APERITIVO | Planet A\, Verve\, Redalpine
+DESCRIPTION:registration page — via Gatsby
+URL:https://gatsby.events/planet-a/rsvp/register?e=techbio-aperitivo-i-plan
+ et-a-verve-ventures-redalpine
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-revenue-royale@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:Revenue Royale
+DESCRIPTION:invite-only gala — via Website
+LOCATION:Tipi am Kanzleramt\, Berlin
+URL:https://revenue-royale.de/en
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-meet-the-gp-juliane-hahn-of-signature-ventures@fomoberlin.co
+ m
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:Meet the GP: Juliane Hahn of Signature Ventures
+DESCRIPTION:private\; approval required — via Luma
+LOCATION:Kramer\, Neukölln\, Berlin
+URL:https://luma.com/39935e65
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-grafanacon-local-meetup-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:GrafanaCON Local meetup: Berlin
+DESCRIPTION:via Meetup
+LOCATION:SumUp Services GmbH\, Koppenstraße 8\, 10243 Berlin
+URL:https://www.meetup.com/grafana-and-friends-berlin/events/313665964/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-ask-female-founders-from-bss-to-exit-in-three-yea@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:Ask Female Founders: From BSS to Exit in Three Years
+DESCRIPTION:via Meetup
+LOCATION:Berlin (venue TBA)
+URL:https://www.meetup.com/berlin-digital-business-network-sibb/events/3147
+ 48927/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-be-unique-dialog-mindful-unternehmertum-echte-ver@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:BE UNIQUE Dialog - Mindful Unternehmertum & echte Vereinbarkeit
+DESCRIPTION:sold out — via Eventbrite
+LOCATION:Maschenfein Studio\, Erasmusstraße 14\, 10553 Berlin
+URL:https://www.eventbrite.de/e/be-unique-dialog-mindful-unternehmertum-ech
+ te-vereinbarkeit-tickets-1983948997859
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-https-www-instagram-com@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:https://www.instagram.com/
+DESCRIPTION:Instagram home\; no event — via Instagram
+URL:https://www.instagram.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-opus-berlin-founder-drinks@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:OPUS Berlin Founder Drinks
+DESCRIPTION:approval required — via Luma
+LOCATION:Berlin
+URL:https://luma.com/px67mtws
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-ampli-summer-gathering-berlin-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:Ampli Summer Gathering Berlin 2026
+DESCRIPTION:invite-only — via Luma
+LOCATION:Berlin Mitte (rooftop)
+URL:https://luma.com/xvrsamdk
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-https-www-instagram-com-p-dyg7rlqs6zw@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:https://www.instagram.com/p/DYg7rlqs6zw/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DYg7rlqs6zw/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-https-www-instagram-com-p-dzktb6sdm99@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:https://www.instagram.com/p/DZKtB6SDM99/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZKtB6SDM99/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-sleek-art-space-exhibition-opening-fussball@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:SLEEK Art Space Exhibition Opening 'FUSSBALL'
+DESCRIPTION:via EventCreate
+LOCATION:SLEEK Art Space\, Alexanderstr. 7\, 10178 Berlin
+URL:https://www.eventcreate.com/e/sleek-exhibition-opening-fussball
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-ai-nation-founders-connect@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:AI NATION Founders Connect
+DESCRIPTION:registration closed — via Luma
+LOCATION:Berlin
+URL:https://luma.com/3s865hx7
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-https-2es6sk-share-eu1-hsforms-com-2362i40ejttqlz@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:https://2es6sk.share-eu1.hsforms.com/2362I40EJTtqlZVdMA75GIA
+DESCRIPTION:HubSpot form\; no event content — via Website
+URL:https://2es6sk.share-eu1.hsforms.com/2362I40EJTtqlZVdMA75GIA
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-superreturn-2026-houlihan-lokey@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:SuperReturn 2026 (Houlihan Lokey)
+DESCRIPTION:blocked/empty\; title from URL — via Houlihan Lokey
+LOCATION:Berlin
+URL:https://events.hl.com/superreturn-2026/registration
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-11-dufte-berlin-superreturn-meets-art-basel@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:Dufte Berlin: SuperReturn meets Art Basel
+DESCRIPTION:approval required — via Luma
+LOCATION:Berlin
+URL:https://luma.com/cduys7by
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-lean-coffee-for-managers-leaders@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:Lean Coffee for Managers & Leaders
+DESCRIPTION:recurring — via Meetup
+LOCATION:Cafe Neundrei\, Monbijouplatz 2\, Berlin
+URL:https://www.meetup.com/berlin-lean-coffee/events/314815012/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-coworking-at-alexanderplatz@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:Coworking at Alexanderplatz
+DESCRIPTION:canceled — via Meetup
+LOCATION:Alexanderplatz\, Berlin
+URL:https://www.meetup.com/berlin-coworking-club/events/312626681/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-work-out-tune-in-retreat@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:Work Out & Tune In (Retreat)
+DESCRIPTION:12-14 June retreat — via Website
+LOCATION:Teupitz\, Brandenburg
+URL:https://www.elevateretreats.de/work-out-tune-in
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-https-tally-so-r-0qa06a@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:https://tally.so/r/0Qa06A
+DESCRIPTION:form closed\; no event content — via Tally
+URL:https://tally.so/r/0Qa06A
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-https-www-instagram-com-p-dzsscy4tgwk@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:https://www.instagram.com/p/DZSsCY4tgWk/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZSsCY4tgWk/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-the-pilates-social-reggaeton-edition-elevate-x-th@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:The Pilates Social: Reggaeton Edition - Elevate x The A Society
+DESCRIPTION:past event — via Luma
+LOCATION:Elevate Pilates\, Greifswalder Str. 207\, 10405 Berlin
+URL:https://luma.com/vnofh2w8
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-fomo-x-the-delta-bad1-afterparty@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:FOMO x The Delta: BAD1 Afterparty
+DESCRIPTION:approval required — via Luma
+LOCATION:Berlin
+URL:https://luma.com/bad1afterparty
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-12-bad1-conference@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:BAD1 Conference
+DESCRIPTION:via Website
+LOCATION:The Delta\, Neukölln\, Berlin
+URL:https://bad1.events/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-berlin-blockchain-week-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:Berlin Blockchain Week 2026
+DESCRIPTION:13-21 June — via Website
+LOCATION:Berlin
+URL:https://blockchainweek.berlin/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-entrepreneurship-sommerfest-camp-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:Entrepreneurship Sommerfest & Camp 2026
+DESCRIPTION:Google Form — via Google Forms
+LOCATION:Profund Innovation\, Altensteinstrasse 40\, 14195 Berlin
+URL:https://docs.google.com/forms/d/e/1FAIpQLScVwsEv6KPXMbikO21AHLAsvqyTJGj
+ 1Eb9mC9HKA1AREhSrhQ/viewform
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-solana-summit-germany@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:Solana Summit Germany
+DESCRIPTION:via Luma
+LOCATION:Spreespeicher\, Stralauer Allee 2\, 10245 Berlin
+URL:https://luma.com/solanasummitgermany
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-mobility-x-padel-beach-edition@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:MOBILITY x PADEL (Beach Edition)
+DESCRIPTION:€32 — via Luma
+LOCATION:Padelhaus\, Köpenicker Ch 11-14\, 10317 Berlin
+URL:https://luma.com/858phbrs
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-hands-up-community-run@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:Hands up Community Run
+DESCRIPTION:free — via Luma
+LOCATION:Kantstraße 26\, 10623 Berlin
+URL:https://luma.com/olj9am5u
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-https-www-instagram-com-p-dzfoqfucjss@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:https://www.instagram.com/p/DZFOQFuCJSs/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZFOQFuCJSs/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-https-www-instagram-com-p-dzh3sazkvqw@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:https://www.instagram.com/p/DZH3sAzkvQw/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZH3sAzkvQw/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-https-www-instagram-com-p-dzhuklpanhk@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:https://www.instagram.com/p/DZHukLPANhK/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZHukLPANhK/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-https-www-instagram-com-p-dzfwcstjk4m@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:https://www.instagram.com/p/DZFwCsTjk4M/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZFwCsTjk4M/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-https-www-instagram-com-p-dzneipagaml@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:https://www.instagram.com/p/DZNeIpAgAML/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZNeIpAgAML/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-13-igc-volunteering@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:IGC Volunteering
+DESCRIPTION:past event — via Luma
+LOCATION:Viyana Café\, Kottbusser Str. 4\, 10999 Berlin
+URL:https://luma.com/ootr6ns8
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-elysian-temple-viii@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:Elysian Temple VIII
+DESCRIPTION:address hidden — via Luma
+LOCATION:Berlin
+URL:https://luma.com/fcvmrgam
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-https-www-instagram-com-p-dysiqvvivgr@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:https://www.instagram.com/p/DYsIQvVIVGr/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DYsIQvVIVGr/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-https-www-instagram-com-p-dy5l7bjx3k0@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:https://www.instagram.com/p/DY5L7bjx3K0/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DY5L7bjx3K0/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-berliner-weinfest@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:Berliner Weinfest
+DESCRIPTION:blocked/empty\; title from URL — via Website
+LOCATION:Berlin
+URL:https://www.berlinweinfest.de/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-https-www-instagram-com-p-dzkltclcich@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:https://www.instagram.com/p/DZKLTclCICh/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZKLTclCICh/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-https-www-instagram-com-p-dzil0f8ilu6@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:https://www.instagram.com/p/DZIL0F8iLu6/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZIL0F8iLu6/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-https-www-instagram-com-p-dzkxaoacct0@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:https://www.instagram.com/p/DZKxaOaCCT0/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZKxaOaCCT0/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-https-www-instagram-com-p-dzkvjw8facu@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:https://www.instagram.com/p/DZKVJw8FaCU/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZKVJw8FaCU/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-what-is-a-good-life-a-socratic-dialogue-agnes-cal@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:What is a Good Life? A Socratic Dialogue (Agnes Callard & Berislav 
+ Marušić)
+DESCRIPTION:€20 — via Website
+LOCATION:Reethaus\, Flussbad\, Berlin
+URL:https://flussbad.com/event/socratic-dialogue/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-homecoming-dayoff-x-berlin-social-club@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:Homecoming | DAYOFF X BERLIN SOCIAL CLUB
+DESCRIPTION:dayparty & public viewing — via Luma
+LOCATION:Hotel Amano Eastside\, Stralauer Pl. 30-31\, 10243 Berlin
+URL:https://luma.com/qep7sot3
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-park-buchclub-juni-yesteryear@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:park.buchclub juni - YESTERYEAR
+DESCRIPTION:past event — via Luma
+LOCATION:Buchkantine\, Dortmunder Str. 1\, 10555 Berlin
+URL:https://luma.com/14whxg3s
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-15-berlin-designing-the-next-generation-of-ai-experi@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+SUMMARY:Berlin: Designing the Next Generation of AI Experiences
+DESCRIPTION:via Meetup
+LOCATION:SAP\, George-Stephenson-Straße 7-13\, 10557 Berlin
+URL:https://www.meetup.com/projector-global-community/events/314859637/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-15-chainflip-social-run-berlin-blockchain-week@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+SUMMARY:Chainflip Social Run - Berlin Blockchain Week
+DESCRIPTION:via Luma
+LOCATION:Schlesische Str. 20\, 10997 Berlin
+URL:https://luma.com/4uk00n6o
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-arrtist-on-tour-berlin-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:ARRtist on Tour Berlin 2026
+DESCRIPTION:via Eventbrite
+LOCATION:HubSpot\, Am Postbahnhof 17\, 10243 Berlin
+URL:https://www.eventbrite.de/e/arrtist-on-tour-berlin-2026-tickets-1985497
+ 324947
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-female-founders-contest-halbfinale-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:Female Founders Contest Halbfinale Berlin
+DESCRIPTION:via Rausgegangen
+LOCATION:Investitionsbank Berlin\, Bundesallee 210\, 10719 Berlin
+URL:https://t.rausgegangen.de/tickets/ffc-berlin
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-35-ai-series-eth-z-rich-t-wimmer@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:#35 AI Series: ETH Zürich - T. Wimmer
+DESCRIPTION:via Meetup
+LOCATION:TU Berlin\, Str. des 17. Juni 115\, 10623 Berlin
+URL:https://www.meetup.com/bliss-speaker-series/events/314165746/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-introduction-to-dax-user-defined-functions-udfs@fomoberlin.c
+ om
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:Introduction to DAX User Defined Functions (UDFs)
+DESCRIPTION:via Meetup
+LOCATION:studio location berlin\, Köpenicker Str. 187-188\, 10997 Berlin
+URL:https://www.meetup.com/berlin-power-bi-user-group/events/313692296/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-ibm-bob-coding-watch-party-in-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:IBM Bob (Coding) Watch Party in Berlin
+DESCRIPTION:via Meetup
+LOCATION:IBM Berlin\, Ella-Trebe-Straße 3\, Berlin
+URL:https://www.meetup.com/ibm-developers/events/314655561/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-ai-for-non-techies@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:AI for Non-Techies
+DESCRIPTION:via Meetup
+LOCATION:Teclead Ventures\, Köpenicker Straße 126\, 10179 Berlin
+URL:https://www.meetup.com/ai-for-non-techies/events/314802310/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-berlincreators-elab-werkstattabend@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:berlinCreators eLAB-Werkstattabend
+DESCRIPTION:recurring — via Meetup
+LOCATION:berlinCreators e.V.\, Lehrter Str. 53\, Berlin
+URL:https://www.meetup.com/elab-makerspace/events/314829849/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-toastmasters-public-speaking-effective-team-commu@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:Toastmasters Public Speaking - Effective Team Communication
+DESCRIPTION:recurring — via Meetup
+LOCATION:St. Lukas-Kirche\, Bernburger Straße 4-5\, 10963 Berlin
+URL:https://www.meetup.com/become-a-better-speaker-at-center-berlin-toastma
+ sters/events/313924342/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-coworking-at-spittelmarkt@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:Coworking at Spittelmarkt
+DESCRIPTION:recurring — via Meetup
+LOCATION:Spittelmarkt\, Berlin
+URL:https://www.meetup.com/berlin-coworking-club/events/312626696/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-work-in-progress-brainstorm-your-exit-strategy@fomoberlin.co
+ m
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:Work in Progress — Brainstorm Your Exit Strategy
+DESCRIPTION:€15 — via Luma
+LOCATION:Berlin
+URL:https://luma.com/wtqnycgr
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-16-saddle-up-special-featuring-rose-miles-aka-easy-r@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:Saddle Up Special: Featuring Rose Miles\, aka Easy Rider
+DESCRIPTION:waitlist — via Luma
+LOCATION:Belushi's Berlin\, Ziegelstraße 28\, 10117 Berlin
+URL:https://luma.com/a8uk0ms6
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-17-speak-lead-and-connect-with-first-berlin-toastmas@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:Speak\, Lead\, and Connect with First Berlin Toastmasters
+DESCRIPTION:recurring — via Meetup
+LOCATION:St. Lukas Church\, Bernburger Str. 3-5\, Berlin
+URL:https://www.meetup.com/english-communication-and-leadership-and-feedbac
+ k-training/events/312877455/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-17-angels-beers-investors-only@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:Angels & Beers - Investors only
+DESCRIPTION:investors only — via Meetup
+LOCATION:Secret venue\, Berlin
+URL:https://www.meetup.com/berlinstartups/events/314178212/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-17-prompt-x-purchase-a-bitrefill-hackathon@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:PROMPT x PURCHASE — A Bitrefill Hackathon
+DESCRIPTION:Blockspäti Berlin — via Luma
+LOCATION:Mena Berlin\, Skalitzer Str. 114\, 10999 Berlin
+URL:https://luma.com/internetmoneyhack
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-17-https-www-instagram-com-p-dzhd6m4a8uq@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:https://www.instagram.com/p/DZHd6m4A8Uq/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZHd6m4A8Uq/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-17-ai-tinkerers-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:AI Tinkerers Berlin
+DESCRIPTION:blocked/empty\; date from URL — via Website
+LOCATION:Berlin
+URL:https://berlin.aitinkerers.org/p/ai-tinkerers-berlin-june-17-2026
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-18-berlin-girls-social-presents-queen-s-court@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:Berlin Girls Social presents: Queen's Court 🎾👑
+DESCRIPTION:women-only padel night — via Luma
+LOCATION:PadelCity Berlin\, Emma-Herwegh-Straße\, 10557 Berlin
+URL:https://luma.com/in7bk2zv
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-18-desci-berlin-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:DeSci.Berlin 2026
+DESCRIPTION:18-19 June\; approval required — via Luma
+LOCATION:KÖNIG GALERIE\, Alexandrinenstraße 118-121\, 10969 Berlin
+URL:https://luma.com/desciberlin2026
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-18-web3-summit-2026-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:Web3 Summit 2026 Berlin
+DESCRIPTION:18-19 June festival — via Website
+LOCATION:Funkhaus Berlin
+URL:https://web3summit.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-18-summer-pitch-event@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:Summer Pitch Event
+DESCRIPTION:via Luma
+LOCATION:NEEW Ventures\, Berliner Str. 80-82\, 13189 Berlin
+URL:https://luma.com/1lk36q2z
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-18-love-block-party-at-the-blocksp-ti-w-gnosis@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:LOVE BLOCK Party at The Blockspäti w/ Gnosis
+DESCRIPTION:address hidden — via Luma
+LOCATION:Berlin
+URL:https://luma.com/loveblock
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-19-gradient-04-x-mokka@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:Gradient 04 x Mokka
+DESCRIPTION:rescheduled from 13 to 19 June — via Luma
+LOCATION:Mokka Mitte Bar\, Hackescher Markt\, Berlin
+URL:https://luma.com/b279nbn6
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-19-fuckup-days-at-impacthub-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:Fuckup Days at ImpactHub Berlin
+DESCRIPTION:via Meetup
+LOCATION:Impact Hub Berlin\, Rollbergstraße 28A\, 12053 Berlin
+URL:https://www.meetup.com/fuckup-days-coworking/events/314178618/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-19-hands-on-with-claude-code-ai-skills-for-non-devel@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:Hands-On with Claude Code: AI Skills for Non Developers in 2 Hours
+DESCRIPTION:via Luma
+LOCATION:CIC Berlin\, Lohmühlenstraße 65\, 12435 Berlin
+URL:https://luma.com/0yhx23d8
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-19-opening-no-place-like-home-by-lee-shulman@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:Opening: No Place Like Home by Lee Shulman
+DESCRIPTION:via Website
+LOCATION:Fotografiska Berlin\, Oranienburger Str. 54\, Berlin
+URL:https://tickets-berlin.fotografiska.com/productDetail/139465
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-19-saucony-berlin-10k-week-the-rolling-mile-x-mystik@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:Saucony Berlin 10K Week: The Rolling Mile x Mystik Runners Shakeout
+DESCRIPTION:via Luma
+LOCATION:Oranienstraße 58\, 10969 Berlin
+URL:https://luma.com/ake00qa8
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-19-block-berlin-fashion-show-launch@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:[Block] Berlin Fashion Show Launch
+DESCRIPTION:via Luma
+LOCATION:Mena Berlin\, Skalitzer Str. 114\, 10999 Berlin
+URL:https://luma.com/blockberlaunch
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-20-https-www-instagram-com-p-dzkrq39dufi@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260620
+DTEND;VALUE=DATE:20260621
+SUMMARY:https://www.instagram.com/p/DZKrQ39DUfi/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZKrQ39DUfi/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-20-the-examined-leader-1-day-retreat@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260620
+DTEND;VALUE=DATE:20260621
+SUMMARY:The Examined Leader — 1-Day Retreat
+DESCRIPTION:via Luma
+LOCATION:Impact Hub Berlin\, Rollbergstraße 28A\, 12053 Berlin
+URL:https://luma.com/19ipblom
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-20-ai-x-energy-hackathon@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260620
+DTEND;VALUE=DATE:20260621
+SUMMARY:AI x ENERGY HACKATHON
+DESCRIPTION:address hidden — via Luma
+LOCATION:Berlin
+URL:https://luma.com/AIxENERGY-HACK
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-20-berlin-robotics-x-ai-hackathon@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260620
+DTEND;VALUE=DATE:20260621
+SUMMARY:Berlin Robotics X AI Hackathon
+DESCRIPTION:via Luma
+LOCATION:Berlin
+URL:https://luma.com/1857f2wa
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-f-te-de-la-musique@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Fête de la Musique
+DESCRIPTION:via Website
+LOCATION:various locations across Berlin
+URL:https://www.berlin.de/fr/evenements/2102143-3000868-fete-de-la-musique.
+ fr.html
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-tio-tio-x-gr-nderszene@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:TIO TIO x Gründerszene
+DESCRIPTION:via Luma
+LOCATION:TIO TIO Padel Berlin Rooftop\, Marktstraße 6\, 10317 Berlin
+URL:https://luma.com/9screuy1
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-book-salon-3-pitch-a-book@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Book Salon #3 – Pitch a Book!
+DESCRIPTION:via Luma
+LOCATION:Avomind\, Schwedter Str. 263\, Berlin
+URL:https://luma.com/i4pjs0w8
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-koscheres-streetfood-festival-berlin-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Koscheres Streetfood-Festival Berlin 2026
+DESCRIPTION:via Website
+LOCATION:Hof der Neuen Synagoge\, Oranienburger Str. 28-31\, 10117 Berlin
+URL:https://www.juedische-kulturtage.org/street-food
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-https-www-instagram-com-p-dy4k-isapz8@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:https://www.instagram.com/p/DY4K-iSAPZ8/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DY4K-iSAPZ8/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-drag-brunch@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Drag Brunch
+DESCRIPTION:via Rausgegangen
+LOCATION:Berlin
+URL:https://rausgegangen.de/en/events/drag-brunch-20/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-d-a-del-ceviche-open-house@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Día del Ceviche Open House
+DESCRIPTION:blocked/empty\; title from URL — via Website
+LOCATION:Berlin
+URL:https://sabinehueck.de/event/dia-del-ceviche-open-house-2/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-https-www-instagram-com-p-dzj6ebdfyeg@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:https://www.instagram.com/p/DZJ6EBDFYEg/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZJ6EBDFYEg/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-22-funding-your-way-a-founder-s-guide-to-raising-cap@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260622
+DTEND;VALUE=DATE:20260623
+SUMMARY:Funding Your Way: A Founder's Guide to Raising Capital
+DESCRIPTION:side event to K5 Conference — via Luma
+LOCATION:Berlin
+URL:https://luma.com/4s8o24qq
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-23-the-smarter-e-europe@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260623
+DTEND;VALUE=DATE:20260624
+SUMMARY:The smarter E Europe
+DESCRIPTION:Munich\, not Berlin — via Website
+LOCATION:Messe München
+URL:https://www.thesmartere.de/home
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-23-high-risk-hr-preparing-your-people-team-for-the-e@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260623
+DTEND;VALUE=DATE:20260624
+SUMMARY:High-Risk HR: Preparing Your People Team for the EU AI Act
+DESCRIPTION:via Luma
+LOCATION:BIT - Beam Institute of Technology\, Genthiner Str. 40\, 10785 Ber
+ lin
+URL:https://luma.com/ala06e9e
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-24-mental-matters-by-kira-marie-cremer-x-techniker-k@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260624
+DTEND;VALUE=DATE:20260625
+SUMMARY:'Mental Matters' by Kira Marie Cremer x Techniker Krankenkasse
+DESCRIPTION:roadshow — via Website
+LOCATION:Mindspace Kurfürstendamm\, Berlin
+URL:https://kiramariecremer.de/mental-matters
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-24-mobile-de-the-big-secret-summer-community-event@fomoberlin.c
+ om
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260624
+DTEND;VALUE=DATE:20260625
+SUMMARY:Mobile.de: THE BIG SECRET SUMMER COMMUNITY EVENT
+DESCRIPTION:address hidden — via Luma
+LOCATION:mobile.de HQ\, Berlin
+URL:https://luma.com/jcru7jsl
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-24-https-www-instagram-com-p-dzkisncih9d@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260624
+DTEND;VALUE=DATE:20260625
+SUMMARY:https://www.instagram.com/p/DZKIsNCIh9D/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZKIsNCIh9D/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-24-know-your-numbers-the-biomarkers-that-matter-for-@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260624
+DTEND;VALUE=DATE:20260625
+SUMMARY:KNOW YOUR NUMBERS: The Biomarkers That Matter for Longevity
+DESCRIPTION:via Luma
+LOCATION:Jodel Office\, Wilhelmstraße 118\, 10963 Berlin
+URL:https://luma.com/age-f2wp
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-24-founders-friends-berlin-meetup-summer-party@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260624
+DTEND;VALUE=DATE:20260625
+SUMMARY:Founders & Friends Berlin Meetup - Summer Party
+DESCRIPTION:via Luma
+LOCATION:Playground Berlin\, Adlergestell 105\, 12439 Berlin
+URL:https://luma.com/892812u8
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-24-https-www-instagram-com-p-dzmsrxtcgmm@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260624
+DTEND;VALUE=DATE:20260625
+SUMMARY:https://www.instagram.com/p/DZMsrxtCGmm/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZMsrxtCGmm/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-25-to-customer-value-and-beyond-by-addressable@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:To Customer Value and Beyond by addressable
+DESCRIPTION:via Luma
+LOCATION:SAP SE\, George-Stephenson-Str. 7-11\, 10557 Berlin
+URL:https://luma.com/knwtu12s
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-26-https-www-instagram-com-p-dwy453lcn7j@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260626
+DTEND;VALUE=DATE:20260627
+SUMMARY:https://www.instagram.com/p/DWy453lCN7J/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DWy453lCN7J/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-26-n8n-berlin-community-meetup-rooftop-edition@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260626
+DTEND;VALUE=DATE:20260627
+SUMMARY:n8n Berlin Community Meetup - Rooftop Edition
+DESCRIPTION:via Luma
+LOCATION:Impact Hub Berlin\, Rollbergstraße 28A\, 12053 Berlin
+URL:https://luma.com/n8n-vvb3
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-26-kreuzberg-festival-bergmannstra-enfest@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260626
+DTEND;VALUE=DATE:20260627
+SUMMARY:Kreuzberg Festival (Bergmannstraßenfest)
+DESCRIPTION:26-28 June\; free — via Website
+LOCATION:Bergmannstraße\, 10961 Berlin
+URL:https://www.berlin.de/en/events/1934675-2842498-bergmannstrassenfest.en
+ .html
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-28-https-www-instagram-com-reel-dyo-l3diaqz@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260628
+DTEND;VALUE=DATE:20260629
+SUMMARY:https://www.instagram.com/reel/DYo_L3diaQz/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/reel/DYo_L3diaQz/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-28-1-hour-reading-rave-with-live-music-volkspark-am-@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260628
+DTEND;VALUE=DATE:20260629
+SUMMARY:1-Hour Reading Rave with Live Music | Volkspark am Weinberg
+DESCRIPTION:free outdoor — via Luma
+LOCATION:Volkspark am Weinberg\, Veteranenstraße 9\, 10119 Berlin
+URL:https://luma.com/the-3vx2
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-28-https-www-instagram-com-p-dzdbxfdin01@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260628
+DTEND;VALUE=DATE:20260629
+SUMMARY:https://www.instagram.com/p/DZDBXFDIN01/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZDBXFDIN01/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-30-stripe-tour-berlin-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:Stripe Tour Berlin 2026
+DESCRIPTION:via Website
+LOCATION:Estrel Berlin\, Sonnenallee 225\, 12057 Berlin
+URL:https://stripetour.com/berlin
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-30-taste-your-startup@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:Taste your Startup
+DESCRIPTION:via Luma
+LOCATION:Berlin
+URL:https://luma.com/ufxubu91
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-30-business-creator-summit-bcs@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:Business Creator Summit (BCS)
+DESCRIPTION:via Website
+LOCATION:Kulturbrauerei Berlin
+URL:https://www.business-creator-summit.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-30-off-the-record-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:Off the Record - Berlin
+DESCRIPTION:via Luma
+LOCATION:KINK Bar & Restaurant\, Schönhauser Allee 176\, 10119 Berlin
+URL:https://luma.com/djv96z6b
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-30-berlin-shanghai-night@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:Berlin × Shanghai Night
+DESCRIPTION:via Luma
+LOCATION:Berlin
+URL:https://luma.com/98r3k410
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-01-money-money-money-with-stock-market@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260701
+DTEND;VALUE=DATE:20260702
+SUMMARY:Money Money Money... with Stock Market
+DESCRIPTION:via Luma
+LOCATION:betahaus Moritzplatz\, Lobeckstraße 30\, 10969 Berlin
+URL:https://luma.com/stpl5828
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-01-berlin-deep-tech-nexus-meetup-12-escp@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260701
+DTEND;VALUE=DATE:20260702
+SUMMARY:Berlin Deep Tech Nexus Meetup #12 @ ESCP
+DESCRIPTION:via Luma
+LOCATION:ESCP Business School Berlin\, Heubnerweg 8-10\, 14059 Berlin
+URL:https://luma.com/aumzljqi
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-03-wellbeing-festival@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260704
+SUMMARY:Wellbeing Festival
+DESCRIPTION:via Website
+LOCATION:nook Lakehouse\, Bad Saarow
+URL:https://www.nooksociety.com/Wellbeing-Festival
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-03-the-slow-weekend@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260704
+SUMMARY:The Slow Weekend
+DESCRIPTION:blocked/empty\; title from URL — via Website
+LOCATION:Brandenburg
+URL:https://www.elevateretreats.de/the-slow-weekend
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-03-people-culture-dinner-vol-2-africa-capital-and-co@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260704
+SUMMARY:People & Culture Dinner Vol 2: Africa Capital and Connect
+DESCRIPTION:via Luma
+LOCATION:Berlin
+URL:https://luma.com/q5o4xu1t
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-04-https-www-instagram-com-p-dy4bnxpsrrz@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260704
+DTEND;VALUE=DATE:20260705
+SUMMARY:https://www.instagram.com/p/DY4BNXpsrRZ/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DY4BNXpsrRZ/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-08-wearedevelopers-world-congress@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260708
+DTEND;VALUE=DATE:20260709
+SUMMARY:WeAreDevelopers World Congress
+DESCRIPTION:8-10 July — via Website
+LOCATION:Berlin
+URL:https://www.wearedevelopers.com/world-congress
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-09-classic-open-air-on-gendarmenmarkt@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:Classic Open Air on Gendarmenmarkt
+DESCRIPTION:9-14 July — via Website
+LOCATION:Gendarmenmarkt\, Berlin
+URL:https://www.berlin.de/en/events/2096841-2842498-classic-open-air-at-gen
+ darmenmarkt.en.html
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-11-https-www-instagram-com-p-dzfiya4tajz@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260711
+DTEND;VALUE=DATE:20260712
+SUMMARY:https://www.instagram.com/p/DZFiyA4taJZ/
+DESCRIPTION:Instagram login wall — via Instagram
+URL:https://www.instagram.com/p/DZFiyA4taJZ/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-14-hec-essec-escp-bastille-day-alumni-meetup-berlin@fomoberlin.
+ com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:HEC ESSEC ESCP - Bastille Day - Alumni Meetup Berlin
+DESCRIPTION:via Luma
+LOCATION:Café am Neuen See\, Berlin
+URL:https://luma.com/23l7b7aw
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-17-udk-rundgang-open-days-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260717
+DTEND;VALUE=DATE:20260718
+SUMMARY:UdK Rundgang – Open Days 2026
+DESCRIPTION:17-19 July 2026 (verified) — via Website
+LOCATION:Various locations\, Berlin (UdK)
+URL:https://www.udk-berlin.de/en/event/rundgang-2025/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-18-lesbian-and-gay-city-festival-stadtfest@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260718
+DTEND;VALUE=DATE:20260719
+SUMMARY:Lesbian and Gay City Festival (Stadtfest)
+DESCRIPTION:18-19 July — via Website
+LOCATION:Nollendorfplatz\, Berlin-Schöneberg
+URL:https://www.stadtfest.berlin/en/index.html
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-18-lollapalooza-berlin@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260718
+DTEND;VALUE=DATE:20260719
+SUMMARY:Lollapalooza Berlin
+DESCRIPTION:18-19 July — via Website
+LOCATION:Olympiastadion & Olympiapark\, Berlin
+URL:https://www.lollapaloozade.com/en
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-25-berliner-csd-christopher-street-day@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260725
+DTEND;VALUE=DATE:20260726
+SUMMARY:Berliner CSD (Christopher Street Day)
+DESCRIPTION:Demo Sat 25 July\; kickoff Fri 24 (verified) — via Website
+LOCATION:Berlin
+URL:https://csd-berlin.de/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-08-britzer-gartennacht-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260808
+DTEND;VALUE=DATE:20260809
+SUMMARY:Britzer Gartennacht 2026
+DESCRIPTION:8 Aug 2026 (verified) — via Website
+LOCATION:Britzer Garten\, Berlin
+URL:https://www.botanische-nacht.de/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-13-tanz-im-august-internationales-tanzfestival-berli@fomoberlin
+ .com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260813
+DTEND;VALUE=DATE:20260814
+SUMMARY:Tanz im August - Internationales Tanzfestival Berlin
+DESCRIPTION:Festival 13-29 Aug 2026 (verified) — via Website
+LOCATION:HAU Hebbel am Ufer & various\, Berlin
+URL:https://www.tanzimaugust.de/ueber-uns
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-29-pistachio-street-food-festival@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260829
+DTEND;VALUE=DATE:20260830
+SUMMARY:Pistachio Street Food Festival
+DESCRIPTION:29-30 August — via Website
+LOCATION:Berlin
+URL:https://true-italian.com/pistachio-street-food-festival/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-15-productlab-conference@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260915
+DTEND;VALUE=DATE:20260916
+SUMMARY:Productlab Conference
+DESCRIPTION:15-17 Sept — via Website
+LOCATION:Berlin
+URL:https://productlab.app/#tickets
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-15-berlin-ai-day-by-buildersklub@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20260915
+DTEND;VALUE=DATE:20260916
+SUMMARY:Berlin AI Day by Buildersklub
+DESCRIPTION:via Luma
+LOCATION:Festsaal Kreuzberg\, Berlin
+URL:https://luma.com/kco33yis
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-05-agetechx-2026@fomoberlin.com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+SUMMARY:AGETECHX 2026
+DESCRIPTION:5-6 Oct — via Luma
+LOCATION:Berlin
+URL:https://luma.com/agetechx-berlin
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-09-von-diesel-zu-elektro-die-zukunft-der-baustellen@fomoberlin.
+ com
+DTSTAMP:20260615T210126Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261010
+SUMMARY:Von Diesel zu Elektro: Die Zukunft der Baustellen
+DESCRIPTION:past event — via Luma
+LOCATION:Berlin
+URL:https://luma.com/zmyccy0w
+END:VEVENT
+END:VCALENDAR
