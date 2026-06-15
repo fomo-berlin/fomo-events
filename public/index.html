@@ -4708,6 +4708,7 @@ function highlightMatch(text, query){
   const safeQ = query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
   return safe.replace(new RegExp(safeQ,'gi'), m => `<mark class="hl">${m}</mark>`);
 }
+function safeHref(u){ const s=String(u||'').trim(); return /^(https?:|mailto:)/i.test(s)?s:'#'; }
 function slugify(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60); }
 function eventId(e){ return (e.date + '-' + slugify(e.title)) || e.date; }
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -4770,7 +4771,7 @@ function buildEventCard(e, q){
   const timeStart = String(e.time||'').split('–')[0].trim();
   const goAction = (e.status === 'invite' || !e.link)
     ? `<span class="lock-ic" title="Invite only / no public link">🔒</span>`
-    : `<span class="er-icon go"><a href="${escapeHtml(e.link)}" target="_blank" rel="noopener" aria-label="Open event page">${SVG_ARROW}</a></span>`;
+    : `<span class="er-icon go"><a href="${escapeHtml(safeHref(e.link))}" target="_blank" rel="noopener" aria-label="Open event page">${SVG_ARROW}</a></span>`;
   const favOn = favs.has(e._id);
   const favBtn = `<button class="er-icon fav${favOn?' on':''}" data-act="fav" data-id="${e._id}" aria-label="Save to favourites" aria-pressed="${favOn}">${favOn?SVG_HEART_FILL:SVG_HEART}</button>`;
   const calBtn = `<button class="er-icon cal-btn" data-act="cal" data-id="${e._id}" aria-label="Add to calendar or share" aria-haspopup="true">${SVG_CAL}</button>`;
@@ -4881,7 +4882,7 @@ function buildIcs(e){
   let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FOMO Berlin//Event Calendar//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
   if(tm) lines=lines.concat(BERLIN_VTZ);
   lines.push('BEGIN:VEVENT','UID:'+e._id+'@fomoberlin.com','DTSTAMP:'+utcStamp(new Date()));
-  if(tm){ const dt=dateBasic(e.date); lines.push('DTSTART;TZID=Europe/Berlin:'+dt+'T'+tm.start); lines.push('DTEND;TZID=Europe/Berlin:'+dt+'T'+(tm.end||tm.start)); }
+  if(tm){ const dt=dateBasic(e.date); lines.push('DTSTART;TZID=Europe/Berlin:'+dt+'T'+tm.start); if(tm.end) lines.push('DTEND;TZID=Europe/Berlin:'+dt+'T'+tm.end); else lines.push('DURATION:PT2H'); }
   else { lines.push('DTSTART;VALUE=DATE:'+dateBasic(e.date)); lines.push('DTEND;VALUE=DATE:'+nextDayBasic(e.date)); }
   lines.push('SUMMARY:'+icsEscape(e.title));
   const desc=calDesc(e); if(desc) lines.push('DESCRIPTION:'+icsEscape(desc));
@@ -4993,7 +4994,7 @@ async function ensureMap(){
 }
 function popupHtml(e){
   const meta=[shortDate(e.date), e.time&&String(e.time).split('–')[0].trim(), e.bezirk].filter(Boolean).join(' · ');
-  const link=(e.link&&e.status!=='invite')?`<a class="pop-link" href="${escapeHtml(e.link)}" target="_blank" rel="noopener">Register ↗</a>`:'';
+  const link=(e.link&&e.status!=='invite')?`<a class="pop-link" href="${escapeHtml(safeHref(e.link))}" target="_blank" rel="noopener">Register ↗</a>`:'';
   return `<b>${escapeHtml(e.title)}</b><div class="pop-meta">${escapeHtml(e.location||'')}</div><div class="pop-meta">${escapeHtml(meta)}</div>${link}`;
 }
 async function renderMap(){
