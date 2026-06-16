@@ -60,3 +60,45 @@ If a column name differs, edit `src/worker.js` → `properties`.
 # .dev.vars (gitignored): NOTION_API_KEY=ntn_xxx
 npx wrangler dev        # serves ./public AND /api/* locally
 ```
+
+---
+
+# Newsletter signup → Notion (hero + footer)
+
+The two newsletter boxes (the hero card and the gradient footer band) post to
+`POST /api/subscribe`. Like the submit form, they **work without setup** — until
+configured, a signup opens a prefilled email to `hi@fomoberlin.com` so no address
+is lost. To collect signups **directly in Notion**, do this once:
+
+## 1. Create a "Subscribers" database in Notion
+Create a new database (e.g. **FOMO Berlin — Subscribers**) with exactly these columns:
+
+| Column | Type |
+|--------|------|
+| `Email` | **Title** (the primary column) |
+| `Source` | Text (rich text) |
+| `Date` | Date |
+
+Then **⋯ → Connections →** add the same "FOMO website" integration you made above
+(it can reuse the same `NOTION_API_KEY` token).
+
+## 2. Get this database's data source id
+Same steps as the event DB (**⋯ → Manage data sources → Copy data source ID**, or
+the `GET /v1/databases/<id>` API and read `data_sources[0].id`).
+
+Paste it into `wrangler.toml` → `[vars] NOTION_SUBSCRIBERS_DATA_SOURCE_ID`.
+
+## 3. Deploy
+```bash
+npx wrangler deploy
+```
+No new secret is needed — it reuses `NOTION_API_KEY`. New signups land as rows with
+the email, `Source = fomoberlin.com`, and today's date.
+
+> Want to use Substack / beehiiv / Mailchimp instead later? Point the two
+> `subscribe-form` forms (in `index.html`) at that provider's embed/endpoint, or
+> have the Worker forward to their API in `handleSubscribe` (`src/worker.js`).
+
+## Safety built in
+Same as the submit form: same-origin check (`ALLOWED_ORIGIN`), honeypot, per-IP
+rate limit, and server-side email validation.

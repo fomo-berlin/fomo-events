@@ -55,13 +55,17 @@ vibe chips and search, and **hides events before today automatically** (date fil
   timed events). Site-wide subscribe feed at `/fomo-berlin.ics`.
 - **Quick filters**: Today / This week / Weekend, plus a live countdown to the next event.
 - **Map & Kieze**: lazy-loaded self-hosted Leaflet + markercluster; venues geocoded at
-  build time; filter by Bezirk. Only events with a PLZ get a pin (~55/159).
+  build time; filter by Bezirk. Only events with a PLZ get a pin (~55/128).
 - **Favorites & share**: localStorage favorites (heart), shareable `?e=<id>` permalinks
   (deep-link scrolls + flashes the row), Web Share / copy link.
 - **PWA**: installable + offline (`manifest.webmanifest`, `sw.js` — network-first HTML so
   events stay fresh, SWR for fonts/tiles, versioned cache busted by build id).
 - **Submit an event**: modal form → `POST /api/submit-event` (Worker → Notion). Falls
   back to a prefilled email when the endpoint isn't configured. See `SETUP-SUBMIT-FORM.md`.
+- **Newsletter signup**: prominent hero card + gradient footer band (both `form.subscribe-form`,
+  one shared JS handler) → `POST /api/subscribe` (Worker → a separate Notion "subscribers"
+  data source). Same hardening (origin/honeypot/rate-limit/validation); email fallback when
+  unconfigured. Env: `NOTION_SUBSCRIBERS_DATA_SOURCE_ID`. See `SETUP-SUBMIT-FORM.md` §Newsletter.
 
 ## Notion integration
 
@@ -73,7 +77,8 @@ vibe chips and search, and **hides events before today automatically** (date fil
   and `src/worker.js` creates pages with `parent: {type:"data_source_id", data_source_id}`.
   The old `databases.query` / `{database_id}` parent are gone (this was the prior KNOWN RISK).
 - Env: build needs `NOTION_API_KEY` + `NOTION_DATABASE_ID` (GitHub secrets). The Worker
-  needs `NOTION_API_KEY` as a `wrangler secret` + `NOTION_DATA_SOURCE_ID` var.
+  needs `NOTION_API_KEY` as a `wrangler secret` + `NOTION_DATA_SOURCE_ID` var (events) and,
+  for newsletter signups, `NOTION_SUBSCRIBERS_DATA_SOURCE_ID` var (separate subscribers DB).
 
 ## Deploy
 
@@ -81,14 +86,22 @@ GitHub Action deploys `public/` to Cloudflare Workers. Secrets:
 `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` (plus the Notion ones above).
 
 ## Data caveats (important)
-- 159 dated events (Jun–Oct 2026). Some entries are Instagram links without titles
-  ("Instagram post (…)"). A few dates/locations are best-effort — confirm with hosts.
+- 128 dated events (Jun–Oct 2026). 33 dead rows were removed in the 2026-06-16 cleanup
+  (32 bare-URL/Instagram-login-wall "titles" with no time/host/location + 1 duplicate stub).
+  A render-time + build-time guard (`displayTitle` / `enrichEvents`) now falls back any future
+  raw-URL title to "Event via <source>". A few dates/locations are best-effort — confirm with hosts.
+- The frontend hides events before today automatically (`upcoming` is filtered to `e.date >= TODAY`).
 
 ## Conventions
 - Keep `index.html` as a single self-contained file (inline CSS/JS). No external build tooling.
 - After changing data or template, run the appropriate build and verify `public/index.html`
   has no `/* FOMO_EVENTS_JSON */` placeholder left and the event count is correct.
-- FOMO brand: navy/purple palette, Inter font. Logo SVG is inline in `index.html`.
+- FOMO brand: **light** theme (lilac-white bg `#f5f4fb`, ink text `#16132e`) with the FOMO
+  blue→purple→magenta accent gradient; Inter font. All colors are CSS custom properties in
+  `:root` (semantic `--text*/--line*/--surface*/--fill*` flip the whole theme). Active pills
+  use `--fill`/`--fill-text` (dark on light); white text only sits on the accent gradient.
+  Logo SVG is inline in `index.html` (fills `var(--ink)`). `body{overflow-x:clip}` keeps
+  `<html>` the scroller so `window.scrollY` (back-to-top) works.
 
 ## Done (2026-06-15 build)
 - ✅ `.ics` feed + per-event Add-to-calendar (Google/Outlook/Apple).
@@ -98,8 +111,25 @@ GitHub Action deploys `public/` to Cloudflare Workers. Secrets:
 - ✅ Submit-an-event form → Notion Worker (`/api/submit-event`) with email fallback.
 - ✅ PWA: installable + offline.
 
+## Done (2026-06-16 audit + fixes)
+- ✅ Bug: past events were rendering by default → `upcoming` now filtered to `e.date >= TODAY`.
+- ✅ Bug: cross-midnight `.ics`/Google/Outlook end-time (e.g. 22:00–01:00) rolled to next day
+  (`eventInstants`/`buildIcs` in index.html + `lib/ics.js`).
+- ✅ Invisible footer logo (white-on-white) fixed (`fill:var(--ink)`).
+- ✅ a11y: `prefers-reduced-motion` gate (CSS + JS scrolls); `aria-pressed` on month/vibe/quick
+  filters; `role=columnheader`; darkened `--text-muted`/`--text-dim` to pass WCAG AA.
+- ✅ i18n: stray German UI strings (share menu, toasts) → English.
+- ✅ Data: removed 33 dead/duplicate rows (161→128); raw-URL-title guard added.
+- ✅ SEO: schema.org JSON-LD (Org+WebSite+ItemList/Event) injected at build via `lib/emit.js`;
+  `sitemap.xml`; real 1200×630 `og-image.png`; `twitter:card=summary_large_image`.
+- ✅ Perf: self-hosted Inter (variable woff2, latin + latin-ext in `static/fonts/`), preload +
+  `font-display:swap`, Google Fonts removed, CSP `font-src 'self'`; `background-attachment:scroll` on mobile.
+- ✅ Security: Worker origin check fail-closed (`originAllowed`); HSTS header added.
+- ✅ Design: honest hero CTAs (Browse / Newsletter, not fake Google login); dark→light hero seam
+  fade; source moved from per-row pill to a quiet "via …" line; ~6KB dead CSS removed.
+
 ## Future ideas
 - Per-PLZ centroid table to also place "Berlin (no PLZ)" events approximately.
-- Real PNG OG share image per event (currently icon-512).
+- Per-event PNG OG share image (site-wide 1200×630 `og-image.png` done; per-event still TODO).
 - Automated daily enrichment of new Notion rows (titles/dates from URLs).
 - Migrate to a framework (Astro) only if dynamic features outgrow the single file.

@@ -4,9 +4,12 @@
 //
 // Robust by design: if Notion env is missing or any call fails, it logs a
 // warning and falls back to building from the committed data/fomo_events.json,
-// so a deploy never hard-fails. Expected DB columns:
-//   Event Name (title) · Datum (date) · Start · Kategorie · Status ·
-//   Veranstaltungsort · Beschreibung · Veranstalter · Link
+// so a deploy never hard-fails. Live DB columns ("🗓️ FOMO Berlin – Events 2026"):
+//   Name (title) · Datum (date) · Uhrzeit (start time) · Ende (end time) ·
+//   Adresse (text) · Ort (place) · Beschreibung · Kategorie (select) ·
+//   Status (workflow status — NOT used for RSVP) · Preis · Link (url) ·
+//   Quelle (select → source) · Veranstalter · Art · Im Newsletter (checkbox)
+//   (older column names Event Name/Start/Veranstaltungsort are still accepted as fallbacks)
 const fs = require('fs');
 const path = require('path');
 const { emit } = require('./lib/emit.js');
@@ -32,6 +35,7 @@ function getText(prop) {
   if (prop.multi_select) return prop.multi_select.map((s) => s.name).join(', ');
   if (prop.date) return prop.date.start || '';
   if (prop.url) return prop.url || '';
+  if (prop.status) return prop.status.name || '';
   if (prop.checkbox !== undefined) return prop.checkbox ? 'true' : '';
   return '';
 }
@@ -78,35 +82,61 @@ async function queryAll(dataSourceId) {
   }
   return all;
 }
+// Editorial newsletter blocks (Art) that are NOT calendar events — skipped.
+const NON_EVENT_ART = new Set(['Intro', 'Shout-out', 'Sponsor', 'Spotlight', 'Opportunity', 'Carve Out']);
+const FREE_PRICE = /^(free|kostenlos|gratis|frei|0|0\s*€|0€)$/i;
+const STATUS_LABELS = { open:'Open RSVP', invite:'Invite only', waitlist:'Waitlist', soldout:'Sold out', paid:'Paid' };
+
 function toEvent(page) {
   const p = page.properties || {};
-  const title = getText(p['Event Name']) || getText(p['Name']) || getText(p['Title']);
+  const title = getText(p['Name']) || getText(p['Event Name']) || getText(p['Title']);
   const datum = getText(p['Datum']) || getText(p['Date']);
-  if (!title || !datum) return null;
+  if (!title || !datum) return null;                 // needs a name + a real date
+  if (NON_EVENT_ART.has(getText(p['Art']))) return null; // skip editorial-only rows
+
   const d = new Date(datum + (datum.length === 10 ? 'T00:00:00Z' : ''));
   const kategorie = getText(p['Kategorie']);
-  const status = getText(p['Status']);
   const notes = getText(p['Beschreibung']);
+  const veranstalter = getText(p['Veranstalter']);
+  const quelle = getText(p['Quelle']);
+  const preis = getText(p['Preis']);
+  const link = getText(p['Link']);
+  const hasLink = /^https?:\/\//i.test(link);
+
+  // Time: "Uhrzeit" (start) + optional "Ende" → "18:00 – 20:00" (matches the site's parser).
+  const startTime = getText(p['Uhrzeit']) || getText(p['Start']);
+  const endTime = getText(p['Ende']);
+  const time = startTime ? (endTime ? `${startTime} – ${endTime}` : startTime) : '';
+
+  // Location: free-text "Adresse" preferred, else legacy "Veranstaltungsort".
+  const location = getText(p['Adresse']) || getText(p['Veranstaltungsort']) || '';
+
   const cat = catKey(`${title} ${kategorie} ${notes}`);
   const catLabelMap = { activity:'Activity', wellness:'Wellness', breakfast:'Breakfast', drinks:'Drinks', dinner:'Dinner', party:'Party', lunch:'Lunch', panel:'Talk / Conf', networking:'Networking' };
+
+  // RSVP access status: the Notion "Status" column is a WORKFLOW status, so derive
+  // access from category/notes/price instead (a non-free price ⇒ "paid").
+  let statusK = statusKey(`${kategorie} ${notes} ${title} ${preis}`);
+  if (statusK === 'open' && preis && !FREE_PRICE.test(preis.trim())) statusK = 'paid';
+
   return {
     date: datum.slice(0, 10),
     day: DAYKEY[d.getUTCDay()],
     monthKey: MONKEY[d.getUTCMonth()],
     dateLabel: `${WD[d.getUTCDay()]} · ${MON[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`,
-    time: getText(p['Start']) || '',
+    time,
     title,
-    host: getText(p['Veranstalter']) || '',
-    desc: notes || '',
-    location: getText(p['Veranstaltungsort']) || '',
+    host: veranstalter,
+    desc: notes,
+    location,
     cat,
     catLabel: kategorie || catLabelMap[cat],
-    status: statusKey(status),
-    statusLabel: status || 'Open RSVP',
-    link: /^https?:\/\//i.test(getText(p['Link'])) ? getText(p['Link']) : '',
-    linkLabel: /^https?:\/\//i.test(getText(p['Link'])) ? 'Register ↗' : '',
-    fomoHosted: /fomo/i.test(`${title} ${getText(p['Veranstalter'])}`),
-    source: '',
+    status: statusK,
+    statusLabel: STATUS_LABELS[statusK] || 'Open RSVP',
+    link: hasLink ? link : '',
+    linkLabel: hasLink ? 'Register ↗' : '',
+    fomoHosted: /fomo/i.test(`${title} ${veranstalter}`),
+    source: quelle,
   };
 }
 

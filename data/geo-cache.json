@@ -202,5 +202,133 @@
   "betahaus moritzplatz, lobeckstraße 30, 10969 berlin": {
     "lat": 52.5024857,
     "lon": 13.401114
+  },
+  "schwips bar, eichendorffstraße 1, 10115 berlin": {
+    "lat": 52.5294941,
+    "lon": 13.3880961
+  },
+  "the westlight (15. etage), budapester straße 35, 10787 berlin": {
+    "lat": 52.5078608,
+    "lon": 13.3438747
+  },
+  "escp business school (forum garden), heubnerweg 8-10, 14059 berlin": {
+    "lat": 52.5205365,
+    "lon": 13.2879135
+  },
+  "sleek art space, alexanderstr. 7 (14. og), 10178 berlin": {
+    "lat": 52.5212845,
+    "lon": 13.4097989
+  },
+  "bar tausend, schiffbauerdamm 11, 10117 berlin": {
+    "lat": 52.5208236,
+    "lon": 13.3847097
+  },
+  "spreespeicher eventlocation, stralauer allee 2, 10245 berlin": {
+    "lat": 52.5006167,
+    "lon": 13.4648062
+  },
+  "treff kottbusser tor / viyana café, kottbusser str. 4, 10999 berlin": {
+    "lat": 52.4969288,
+    "lon": 13.4265584
+  },
+  "buchkantine, dortmunder str. 1, 10555 berlin (bzw. tempelhofer feld)": {
+    "lat": 52.5215243,
+    "lon": 13.3355118
+  },
+  "ibm berlin, ella-trebe-straße 3, 10557 berlin": {
+    "lat": 52.52324,
+    "lon": 13.359503
+  },
+  "teclead ventures (viktoriahof), köpenicker straße 126, 10179 berlin": {
+    "lat": 52.5121017,
+    "lon": 13.4164365
+  },
+  "atrium der investitionsbank berlin, bundesallee 210, 10719 berlin": {
+    "lat": 52.4988653,
+    "lon": 13.3256921
+  },
+  "tu berlin, chemiegebäude c130, str. des 17. juni 115, 10623 berlin": {
+    "lat": 52.5088608,
+    "lon": 13.3273465
+  },
+  "st.-lukas-kirche gemeindesaal, bernburger straße 4-5, 10963 berlin": {
+    "lat": 52.5001884,
+    "lon": 13.381143
+  },
+  "belushi's berlin (mitte), ziegelstraße 28, 10117 berlin": {
+    "lat": 52.5169123,
+    "lon": 13.3873555
+  },
+  "st.-lukas-kirche (gemeindesaal), bernburger str. 3-5, 10963 berlin": {
+    "lat": 52.5001884,
+    "lon": 13.381143
+  },
+  "könig galerie, alexandrinenstraße 118–121, 10969 berlin": {
+    "lat": 52.5024857,
+    "lon": 13.401114
+  },
+  "neew ventures gmbh, berliner str. 80–82, 13189 berlin": {
+    "lat": 52.5641454,
+    "lon": 13.4218376
+  },
+  "saucony social club, oranienstraße 58, 10969 berlin": {
+    "lat": 52.5024857,
+    "lon": 13.401114
+  },
+  "fotografiska berlin, oranienburger str. 54, 10117 berlin": {
+    "lat": 52.5257323,
+    "lon": 13.3889157
+  },
+  "tio tio – padel berlin rooftop, marktstraße 6, 10317 berlin": {
+    "lat": 52.497936,
+    "lon": 13.4907298
+  },
+  "avomind, schwedter str. 263, 10119 berlin": {
+    "lat": 52.5304785,
+    "lon": 13.4053272
+  },
+  "bit – beam institute of technology, genthiner str. 40, 10785 berlin": {
+    "lat": 52.50735,
+    "lon": 13.3642193
+  },
+  "sap se (ber01), george-stephenson-str. 7-11, 10557 berlin": {
+    "lat": 52.52324,
+    "lon": 13.359503
+  },
+  "impact hub berlin (rooftop), eingang am südhaus, rollbergstraße 28a, 12053 berlin": {
+    "lat": 52.4770984,
+    "lon": 13.4324541
+  },
+  "bergmannstraße, 10961 berlin (kreuzberg)": {
+    "lat": 52.4896953,
+    "lon": 13.3896886
+  },
+  "weinbergspark, veteranenstraße 9, 10119 berlin": {
+    "lat": 52.5304785,
+    "lon": 13.4053272
+  },
+  "betahaus | moritzplatz, lobeckstraße 30, 10969 berlin": {
+    "lat": 52.5024857,
+    "lon": 13.401114
+  },
+  "escp business school berlin, heubnerweg 8-10, 14059 berlin (hörsaal 5)": {
+    "lat": 52.5205365,
+    "lon": 13.2879135
+  },
+  "gendarmenmarkt 5, 10117 berlin": {
+    "lat": 52.5143687,
+    "lon": 13.3918588
+  },
+  "café am neuen see, lichtensteinallee 2, 10787 berlin": {
+    "lat": 52.5078608,
+    "lon": 13.3438747
+  },
+  "botanischer garten berlin, königin-luise-straße 6-8, 14195 berlin": {
+    "lat": 52.4588979,
+    "lon": 13.2829183
+  },
+  "festsaal kreuzberg, am flutgraben 2, 12435 berlin": {
+    "lat": 52.4869643,
+    "lon": 13.4662697
   }
 }

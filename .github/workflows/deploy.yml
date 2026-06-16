@@ -4,40 +4,51 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
-  # Pulls live from Notion every 30 minutes so new events auto-publish.
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/30 * * * *"   # alle 30 Minuten
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Install dependencies
         run: npm install
 
-      # DEFAULT: build live from the Notion database.
-      # Requires repo secrets NOTION_API_KEY and NOTION_DATABASE_ID.
+      # ── Schritt 1: Newsletter-Seite → Hauptdatenbank synchronisieren ─────────
+      - name: Sync Newsletter-Seite → Hauptdatenbank
+        env:
+          NOTION_API_KEY:            ${{ secrets.NOTION_API_KEY }}
+          NOTION_NEWSLETTER_PAGE_ID: "3802312d-f1b4-81da-aab8-d4e1eb54acd5"
+          NOTION_EVENTS_DS_ID:       "7e63e3e6-7276-4064-9a5c-5f13d4551bb7"
+        run: npm run sync:newsletter
+
+      # ── Schritt 2: Inbox → Hauptdatenbank synchronisieren ──────────────────
+      - name: Sync Event Inbox → Hauptdatenbank
+        env:
+          NOTION_API_KEY:      ${{ secrets.NOTION_API_KEY }}
+          NOTION_INBOX_DS_ID:  "fb561103-bc4d-44e2-822b-d84cd752af0e"
+          NOTION_EVENTS_DS_ID: "7e63e3e6-7276-4064-9a5c-5f13d4551bb7"
+        run: npm run sync
+
+      # ── Schritt 3: Website aus Notion bauen ────────────────────────────────
       - name: Build site (from Notion)
         env:
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_API_KEY:      ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID:  ${{ secrets.NOTION_DATABASE_ID }}
         run: npm run build:notion
 
-      # FALLBACK: build from the committed data file instead of Notion.
-      # Comment out the step above and uncomment this one.
-      # - name: Build site (from local data)
-      #   run: npm run build
-
+      # ── Schritt 3: Auf Cloudflare Workers deployen ─────────────────────────
       - name: Deploy to Cloudflare Workers
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN:   ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID:  ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: npx wrangler deploy

@@ -4,3 +4,13 @@ node_modules/
 .dev.vars
 .wrangler/
 .Rhistory
+
+# stray duplicates / handoff archives
+*.zip
+/fomo-berlin-events/
+
+# local-only / reference
+/screenshot.png
+/deploy.yml
+/.claude/
+*.backup.json

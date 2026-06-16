@@ -22,6 +22,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/api/submit-event') return handleSubmit(request, env);
+    if (url.pathname === '/api/subscribe') return handleSubscribe(request, env);
     // Defensive fallthrough (rarely reached given run_worker_first scoping).
     return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
   },
@@ -36,16 +37,17 @@ function json(obj, status = 200, extra = {}) {
 
 const str = (v, max) => (v == null ? '' : String(v)).trim().slice(0, max);
 
+// Same-origin guard — FAIL CLOSED: reject unless ALLOWED_ORIGIN is configured AND
+// the request's Origin matches it exactly (a missing header or unset allow-list is rejected).
+function originAllowed(request, env) {
+  return !!env.ALLOWED_ORIGIN && request.headers.get('Origin') === env.ALLOWED_ORIGIN;
+}
+
 async function handleSubmit(request, env) {
   if (request.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405, { Allow: 'POST' });
 
-  // Same-origin guard (the form posts from our own page; no CORS needed).
-  // When ALLOWED_ORIGIN is configured, require an exact match — a MISSING Origin
-  // header is rejected too (don't let a stripped header bypass the check).
-  const origin = request.headers.get('Origin');
-  if (env.ALLOWED_ORIGIN && origin !== env.ALLOWED_ORIGIN) {
-    return json({ ok: false, error: 'Forbidden origin' }, 403);
-  }
+  // Same-origin guard (fail closed — see originAllowed).
+  if (!originAllowed(request, env)) return json({ ok: false, error: 'Forbidden origin' }, 403);
 
   let data;
   try {
@@ -118,6 +120,71 @@ async function handleSubmit(request, env) {
   if (!res.ok) {
     console.error('Notion error', res.status, await res.text().catch(() => ''));
     return json({ ok: false, error: 'Could not save the event. Try again later.' }, 502);
+  }
+  return json({ ok: true });
+}
+
+// Newsletter signup → a dedicated Notion "subscribers" data source.
+// Same hardening as submit. Secrets/vars:
+//   NOTION_API_KEY                     (shared with submit)
+//   NOTION_SUBSCRIBERS_DATA_SOURCE_ID  (the subscribers DB data source id)
+// The subscribers DB must have columns: Email (title), Source (text), Date (date).
+// If not configured, returns 503 so the client falls back to a prefilled email.
+async function handleSubscribe(request, env) {
+  if (request.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405, { Allow: 'POST' });
+
+  // Same-origin guard (fail closed — see originAllowed).
+  if (!originAllowed(request, env)) return json({ ok: false, error: 'Forbidden origin' }, 403);
+
+  let data;
+  try {
+    const ct = request.headers.get('Content-Type') || '';
+    data = ct.includes('application/json') ? await request.json() : Object.fromEntries((await request.formData()).entries());
+  } catch {
+    return json({ ok: false, error: 'Invalid body' }, 400);
+  }
+
+  // Honeypot: a hidden field only bots fill. Silently accept so they learn nothing.
+  if (data.website_url) return json({ ok: true });
+
+  // Per-IP rate limit (reuse the submit limiter binding if present).
+  if (env.SUBMIT_LIMITER) {
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const { success } = await env.SUBMIT_LIMITER.limit({ key: `subscribe:${ip}` });
+    if (!success) return json({ ok: false, error: 'Too many requests, please slow down.' }, 429);
+  }
+
+  const email = str(data.email, 160).toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ ok: false, error: 'A valid email is required.' }, 422);
+
+  const dataSourceId = env.NOTION_SUBSCRIBERS_DATA_SOURCE_ID;
+  if (!env.NOTION_API_KEY || !dataSourceId) {
+    // Not configured yet — tell the client so it can fall back to email.
+    return json({ ok: false, error: 'Subscriptions are not configured yet.' }, 503);
+  }
+
+  const properties = {
+    'Email': { title: [{ text: { content: email } }] },
+    'Source': { rich_text: [{ text: { content: 'fomoberlin.com' } }] },
+    'Date': { date: { start: new Date().toISOString().slice(0, 10) } },
+    'Status': { select: { name: 'New' } },
+  };
+  const body = { parent: { type: 'data_source_id', data_source_id: dataSourceId }, properties };
+
+  let res;
+  try {
+    res = await fetch(NOTION_PAGES_URL, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${env.NOTION_API_KEY}`, 'Notion-Version': NOTION_VERSION, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+  } catch (e) {
+    console.error('Notion subscribe fetch failed', e && e.message);
+    return json({ ok: false, error: 'Could not reach the database. Try again later.' }, 502);
+  }
+  if (!res.ok) {
+    console.error('Notion subscribe error', res.status, await res.text().catch(() => ''));
+    return json({ ok: false, error: 'Could not save your subscription. Try again later.' }, 502);
   }
   return json({ ok: true });
 }
