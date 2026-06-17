@@ -6,7 +6,7 @@
 # static site keeps working even before you set any of this up.
 #
 # See SETUP-SUBMIT-FORM.md for the one-time secret/data-source setup.
-name = "fomo-events"
+name = "fomo-berlin-events"
 main = "./src/worker.js"
 compatibility_date = "2025-06-01"
 
@@ -35,4 +35,4 @@ NOTION_DATA_SOURCE_ID = "3812312d-f1b4-803b-9b87-000be0bf8c81"
 # Leave empty to keep the email-fallback behaviour. See SETUP-SUBMIT-FORM.md §Newsletter.
 NOTION_SUBSCRIBERS_DATA_SOURCE_ID = "36ac4270-e27b-4cc3-b6bd-4863f1c75101"
 # Lock the submit + subscribe endpoints to your own origin (set to your deployed URL).
-ALLOWED_ORIGIN = "https://fomo-events.dariush-e51.workers.dev"
+ALLOWED_ORIGIN = "https://www.fomoberlin.com"
