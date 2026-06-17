@@ -6,7 +6,7 @@
 # static site keeps working even before you set any of this up.
 #
 # See SETUP-SUBMIT-FORM.md for the one-time secret/data-source setup.
-name = "fomo-berlin-events"
+name = "fomo-events"
 main = "./src/worker.js"
 compatibility_date = "2025-06-01"
 
