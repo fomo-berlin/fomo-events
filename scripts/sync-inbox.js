@@ -16,7 +16,7 @@
  * Env vars:
  *   NOTION_API_KEY         — Notion Integration Token
  *   NOTION_INBOX_DS_ID     — Data Source ID der Inbox (fb561103-bc4d-44e2-822b-d84cd752af0e)
- *   NOTION_EVENTS_DS_ID    — Data Source ID der Hauptdatenbank (7e63e3e6-7276-4064-9a5c-5f13d4551bb7)
+ *   NOTION_EVENTS_DS_ID    — Data Source ID der Hauptdatenbank (3812312d-f1b4-803b-9b87-000be0bf8c81)
  */
 
 const NOTION_VERSION = '2026-03-11';
@@ -24,7 +24,7 @@ const API_BASE = 'https://api.notion.com/v1';
 
 const API_KEY      = process.env.NOTION_API_KEY;
 const INBOX_DS_ID  = process.env.NOTION_INBOX_DS_ID  || 'fb561103-bc4d-44e2-822b-d84cd752af0e';
-const EVENTS_DS_ID = process.env.NOTION_EVENTS_DS_ID || '7e63e3e6-7276-4064-9a5c-5f13d4551bb7';
+const EVENTS_DS_ID = process.env.NOTION_EVENTS_DS_ID || '3812312d-f1b4-803b-9b87-000be0bf8c81';
 
 if (!API_KEY) {
   console.error('[sync-inbox] ❌ NOTION_API_KEY fehlt. Setze die Env-Variable und starte neu.');

@@ -26,7 +26,7 @@ const API_KEY              = process.env.NOTION_API_KEY;
 const NEWSLETTER_PAGE_ID   = process.env.NOTION_NEWSLETTER_PAGE_ID
                              || '3802312d-f1b4-81da-aab8-d4e1eb54acd5';
 const EVENTS_DS_ID         = process.env.NOTION_EVENTS_DS_ID
-                             || '7e63e3e6-7276-4064-9a5c-5f13d4551bb7';
+                             || '3812312d-f1b4-803b-9b87-000be0bf8c81';
 
 if (!API_KEY) {
   console.error('[sync-newsletter] ❌ NOTION_API_KEY fehlt. Skript wird übersprungen.');

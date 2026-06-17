@@ -30,7 +30,7 @@ namespace_id = "1001"
 #   npx wrangler secret put NOTION_API_KEY
 [vars]
 # Resolve once and paste here (see SETUP-SUBMIT-FORM.md). NOT the database id.
-NOTION_DATA_SOURCE_ID = ""
+NOTION_DATA_SOURCE_ID = "3812312d-f1b4-803b-9b87-000be0bf8c81"
 # Newsletter signups (hero + footer) → a SEPARATE Notion "subscribers" data source.
 # Leave empty to keep the email-fallback behaviour. See SETUP-SUBMIT-FORM.md §Newsletter.
 NOTION_SUBSCRIBERS_DATA_SOURCE_ID = "36ac4270-e27b-4cc3-b6bd-4863f1c75101"
