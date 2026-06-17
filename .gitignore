@@ -14,3 +14,7 @@ node_modules/
 /deploy.yml
 /.claude/
 *.backup.json
+
+*.bak
+.fuse_hidden*
+.DS_Store
