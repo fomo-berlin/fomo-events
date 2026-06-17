@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+*.log
+.dev.vars
+.wrangler/
+.Rhistory
+
+# stray duplicates / handoff archives
+*.zip
+/fomo-berlin-events/
+
+# local-only / reference
+/screenshot.png
+/deploy.yml
+/.claude/
+*.backup.json
