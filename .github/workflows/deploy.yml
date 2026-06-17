@@ -25,6 +25,7 @@ jobs:
 
       # ── Schritt 1: Newsletter-Seite → Hauptdatenbank synchronisieren ─────────
       - name: Sync Newsletter-Seite → Hauptdatenbank
+        continue-on-error: true   # darf den Deploy nicht blockieren
         env:
           NOTION_API_KEY:            ${{ secrets.NOTION_API_KEY }}
           NOTION_NEWSLETTER_PAGE_ID: "3802312d-f1b4-81da-aab8-d4e1eb54acd5"
@@ -33,6 +34,7 @@ jobs:
 
       # ── Schritt 2: Inbox → Hauptdatenbank synchronisieren ──────────────────
       - name: Sync Event Inbox → Hauptdatenbank
+        continue-on-error: true   # darf den Deploy nicht blockieren
         env:
           NOTION_API_KEY:      ${{ secrets.NOTION_API_KEY }}
           NOTION_INBOX_DS_ID:  "fb561103-bc4d-44e2-822b-d84cd752af0e"
